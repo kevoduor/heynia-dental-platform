@@ -126,105 +126,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Before/After Transformation Section */}
-      <section className="section-padding" id="transformation">
-        <div className="container-responsive max-w-6xl">
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-responsive-2xl font-bold mb-4 sm:mb-6">The transformation is real</h2>
-            <p className="text-responsive-lg text-muted-foreground max-w-4xl mx-auto">
-              See how dental practices went from overwhelmed to organized in just 30 days
-            </p>
-          </div>
-          
-          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12">
-            {/* Before */}
-            <Card className="border-red-200 bg-gradient-to-br from-red-50 to-orange-50">
-              <CardContent className="card-padding">
-                <div className="text-center mb-6">
-                  <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                    <span className="text-2xl">😰</span>
-                  </div>
-                  <h3 className="text-xl font-bold text-red-800 mb-2">Before Heynia</h3>
-                  <p className="text-red-700 text-sm">The daily struggle</p>
-                </div>
-                
-                <div className="space-y-4">
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2 shrink-0"></div>
-                    <div>
-                      <p className="font-medium text-red-800">"I spent 3 hours every morning just catching up"</p>
-                      <p className="text-red-700 text-sm">Managing appointments across 4 different systems</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2 shrink-0"></div>
-                    <div>
-                      <p className="font-medium text-red-800">"Our no-show rate was 30%"</p>
-                      <p className="text-red-700 text-sm">Lost revenue, stressed staff, angry patients</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2 shrink-0"></div>
-                    <div>
-                      <p className="font-medium text-red-800">"Insurance claims took forever"</p>
-                      <p className="text-red-700 text-sm">Cash flow problems, manual paperwork hell</p>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* After */}
-            <Card className="border-green-200 bg-gradient-to-br from-green-50 to-emerald-50">
-              <CardContent className="card-padding">
-                <div className="text-center mb-6">
-                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                    <span className="text-2xl">🚀</span>
-                  </div>
-                  <h3 className="text-xl font-bold text-green-800 mb-2">After Heynia</h3>
-                  <p className="text-green-700 text-sm">The breakthrough</p>
-                </div>
-                
-                <div className="space-y-4">
-                  <div className="flex items-start space-x-3">
-                    <Check className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
-                    <div>
-                      <p className="font-medium text-green-800">"My mornings are peaceful now"</p>
-                      <p className="text-green-700 text-sm">Everything synced, automated reminders work</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start space-x-3">
-                    <Check className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
-                    <div>
-                      <p className="font-medium text-green-800">"No-shows dropped to 3%"</p>
-                      <p className="text-green-700 text-sm">$15K more revenue per month, happy team</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start space-x-3">
-                    <Check className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
-                    <div>
-                      <p className="font-medium text-green-800">"Claims process automatically"</p>
-                      <p className="text-green-700 text-sm">Steady cash flow, more time for patients</p>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-          
-          <div className="text-center mt-8 sm:mt-12">
-            <Button size="lg" className="gradient-primary text-white border-0 hover:opacity-90 px-6 sm:px-8 btn-mobile-friendly">
-              Start Your Transformation
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Social Proof Section */}
+      {/* Social Proof Section - MOVED UP */}
       <section className="section-padding bg-gradient-to-br from-slate-50 to-blue-50" id="social-proof">
         <div className="container-responsive max-w-6xl">
           <div className="text-center mb-12 sm:mb-16">
@@ -357,6 +259,142 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Results Section - NEW */}
+      <section className="section-padding" id="results">
+        <div className="container-responsive max-w-6xl">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-responsive-2xl font-bold mb-4 sm:mb-6">Proven results that speak for themselves</h2>
+            <p className="text-responsive-lg text-muted-foreground max-w-4xl mx-auto">
+              Real dental practices, real transformations, real impact
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
+            <Card className="border-0 shadow-lg text-center">
+              <CardContent className="card-padding">
+                <div className="text-4xl sm:text-5xl font-bold text-primary mb-4">97%</div>
+                <div className="text-lg sm:text-xl font-semibold mb-2">Reduced No-Shows</div>
+                <p className="text-muted-foreground text-sm">AI-powered reminders and scheduling optimization</p>
+              </CardContent>
+            </Card>
+            
+            <Card className="border-0 shadow-lg text-center">
+              <CardContent className="card-padding">
+                <div className="text-4xl sm:text-5xl font-bold text-primary mb-4">35%</div>
+                <div className="text-lg sm:text-xl font-semibold mb-2">Revenue Increase</div>
+                <p className="text-muted-foreground text-sm">Streamlined billing and payment processing</p>
+              </CardContent>
+            </Card>
+            
+            <Card className="border-0 shadow-lg text-center">
+              <CardContent className="card-padding">
+                <div className="text-4xl sm:text-5xl font-bold text-primary mb-4">10+</div>
+                <div className="text-lg sm:text-xl font-semibold mb-2">Hours Saved Weekly</div>
+                <p className="text-muted-foreground text-sm">Automated workflows and smart scheduling</p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Before/After Transformation Section */}
+      <section className="section-padding bg-gradient-to-br from-slate-50 to-blue-50" id="transformation">
+        <div className="container-responsive max-w-6xl">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-responsive-2xl font-bold mb-4 sm:mb-6">The transformation is real</h2>
+            <p className="text-responsive-lg text-muted-foreground max-w-4xl mx-auto">
+              See how dental practices went from overwhelmed to organized in just 30 days
+            </p>
+          </div>
+          
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12">
+            {/* Before */}
+            <Card className="border-red-200 bg-gradient-to-br from-red-50 to-orange-50">
+              <CardContent className="card-padding">
+                <div className="text-center mb-6">
+                  <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                    <span className="text-2xl">😰</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-red-800 mb-2">Before Heynia</h3>
+                  <p className="text-red-700 text-sm">The daily struggle</p>
+                </div>
+                
+                <div className="space-y-4">
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2 shrink-0"></div>
+                    <div>
+                      <p className="font-medium text-red-800">"I spent 3 hours every morning just catching up"</p>
+                      <p className="text-red-700 text-sm">Managing appointments across 4 different systems</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2 shrink-0"></div>
+                    <div>
+                      <p className="font-medium text-red-800">"Our no-show rate was 30%"</p>
+                      <p className="text-red-700 text-sm">Lost revenue, stressed staff, angry patients</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2 shrink-0"></div>
+                    <div>
+                      <p className="font-medium text-red-800">"Insurance claims took forever"</p>
+                      <p className="text-red-700 text-sm">Cash flow problems, manual paperwork hell</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* After */}
+            <Card className="border-green-200 bg-gradient-to-br from-green-50 to-emerald-50">
+              <CardContent className="card-padding">
+                <div className="text-center mb-6">
+                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                    <span className="text-2xl">🚀</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-green-800 mb-2">After Heynia</h3>
+                  <p className="text-green-700 text-sm">The breakthrough</p>
+                </div>
+                
+                <div className="space-y-4">
+                  <div className="flex items-start space-x-3">
+                    <Check className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-medium text-green-800">"My mornings are peaceful now"</p>
+                      <p className="text-green-700 text-sm">Everything synced, automated reminders work</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start space-x-3">
+                    <Check className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-medium text-green-800">"No-shows dropped to 3%"</p>
+                      <p className="text-green-700 text-sm">$15K more revenue per month, happy team</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start space-x-3">
+                    <Check className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-medium text-green-800">"Claims process automatically"</p>
+                      <p className="text-green-700 text-sm">Steady cash flow, more time for patients</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+          
+          <div className="text-center mt-8 sm:mt-12">
+            <Button size="lg" className="gradient-primary text-white border-0 hover:opacity-90 px-6 sm:px-8 btn-mobile-friendly">
+              Start Your Transformation
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* Solution Section */}
       <section className="section-padding bg-gradient-to-br from-blue-50 to-teal-50" id="features">
         <div className="container-responsive max-w-7xl">
@@ -446,8 +484,111 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Pricing Section - MOVED UP */}
+      <section className="section-padding" id="pricing">
+        <div className="container-responsive max-w-6xl">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-responsive-2xl font-bold mb-4 sm:mb-6">Simple, transparent pricing</h2>
+            <p className="text-responsive-lg text-muted-foreground max-w-4xl mx-auto">
+              Choose the plan that fits your practice. No hidden fees, no long-term contracts.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
+            {/* Starter Plan */}
+            <Card className="border-slate-200">
+              <CardContent className="card-padding">
+                <div className="text-center mb-6">
+                  <h3 className="text-xl font-bold mb-2">Starter</h3>
+                  <div className="text-3xl font-bold mb-1">$99</div>
+                  <div className="text-sm text-muted-foreground">per month</div>
+                </div>
+                <ul className="space-y-3 mb-6">
+                  <li className="flex items-center text-sm">
+                    <Check className="w-4 h-4 text-green-600 mr-2 shrink-0" />
+                    Up to 500 patients
+                  </li>
+                  <li className="flex items-center text-sm">
+                    <Check className="w-4 h-4 text-green-600 mr-2 shrink-0" />
+                    Basic scheduling
+                  </li>
+                  <li className="flex items-center text-sm">
+                    <Check className="w-4 h-4 text-green-600 mr-2 shrink-0" />
+                    Email support
+                  </li>
+                </ul>
+                <Button variant="outline" className="w-full">Get Started</Button>
+              </CardContent>
+            </Card>
+
+            {/* Professional Plan - Most Popular */}
+            <Card className="border-primary shadow-lg relative">
+              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                <span className="bg-primary text-white px-4 py-1 rounded-full text-sm font-medium">Most Popular</span>
+              </div>
+              <CardContent className="card-padding">
+                <div className="text-center mb-6">
+                  <h3 className="text-xl font-bold mb-2">Professional</h3>
+                  <div className="text-3xl font-bold mb-1">$199</div>
+                  <div className="text-sm text-muted-foreground">per month</div>
+                </div>
+                <ul className="space-y-3 mb-6">
+                  <li className="flex items-center text-sm">
+                    <Check className="w-4 h-4 text-green-600 mr-2 shrink-0" />
+                    Up to 2,000 patients
+                  </li>
+                  <li className="flex items-center text-sm">
+                    <Check className="w-4 h-4 text-green-600 mr-2 shrink-0" />
+                    AI-powered scheduling
+                  </li>
+                  <li className="flex items-center text-sm">
+                    <Check className="w-4 h-4 text-green-600 mr-2 shrink-0" />
+                    Automated billing
+                  </li>
+                  <li className="flex items-center text-sm">
+                    <Check className="w-4 h-4 text-green-600 mr-2 shrink-0" />
+                    Priority support
+                  </li>
+                </ul>
+                <Button className="w-full gradient-primary text-white">Start Free Trial</Button>
+              </CardContent>
+            </Card>
+
+            {/* Enterprise Plan */}
+            <Card className="border-slate-200">
+              <CardContent className="card-padding">
+                <div className="text-center mb-6">
+                  <h3 className="text-xl font-bold mb-2">Enterprise</h3>
+                  <div className="text-3xl font-bold mb-1">$399</div>
+                  <div className="text-sm text-muted-foreground">per month</div>
+                </div>
+                <ul className="space-y-3 mb-6">
+                  <li className="flex items-center text-sm">
+                    <Check className="w-4 h-4 text-green-600 mr-2 shrink-0" />
+                    Unlimited patients
+                  </li>
+                  <li className="flex items-center text-sm">
+                    <Check className="w-4 h-4 text-green-600 mr-2 shrink-0" />
+                    Multi-location support
+                  </li>
+                  <li className="flex items-center text-sm">
+                    <Check className="w-4 h-4 text-green-600 mr-2 shrink-0" />
+                    Advanced analytics
+                  </li>
+                  <li className="flex items-center text-sm">
+                    <Check className="w-4 h-4 text-green-600 mr-2 shrink-0" />
+                    24/7 phone support
+                  </li>
+                </ul>
+                <Button variant="outline" className="w-full">Contact Sales</Button>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* Purpose Section */}
-      <section className="section-padding" id="impact">
+      <section className="section-padding bg-gradient-to-br from-slate-50 to-blue-50" id="impact">
         <div className="container-responsive max-w-5xl text-center">
           <h2 className="text-responsive-2xl font-bold mb-6 sm:mb-8">A practice management app with a purpose.</h2>
           <p className="text-responsive-lg text-muted-foreground mb-8 sm:mb-12 max-w-4xl mx-auto">
@@ -483,7 +624,7 @@ const Index = () => {
       </section>
 
       {/* Simplified FAQ Section */}
-      <section className="section-padding bg-gradient-to-br from-slate-50 to-blue-50" id="faq">
+      <section className="section-padding" id="faq">
         <div className="container-responsive max-w-4xl">
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-responsive-2xl font-bold mb-4 sm:mb-6">Quick answers to your questions</h2>
@@ -624,25 +765,57 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Final CTA Section */}
-      <section className="section-padding bg-gradient-to-br from-primary/10 to-blue-100">
-        <div className="container-responsive max-w-5xl text-center">
-          <h2 className="text-responsive-2xl font-bold mb-4 sm:mb-6">Ready to transform your practice?</h2>
-          <p className="text-responsive-lg text-muted-foreground mb-8 sm:mb-12 max-w-4xl mx-auto">
-            Dentists across the globe are tired of juggling tools that don't fit together. 
-            Heynia is here to change that—and turn your practice into a platform for impact.
-          </p>
+      {/* Contact/Booking Section - NEW */}
+      <section className="section-padding bg-gradient-to-br from-primary/10 to-blue-100" id="contact">
+        <div className="container-responsive max-w-5xl">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-responsive-2xl font-bold mb-6 sm:mb-8">Ready to get started?</h2>
+            <p className="text-responsive-lg text-muted-foreground max-w-4xl mx-auto mb-8 sm:mb-12">
+              Join hundreds of dental practices that transformed their operations with Heynia. 
+              Let's discuss how we can help your practice grow.
+            </p>
+          </div>
           
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-6">
-            <Button size="lg" className="gradient-primary text-white border-0 hover:opacity-90 px-6 sm:px-8 btn-mobile-friendly w-full sm:w-auto">
-              Get Early Access
-            </Button>
-            <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white btn-mobile-friendly w-full sm:w-auto">
-              Watch the Demo
-            </Button>
-            <Button size="lg" variant="outline" className="btn-mobile-friendly w-full sm:w-auto">
-              Schedule a Call
-            </Button>
+          <div className="grid md:grid-cols-2 gap-8 sm:gap-12 max-w-4xl mx-auto mb-8 sm:mb-12">
+            <Card className="border-0 shadow-xl">
+              <CardContent className="card-padding text-center">
+                <div className="w-12 h-12 gradient-primary rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Calendar className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-xl font-bold mb-4">Book a Demo</h3>
+                <p className="text-muted-foreground mb-6">
+                  See Heynia in action with a personalized demo tailored to your practice needs.
+                </p>
+                <Button size="lg" className="gradient-primary text-white border-0 hover:opacity-90 w-full">
+                  Schedule Demo
+                </Button>
+              </CardContent>
+            </Card>
+            
+            <Card className="border-0 shadow-xl">
+              <CardContent className="card-padding text-center">
+                <div className="w-12 h-12 gradient-secondary rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <MessageSquare className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-xl font-bold mb-4">Get in Touch</h3>
+                <p className="text-muted-foreground mb-6">
+                  Have questions? Our team is here to help you find the perfect solution.
+                </p>
+                <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white w-full">
+                  Contact Us
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+          
+          <div className="text-center">
+            <div className="text-sm text-muted-foreground mb-4">
+              Or reach out directly:
+            </div>
+            <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-8 text-sm">
+              <a href="mailto:hello@heynia.com" className="text-primary hover:underline">hello@heynia.com</a>
+              <a href="tel:+254755792377" className="text-primary hover:underline">+254 755 792 377</a>
+            </div>
           </div>
         </div>
       </section>
