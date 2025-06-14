@@ -1,8 +1,7 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Mic, MicOff, Send, Loader2 } from "lucide-react";
+import { Mic, MicOff, Send, Loader2, Sparkles } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 interface AISearchWindowProps {
@@ -142,81 +141,113 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
   };
 
   return (
-    <Card className="w-full max-w-2xl mx-auto bg-white/95 backdrop-blur-sm shadow-xl border-0">
-      <CardContent className="p-6">
-        <div className="space-y-4">
-          <div className="flex items-center space-x-2">
-            <div className="flex-1 relative">
-              <Input
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                onKeyPress={handleKeyPress}
-                placeholder="Ask anything about Heynia... (try voice or type)"
-                className="pr-20 text-base h-12 bg-white border-2 border-primary/20 focus:border-primary"
-                disabled={isLoading}
-              />
-              <div className="absolute right-2 top-1/2 transform -translate-y-1/2 flex items-center space-x-1">
-                <Button
-                  type="button"
-                  size="sm"
-                  variant={isListening ? "destructive" : "ghost"}
-                  onClick={isListening ? stopListening : startListening}
-                  disabled={isLoading}
-                  className="h-8 w-8 p-0"
-                >
-                  {isListening ? (
-                    <MicOff className="h-4 w-4" />
-                  ) : (
-                    <Mic className="h-4 w-4" />
-                  )}
-                </Button>
-                <Button
-                  type="button"
-                  size="sm"
-                  onClick={() => handleSearch()}
-                  disabled={isLoading || !query.trim()}
-                  className="h-8 w-8 p-0 gradient-primary text-white border-0"
-                >
-                  {isLoading ? (
-                    <Loader2 className="h-4 w-4 animate-spin" />
-                  ) : (
-                    <Send className="h-4 w-4" />
-                  )}
-                </Button>
-              </div>
-            </div>
-          </div>
-
-          {isListening && (
-            <div className="text-center">
-              <div className="inline-flex items-center space-x-2 text-primary">
-                <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-                <span className="text-sm font-medium">Listening...</span>
-              </div>
-            </div>
-          )}
-
-          {response && (
-            <div className="mt-4 p-4 bg-gradient-to-br from-primary/5 to-blue-50 rounded-lg border border-primary/10">
-              <div className="flex items-start space-x-3">
-                <div className="w-8 h-8 gradient-primary rounded-full flex items-center justify-center shrink-0">
-                  <span className="text-white font-bold text-sm">H</span>
-                </div>
-                <div className="flex-1">
-                  <p className="text-gray-700 leading-relaxed">{response}</p>
-                </div>
-              </div>
-            </div>
-          )}
-
-          <div className="text-center">
-            <p className="text-sm text-muted-foreground">
-              Try Asking: "HeyNia Could you Provide me with the list of patients I'm seeing today?"
-            </p>
-          </div>
+    <div className="w-full max-w-4xl mx-auto">
+      {/* Header Section */}
+      <div className="text-center mb-8">
+        <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-2xl mb-4 shadow-lg">
+          <Sparkles className="w-8 h-8 text-white" />
         </div>
-      </CardContent>
-    </Card>
+        <h2 className="text-3xl font-bold bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 bg-clip-text text-transparent mb-2">
+          Ask HeyNia Anything
+        </h2>
+        <p className="text-gray-600 text-lg">
+          Get instant answers about your dental practice management
+        </p>
+      </div>
+
+      {/* Search Input Card */}
+      <Card className="mb-6 border-0 shadow-2xl bg-white/80 backdrop-blur-xl">
+        <CardContent className="p-8">
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 rounded-2xl blur-xl"></div>
+            <div className="relative bg-white rounded-2xl border-2 border-gray-100 p-1">
+              <div className="flex items-center space-x-3 p-4">
+                <div className="flex-1">
+                  <Input
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    onKeyPress={handleKeyPress}
+                    placeholder="Type your question or use voice..."
+                    className="border-0 text-lg h-12 bg-transparent focus:ring-0 placeholder:text-gray-400"
+                    disabled={isLoading}
+                  />
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Button
+                    type="button"
+                    size="sm"
+                    variant={isListening ? "destructive" : "ghost"}
+                    onClick={isListening ? stopListening : startListening}
+                    disabled={isLoading}
+                    className="h-12 w-12 rounded-xl transition-all hover:scale-105"
+                  >
+                    {isListening ? (
+                      <MicOff className="h-5 w-5" />
+                    ) : (
+                      <Mic className="h-5 w-5" />
+                    )}
+                  </Button>
+                  <Button
+                    type="button"
+                    onClick={() => handleSearch()}
+                    disabled={isLoading || !query.trim()}
+                    className="h-12 w-12 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 transition-all hover:scale-105 shadow-lg"
+                  >
+                    {isLoading ? (
+                      <Loader2 className="h-5 w-5 animate-spin" />
+                    ) : (
+                      <Send className="h-5 w-5" />
+                    )}
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Listening Indicator */}
+          {isListening && (
+            <div className="mt-6 text-center">
+              <div className="inline-flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-red-500/10 to-pink-500/10 rounded-full border border-red-200">
+                <div className="flex space-x-1">
+                  <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+                  <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse delay-75"></div>
+                  <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse delay-150"></div>
+                </div>
+                <span className="text-red-600 font-medium">Listening...</span>
+              </div>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Response Section */}
+      {response && (
+        <Card className="mb-6 border-0 shadow-xl bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
+          <CardContent className="p-8">
+            <div className="flex items-start space-x-4">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shrink-0 shadow-lg">
+                <span className="text-white font-bold text-lg">H</span>
+              </div>
+              <div className="flex-1">
+                <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                  <p className="text-gray-800 leading-relaxed text-lg">{response}</p>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Suggestion */}
+      <div className="text-center">
+        <div className="inline-flex items-center space-x-2 px-6 py-3 bg-gray-50 rounded-full border border-gray-200">
+          <Sparkles className="w-4 h-4 text-gray-400" />
+          <p className="text-sm text-gray-600">
+            Try Asking: "HeyNia Could you Provide me with the list of patients I'm seeing today?"
+          </p>
+        </div>
+      </div>
+    </div>
   );
 };
 
