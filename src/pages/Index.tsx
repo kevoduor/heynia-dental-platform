@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -22,20 +23,30 @@ const Index = () => {
 
   console.log("About to render JSX...");
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    setMobileMenuOpen(false);
+  };
+
   return (
     <div className="min-h-screen bg-background optimized-scroll">
       {/* Navigation */}
       <nav className="border-b bg-background/80 backdrop-blur-sm sticky top-0 z-50 safe-area-top">
         <div className="container-responsive py-3 sm:py-4 flex items-center justify-between">
           <div className="flex items-center">
-            <HeyniaLogo className="h-6 sm:h-8" variant="colorful" />
+            <Link to="/">
+              <HeyniaLogo className="h-6 sm:h-8" variant="colorful" />
+            </Link>
           </div>
           
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
-            <a href="#features" className="text-muted-foreground hover:text-foreground transition-colors text-sm xl:text-base">Features</a>
-            <a href="#impact" className="text-muted-foreground hover:text-foreground transition-colors text-sm xl:text-base">Impact</a>
-            <a href="#story" className="text-muted-foreground hover:text-foreground transition-colors text-sm xl:text-base">Our Story</a>
+            <button onClick={() => scrollToSection('features')} className="text-muted-foreground hover:text-foreground transition-colors text-sm xl:text-base">Features</button>
+            <button onClick={() => scrollToSection('impact')} className="text-muted-foreground hover:text-foreground transition-colors text-sm xl:text-base">Impact</button>
+            <button onClick={() => scrollToSection('story')} className="text-muted-foreground hover:text-foreground transition-colors text-sm xl:text-base">Our Story</button>
             <Link to="/pricing" className="text-muted-foreground hover:text-foreground transition-colors text-sm xl:text-base">Pricing</Link>
             <Link to="/testimonials" className="text-muted-foreground hover:text-foreground transition-colors text-sm xl:text-base">Testimonials</Link>
             <Button variant="outline" size="sm" className="btn-mobile-friendly">Sign In</Button>
@@ -58,11 +69,11 @@ const Index = () => {
         {mobileMenuOpen && (
           <div className="lg:hidden border-t bg-background/95 backdrop-blur-sm">
             <div className="container-responsive py-4 space-y-4">
-              <a href="#features" className="block py-2 text-muted-foreground hover:text-foreground transition-colors">Features</a>
-              <a href="#impact" className="block py-2 text-muted-foreground hover:text-foreground transition-colors">Impact</a>
-              <a href="#story" className="block py-2 text-muted-foreground hover:text-foreground transition-colors">Our Story</a>
-              <Link to="/pricing" className="block py-2 text-muted-foreground hover:text-foreground transition-colors">Pricing</Link>
-              <Link to="/testimonials" className="block py-2 text-muted-foreground hover:text-foreground transition-colors">Testimonials</Link>
+              <button onClick={() => scrollToSection('features')} className="block py-2 text-muted-foreground hover:text-foreground transition-colors w-full text-left">Features</button>
+              <button onClick={() => scrollToSection('impact')} className="block py-2 text-muted-foreground hover:text-foreground transition-colors w-full text-left">Impact</button>
+              <button onClick={() => scrollToSection('story')} className="block py-2 text-muted-foreground hover:text-foreground transition-colors w-full text-left">Our Story</button>
+              <Link to="/pricing" className="block py-2 text-muted-foreground hover:text-foreground transition-colors" onClick={() => setMobileMenuOpen(false)}>Pricing</Link>
+              <Link to="/testimonials" className="block py-2 text-muted-foreground hover:text-foreground transition-colors" onClick={() => setMobileMenuOpen(false)}>Testimonials</Link>
               <div className="flex flex-col space-y-3 pt-4">
                 <Button variant="outline" className="btn-mobile-friendly">Sign In</Button>
                 <Button className="btn-glow-primary btn-mobile-friendly">Get Started</Button>
@@ -506,7 +517,9 @@ const Index = () => {
             {/* Company Info */}
             <div>
               <div className="flex items-center mb-4">
-                <HeyniaLogo className="h-6 sm:h-8" variant="light" />
+                <Link to="/">
+                  <HeyniaLogo className="h-6 sm:h-8" variant="light" />
+                </Link>
               </div>
               <p className="text-slate-400 text-sm mb-4">
                 Cloud-based dental practice management software with HIPAA compliance, AI-powered insights, and integrated billing for modern dental clinics.
@@ -528,11 +541,11 @@ const Index = () => {
             <div>
               <h3 className="font-semibold mb-4">Product</h3>
               <div className="space-y-2 text-sm text-slate-400">
-                <a href="#features" className="block hover:text-white transition-colors">Features</a>
+                <button onClick={() => scrollToSection('features')} className="block hover:text-white transition-colors text-left">Features</button>
                 <Link to="/pricing" className="block hover:text-white transition-colors">Pricing</Link>
-                <a href="#" className="block hover:text-white transition-colors">Demo</a>
-                <a href="#" className="block hover:text-white transition-colors">API</a>
-                <a href="#" className="block hover:text-white transition-colors">Integrations</a>
+                <button className="block hover:text-white transition-colors text-left">Demo</button>
+                <button className="block hover:text-white transition-colors text-left">API</button>
+                <button className="block hover:text-white transition-colors text-left">Integrations</button>
               </div>
             </div>
 
@@ -540,11 +553,11 @@ const Index = () => {
             <div>
               <h3 className="font-semibold mb-4">Solutions</h3>
               <div className="space-y-2 text-sm text-slate-400">
-                <a href="#" className="block hover:text-white transition-colors">Small Clinics</a>
-                <a href="#" className="block hover:text-white transition-colors">Multi-Location Practices</a>
-                <a href="#" className="block hover:text-white transition-colors">Teledentistry</a>
-                <a href="#" className="block hover:text-white transition-colors">Patient Portal</a>
-                <a href="#" className="block hover:text-white transition-colors">Mobile Access</a>
+                <button className="block hover:text-white transition-colors text-left">Small Clinics</button>
+                <button className="block hover:text-white transition-colors text-left">Multi-Location Practices</button>
+                <button className="block hover:text-white transition-colors text-left">Teledentistry</button>
+                <button className="block hover:text-white transition-colors text-left">Patient Portal</button>
+                <button className="block hover:text-white transition-colors text-left">Mobile Access</button>
               </div>
             </div>
 
@@ -552,13 +565,13 @@ const Index = () => {
             <div>
               <h3 className="font-semibold mb-4">Support & Legal</h3>
               <div className="space-y-2 text-sm text-slate-400">
-                <a href="#impact" className="block hover:text-white transition-colors">About</a>
-                <a href="#" className="block hover:text-white transition-colors">Blog</a>
-                <a href="#" className="block hover:text-white transition-colors">Help Center</a>
-                <a href="#" className="block hover:text-white transition-colors">Contact</a>
+                <button onClick={() => scrollToSection('impact')} className="block hover:text-white transition-colors text-left">About</button>
+                <button className="block hover:text-white transition-colors text-left">Blog</button>
+                <button className="block hover:text-white transition-colors text-left">Help Center</button>
+                <button className="block hover:text-white transition-colors text-left">Contact</button>
                 <Link to="/terms" className="block hover:text-white transition-colors">Terms of Service</Link>
                 <Link to="/privacy" className="block hover:text-white transition-colors">Privacy Policy</Link>
-                <a href="#" className="block hover:text-white transition-colors">HIPAA Compliance</a>
+                <button className="block hover:text-white transition-colors text-left">HIPAA Compliance</button>
               </div>
             </div>
           </div>
