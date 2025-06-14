@@ -211,7 +211,7 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
 
           <div className="text-center">
             <p className="text-sm text-muted-foreground">
-              Try asking: "How does scheduling work?" or "What makes Heynia different?"
+              Try Asking: "HeyNia Could you Provide me with the list of patients I'm seeing today?"
             </p>
           </div>
         </div>
