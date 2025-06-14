@@ -16,7 +16,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 189 100% 42%;
+    --primary: 338 85% 58%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
@@ -25,7 +25,7 @@
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 189 100% 42%;
+    --accent: 338 85% 58%;
     --accent-foreground: 222.2 47.4% 11.2%;
 
     --destructive: 0 84.2% 60.2%;
@@ -33,7 +33,7 @@
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 189 100% 42%;
+    --ring: 338 85% 58%;
 
     --radius: 0.75rem;
 
@@ -46,11 +46,23 @@
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
 
-    /* Custom Heynia colors */
-    --heynia-teal: 189 100% 42%;
-    --heynia-blue: 210 100% 50%;
-    --heynia-purple: 259 100% 65%;
-    --heynia-pink: 330 100% 70%;
+    /* Apple-inspired color palette from image */
+    --apple-pink: 338 85% 58%;      /* Uncommon Sense */
+    --apple-orange: 16 100% 55%;    /* Imaginative Intelligence */
+    --apple-yellow: 45 100% 55%;    /* Cultural Tenacity */
+    --apple-black: 0 0% 15%;        /* Leadership Palette */
+    --apple-purple: 280 50% 55%;    /* Team Catalyst */
+    --apple-green: 85 80% 45%;      /* Accountability Without Control */
+    --apple-blue: 190 85% 55%;      /* Capacity to Connect */
+    
+    /* Update Heynia colors to match Apple palette */
+    --heynia-teal: 190 85% 55%;
+    --heynia-blue: 190 85% 55%;
+    --heynia-purple: 280 50% 55%;
+    --heynia-pink: 338 85% 58%;
+    --heynia-orange: 16 100% 55%;
+    --heynia-yellow: 45 100% 55%;
+    --heynia-green: 85 80% 45%;
   }
 }
 
@@ -102,15 +114,19 @@
 
 @layer utilities {
   .gradient-primary {
-    background: linear-gradient(135deg, hsl(var(--heynia-teal)) 0%, hsl(var(--heynia-blue)) 100%);
+    background: linear-gradient(135deg, hsl(var(--apple-pink)) 0%, hsl(var(--apple-orange)) 100%);
   }
   
   .gradient-secondary {
-    background: linear-gradient(135deg, hsl(var(--heynia-purple)) 0%, hsl(var(--heynia-pink)) 100%);
+    background: linear-gradient(135deg, hsl(var(--apple-purple)) 0%, hsl(var(--apple-blue)) 100%);
+  }
+  
+  .gradient-tertiary {
+    background: linear-gradient(135deg, hsl(var(--apple-green)) 0%, hsl(var(--apple-yellow)) 100%);
   }
 
   .text-gradient {
-    background: linear-gradient(135deg, hsl(var(--heynia-teal)) 0%, hsl(var(--heynia-blue)) 100%);
+    background: linear-gradient(135deg, hsl(var(--apple-pink)) 0%, hsl(var(--apple-orange)) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -120,66 +136,92 @@
     font-family: 'Comfortaa', sans-serif;
   }
 
-  /* Glowy CTA Button Styles */
+  /* Updated glowy CTA Button Styles with Apple colors */
   .btn-glow-primary {
-    @apply relative bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold;
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5), 0 0 40px rgba(147, 51, 234, 0.3);
-    animation: glow-pulse 2s ease-in-out infinite alternate;
+    @apply relative;
+    background: linear-gradient(135deg, hsl(var(--apple-pink)) 0%, hsl(var(--apple-orange)) 100%);
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 0 20px hsla(var(--apple-pink), 0.5), 0 0 40px hsla(var(--apple-orange), 0.3);
+    animation: glow-pulse-primary 2s ease-in-out infinite alternate;
   }
 
   .btn-glow-primary:hover {
-    box-shadow: 0 0 30px rgba(59, 130, 246, 0.7), 0 0 60px rgba(147, 51, 234, 0.5);
+    box-shadow: 0 0 30px hsla(var(--apple-pink), 0.7), 0 0 60px hsla(var(--apple-orange), 0.5);
     transform: translateY(-2px);
   }
 
   .btn-glow-secondary {
-    @apply relative bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-semibold;
-    box-shadow: 0 0 20px rgba(16, 185, 129, 0.5), 0 0 40px rgba(20, 184, 166, 0.3);
-    animation: glow-pulse-green 2s ease-in-out infinite alternate;
+    @apply relative;
+    background: linear-gradient(135deg, hsl(var(--apple-green)) 0%, hsl(var(--apple-blue)) 100%);
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 0 20px hsla(var(--apple-green), 0.5), 0 0 40px hsla(var(--apple-blue), 0.3);
+    animation: glow-pulse-secondary 2s ease-in-out infinite alternate;
   }
 
   .btn-glow-secondary:hover {
-    box-shadow: 0 0 30px rgba(16, 185, 129, 0.7), 0 0 60px rgba(20, 184, 166, 0.5);
+    box-shadow: 0 0 30px hsla(var(--apple-green), 0.7), 0 0 60px hsla(var(--apple-blue), 0.5);
     transform: translateY(-2px);
   }
 
   .btn-glow-accent {
-    @apply relative bg-gradient-to-r from-pink-500 to-rose-600 text-white font-semibold;
-    box-shadow: 0 0 20px rgba(236, 72, 153, 0.5), 0 0 40px rgba(225, 29, 72, 0.3);
-    animation: glow-pulse-pink 2s ease-in-out infinite alternate;
+    @apply relative;
+    background: linear-gradient(135deg, hsl(var(--apple-purple)) 0%, hsl(var(--apple-yellow)) 100%);
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 0 20px hsla(var(--apple-purple), 0.5), 0 0 40px hsla(var(--apple-yellow), 0.3);
+    animation: glow-pulse-accent 2s ease-in-out infinite alternate;
   }
 
   .btn-glow-accent:hover {
-    box-shadow: 0 0 30px rgba(236, 72, 153, 0.7), 0 0 60px rgba(225, 29, 72, 0.5);
+    box-shadow: 0 0 30px hsla(var(--apple-purple), 0.7), 0 0 60px hsla(var(--apple-yellow), 0.5);
     transform: translateY(-2px);
   }
 
-  @keyframes glow-pulse {
+  @keyframes glow-pulse-primary {
     0% {
-      box-shadow: 0 0 20px rgba(59, 130, 246, 0.5), 0 0 40px rgba(147, 51, 234, 0.3);
+      box-shadow: 0 0 20px hsla(var(--apple-pink), 0.5), 0 0 40px hsla(var(--apple-orange), 0.3);
     }
     100% {
-      box-shadow: 0 0 25px rgba(59, 130, 246, 0.7), 0 0 50px rgba(147, 51, 234, 0.5);
+      box-shadow: 0 0 25px hsla(var(--apple-pink), 0.7), 0 0 50px hsla(var(--apple-orange), 0.5);
     }
   }
 
-  @keyframes glow-pulse-green {
+  @keyframes glow-pulse-secondary {
     0% {
-      box-shadow: 0 0 20px rgba(16, 185, 129, 0.5), 0 0 40px rgba(20, 184, 166, 0.3);
+      box-shadow: 0 0 20px hsla(var(--apple-green), 0.5), 0 0 40px hsla(var(--apple-blue), 0.3);
     }
     100% {
-      box-shadow: 0 0 25px rgba(16, 185, 129, 0.7), 0 0 50px rgba(20, 184, 166, 0.5);
+      box-shadow: 0 0 25px hsla(var(--apple-green), 0.7), 0 0 50px hsla(var(--apple-blue), 0.5);
     }
   }
 
-  @keyframes glow-pulse-pink {
+  @keyframes glow-pulse-accent {
     0% {
-      box-shadow: 0 0 20px rgba(236, 72, 153, 0.5), 0 0 40px rgba(225, 29, 72, 0.3);
+      box-shadow: 0 0 20px hsla(var(--apple-purple), 0.5), 0 0 40px hsla(var(--apple-yellow), 0.3);
     }
     100% {
-      box-shadow: 0 0 25px rgba(236, 72, 153, 0.7), 0 0 50px rgba(225, 29, 72, 0.5);
+      box-shadow: 0 0 25px hsla(var(--apple-purple), 0.7), 0 0 50px hsla(var(--apple-yellow), 0.5);
     }
   }
+
+  /* Apple color utilities */
+  .bg-apple-pink { background-color: hsl(var(--apple-pink)); }
+  .bg-apple-orange { background-color: hsl(var(--apple-orange)); }
+  .bg-apple-yellow { background-color: hsl(var(--apple-yellow)); }
+  .bg-apple-black { background-color: hsl(var(--apple-black)); }
+  .bg-apple-purple { background-color: hsl(var(--apple-purple)); }
+  .bg-apple-green { background-color: hsl(var(--apple-green)); }
+  .bg-apple-blue { background-color: hsl(var(--apple-blue)); }
+
+  .text-apple-pink { color: hsl(var(--apple-pink)); }
+  .text-apple-orange { color: hsl(var(--apple-orange)); }
+  .text-apple-yellow { color: hsl(var(--apple-yellow)); }
+  .text-apple-black { color: hsl(var(--apple-black)); }
+  .text-apple-purple { color: hsl(var(--apple-purple)); }
+  .text-apple-green { color: hsl(var(--apple-green)); }
+  .text-apple-blue { color: hsl(var(--apple-blue)); }
 
   /* Responsive container utilities */
   .container-responsive {
