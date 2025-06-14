@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Calendar, Users, FileText, MessageSquare, ArrowDown, Check } from "lucide-react";
+import AISearchWindow from "@/components/AISearchWindow";
 
 const Index = () => {
   return (
@@ -39,12 +40,13 @@ const Index = () => {
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
             Streamline your dental practice with intelligent scheduling, automated billing, and powerful analytics—all while supporting a meaningful cause.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button size="lg" className="gradient-primary text-white border-0 hover:opacity-90 px-8 py-6 text-lg">
-              Try Heynia for free
-            </Button>
-            <p className="text-sm text-muted-foreground">No credit card needed</p>
+          
+          {/* AI Search Window */}
+          <div className="mb-4">
+            <AISearchWindow />
           </div>
+          <p className="text-sm text-muted-foreground mb-16">No login required</p>
+          
           <div className="mt-16 relative">
             <div className="bg-white rounded-xl shadow-2xl p-8 max-w-4xl mx-auto">
               <div className="grid md:grid-cols-3 gap-6">
