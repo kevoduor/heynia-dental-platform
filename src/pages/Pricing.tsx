@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check, Star, Zap, Crown, Menu, X } from "lucide-react";
+import HeyniaLogo from "@/components/HeyniaLogo";
 import { useDocumentHead } from "@/hooks/useDocumentHead";
 import { useState } from "react";
 
@@ -85,11 +86,7 @@ const Pricing = () => {
       <nav className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50 safe-area-top">
         <div className="container-responsive py-3 sm:py-4 flex items-center justify-between">
           <div className="flex items-center">
-            <img 
-              src="/lovable-uploads/14b77d53-83bf-488d-8ca7-a80bee137662.png" 
-              alt="heynia logo" 
-              className="h-6 sm:h-8 w-auto"
-            />
+            <HeyniaLogo className="h-6 sm:h-8" variant="dark" />
           </div>
           
           {/* Desktop Navigation */}
@@ -286,11 +283,7 @@ const Pricing = () => {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-8 sm:mb-12">
             <div>
               <div className="flex items-center mb-4 sm:mb-6">
-                <img 
-                  src="/lovable-uploads/14b77d53-83bf-488d-8ca7-a80bee137662.png" 
-                  alt="heynia logo" 
-                  className="h-6 sm:h-8 w-auto brightness-0 invert"
-                />
+                <HeyniaLogo className="h-6 sm:h-8" variant="light" />
               </div>
               <p className="text-slate-400 mb-3 sm:mb-4 text-sm sm:text-base">
                 Empowering dental practices with purpose-driven technology.
