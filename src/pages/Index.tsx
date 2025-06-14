@@ -207,7 +207,7 @@ const Index = () => {
             Every Heynia subscription helps fund education, support, and advocacy to end gender-based violence.
           </p>
           <p className="text-responsive-lg text-muted-foreground mb-12 leading-relaxed">
-            When you grow with Heynia, you're not just upgrading your business, you're standing for something bigger.
+            When you choose Heynia, you're not just upgrading your business, you're standing for something bigger.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-8 justify-center items-center mb-12">
@@ -227,22 +227,50 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Section 4: Founder Message & Trust */}
+      {/* Section 4: Our Story */}
       <section id="story" className="section-padding bg-gradient-to-br from-slate-50 to-blue-50">
         <div className="container-responsive max-w-4xl">
           <div className="text-center mb-12">
             <h2 className="text-responsive-2xl font-bold mb-8">
-              Heynia is built by people who care deeply—about your practice and our world.
+              Our Story
             </h2>
             
-            <Card className="p-8 mb-8">
-              <blockquote className="text-xl text-muted-foreground italic mb-4 leading-relaxed">
-                "I built Heynia to help dentists like you escape the burnout cycle."
-              </blockquote>
-              <cite className="text-lg font-semibold">— Kevin Oduor, Founder</cite>
-            </Card>
+            <div className="text-left max-w-3xl mx-auto space-y-8">
+              <div>
+                <h3 className="text-xl font-semibold mb-4 text-primary">Why we exist</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  At Heynia, we believe that technology should be a force for good—empowering businesses and helping shape a more just world.
+                </p>
+                <p className="text-muted-foreground leading-relaxed mt-4">
+                  Our purpose (Nia, in Swahili) is to build tools that not only support dental professionals but also contribute to ending gender-based violence (GBV), a global crisis that affects 1 in 3 women in their lifetime.
+                </p>
+              </div>
 
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+              <div>
+                <h3 className="text-xl font-semibold mb-4 text-primary">How we live our purpose</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  We design intelligent, user-friendly software that helps dental practices grow with less stress and more efficiency.
+                </p>
+                <p className="text-muted-foreground leading-relaxed mt-4">
+                  But just as importantly, we commit 10% of our annual revenue to organizations working on the frontlines to prevent GBV and support survivors.
+                </p>
+                <p className="text-muted-foreground leading-relaxed mt-4">
+                  This mission is deeply personal and embedded in the way we operate.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-semibold mb-4 text-primary">What we offer</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Heynia is a modern, AI-powered platform built for dental practices that want to simplify their workflows, improve patient engagement, and grow sustainably.
+                </p>
+                <p className="text-muted-foreground leading-relaxed mt-4">
+                  When you choose Heynia, you're not just getting powerful software—you're standing with a company that leads with purpose and gives back.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-12">
               <div className="flex items-center space-x-2">
                 <Shield className="w-5 h-5 text-green-600" />
                 <span className="font-medium">HIPAA-Ready</span>
