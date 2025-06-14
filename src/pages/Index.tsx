@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Calendar, Users, FileText, MessageSquare, ArrowDown, Check } from "lucide-react";
@@ -282,6 +281,83 @@ const Index = () => {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <section className="py-20 px-4 bg-gradient-to-br from-slate-50 to-blue-50" id="faq">
+        <div className="container mx-auto max-w-4xl">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-6">Frequently Asked Questions</h2>
+            <p className="text-xl text-muted-foreground">
+              Everything you need to know about our cloud-based dental practice management software
+            </p>
+          </div>
+          
+          <div className="grid gap-6 max-w-3xl mx-auto">
+            <Card className="border-0 shadow-lg">
+              <CardContent className="p-8">
+                <h3 className="text-xl font-semibold mb-4">Is Heynia HIPAA-compliant dental software for dentists?</h3>
+                <p className="text-muted-foreground">
+                  Yes, Heynia is fully HIPAA-compliant dental software designed specifically for dentists. We ensure all patient data is encrypted and secure, meeting all healthcare compliance requirements.
+                </p>
+              </CardContent>
+            </Card>
+            
+            <Card className="border-0 shadow-lg">
+              <CardContent className="p-8">
+                <h3 className="text-xl font-semibold mb-4">Does your dental practice management software include billing features?</h3>
+                <p className="text-muted-foreground">
+                  Absolutely! Our dental practice management software with billing includes automated billing, insurance claim management, and integrated revenue cycle management to streamline your practice's financial operations.
+                </p>
+              </CardContent>
+            </Card>
+            
+            <Card className="border-0 shadow-lg">
+              <CardContent className="p-8">
+                <h3 className="text-xl font-semibold mb-4">Can I access the dental software with mobile access for dentists?</h3>
+                <p className="text-muted-foreground">
+                  Yes, our cloud dental software with real-time analytics offers full mobile access for dentists. Manage your practice, view patient records, and handle appointments from anywhere with our mobile-optimized platform.
+                </p>
+              </CardContent>
+            </Card>
+            
+            <Card className="border-0 shadow-lg">
+              <CardContent className="p-8">
+                <h3 className="text-xl font-semibold mb-4">Is this suitable as dental practice software for small clinics?</h3>
+                <p className="text-muted-foreground">
+                  Definitely! Heynia is designed as affordable dental practice management software USA-based small clinics can rely on. Our customizable dental practice management system scales with your practice's growth.
+                </p>
+              </CardContent>
+            </Card>
+            
+            <Card className="border-0 shadow-lg">
+              <CardContent className="p-8">
+                <h3 className="text-xl font-semibold mb-4">Does your dental software include patient scheduling and automated reminders?</h3>
+                <p className="text-muted-foreground">
+                  Yes, our dental office software with patient scheduling includes automated appointment reminders via SMS, email, and WhatsApp to reduce no-shows and improve patient communication.
+                </p>
+              </CardContent>
+            </Card>
+            
+            <Card className="border-0 shadow-lg">
+              <CardContent className="p-8">
+                <h3 className="text-xl font-semibold mb-4">Can this work as the best dental practice software for multi-location clinics?</h3>
+                <p className="text-muted-foreground">
+                  Absolutely! Our dental practice management system with AI-powered insights is perfect for multi-location clinics, offering centralized management, treatment plan management, and integrated electronic health records across all locations.
+                </p>
+              </CardContent>
+            </Card>
+            
+            <Card className="border-0 shadow-lg">
+              <CardContent className="p-8">
+                <h3 className="text-xl font-semibold mb-4">Does your dental software include teledentistry features and patient portal?</h3>
+                <p className="text-muted-foreground">
+                  Yes, our dental software with teledentistry features includes a comprehensive patient portal with online payments, marketing automation tools, and secure communication channels for improved patient engagement.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* Our Story Section */}
       <section className="py-20 px-4 bg-gradient-to-br from-slate-50 to-blue-50" id="story">
         <div className="container mx-auto max-w-4xl">
@@ -461,7 +537,7 @@ const Index = () => {
                 <span className="text-xl font-bold">Heynia</span>
               </div>
               <p className="text-slate-400 mb-4">
-                Empowering dental practices with purpose-driven technology.
+                Cloud-based dental practice management software with HIPAA-compliant security and integrated revenue cycle management.
               </p>
               <div className="text-sm text-slate-400">
                 <p>hello@heynia.com</p>
@@ -471,38 +547,47 @@ const Index = () => {
             </div>
             
             <div>
-              <h4 className="font-semibold mb-4">Product</h4>
+              <h4 className="font-semibold mb-4">Dental Software Features</h4>
               <ul className="space-y-2 text-slate-400">
-                <li><a href="#" className="hover:text-white transition-colors">Features</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Pricing</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Demo</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">API</a></li>
+                <li><a href="#features" className="hover:text-white transition-colors">Patient Scheduling Software</a></li>
+                <li><a href="#features" className="hover:text-white transition-colors">Automated Appointment Reminders</a></li>
+                <li><a href="#features" className="hover:text-white transition-colors">Insurance Claim Management</a></li>
+                <li><a href="#features" className="hover:text-white transition-colors">Treatment Plan Management</a></li>
               </ul>
             </div>
             
             <div>
-              <h4 className="font-semibold mb-4">Company</h4>
+              <h4 className="font-semibold mb-4">Practice Management</h4>
               <ul className="space-y-2 text-slate-400">
-                <li><a href="#story" className="hover:text-white transition-colors">Our Story</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Impact</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
+                <li><a href="#features" className="hover:text-white transition-colors">Electronic Health Records</a></li>
+                <li><a href="#features" className="hover:text-white transition-colors">Patient Portal & Online Payments</a></li>
+                <li><a href="#features" className="hover:text-white transition-colors">Marketing Automation Tools</a></li>
+                <li><a href="#features" className="hover:text-white transition-colors">AI-Powered Insights</a></li>
               </ul>
             </div>
             
             <div>
-              <h4 className="font-semibold mb-4">Support</h4>
+              <h4 className="font-semibold mb-4">Solutions</h4>
               <ul className="space-y-2 text-slate-400">
-                <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Legal</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Privacy</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Terms</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Small Clinic Software</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Multi-Location Clinics</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Teledentistry Features</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Mobile Access for Dentists</a></li>
               </ul>
             </div>
           </div>
           
-          <div className="border-t border-slate-800 pt-8 text-center text-slate-400">
-            <p>&copy; 2024 Heynia. Built with purpose. Powered by community.</p>
+          <div className="border-t border-slate-800 pt-8">
+            <div className="text-center text-slate-400 mb-4">
+              <p className="text-sm">
+                Affordable dental practice management software for USA clinics | 
+                Customizable dental practice management system | 
+                Best dental software with real-time analytics
+              </p>
+            </div>
+            <div className="text-center text-slate-400">
+              <p>&copy; 2024 Heynia. Cloud dental software built with purpose. Powered by community.</p>
+            </div>
           </div>
         </div>
       </footer>
