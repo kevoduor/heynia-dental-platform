@@ -1,7 +1,8 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Calendar, Users, FileText, MessageSquare, ArrowDown, Check, Menu, X, Star, Building2, TrendingUp, Shield, Smartphone, BarChart3, CreditCard, Clock, Zap, Heart, Award, Mail, Phone } from "lucide-react";
+import { Calendar, Users, FileText, MessageSquare, ArrowDown, Check, Menu, X, Star, Building2, TrendingUp, Shield, Smartphone, BarChart3, CreditCard, Clock, Zap, Heart, Award, Mail, Phone, Cloud } from "lucide-react";
 import AISearchWindow from "@/components/AISearchWindow";
 import HeyniaLogo from "@/components/HeyniaLogo";
 import { useDocumentHead } from "@/hooks/useDocumentHead";
@@ -164,6 +165,11 @@ const Index = () => {
               <BarChart3 className="w-12 h-12 text-purple-600 mb-4" />
               <h3 className="text-xl font-semibold mb-3">Real-Time Analytics</h3>
               <p className="text-muted-foreground">Understand what's working (and what's not).</p>
+            </Card>
+            <Card className="p-6 hover:shadow-lg transition-shadow">
+              <Cloud className="w-12 h-12 text-cyan-600 mb-4" />
+              <h3 className="text-xl font-semibold mb-3">Cloud-Based Access</h3>
+              <p className="text-muted-foreground">Access your practice data anywhere, anytime—no servers required.</p>
             </Card>
             <Card className="p-6 hover:shadow-lg transition-shadow">
               <Smartphone className="w-12 h-12 text-orange-600 mb-4" />
