@@ -508,7 +508,7 @@ const Index = () => {
           <div className="border-t border-slate-800 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
               <p className="text-slate-400 text-sm">
-                © 2024 Heynia. All rights reserved. | HIPAA-Compliant Dental Practice Management Software
+                made in nairobi with ❤️
               </p>
               <div className="flex space-x-6 text-sm text-slate-400">
                 <span>🔒 HIPAA-Ready</span>

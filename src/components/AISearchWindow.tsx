@@ -139,10 +139,10 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
     setResponse('');
     
     try {
-      // Import Supabase client and make the AI call
+      // Import Supabase client and make the AI call using Kluster API
       const { supabase } = await import("@/integrations/supabase/client");
       
-      const { data, error } = await supabase.functions.invoke('groq-chat', {
+      const { data, error } = await supabase.functions.invoke('kluster-chat', {
         body: { message: searchQuery }
       });
 
