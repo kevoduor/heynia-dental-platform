@@ -1,9 +1,9 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Mic, MicOff, Send, Loader2, Sparkles } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { supabase } from "@/integrations/supabase/client";
 
 interface AISearchWindowProps {
   onSearch?: (query: string) => void;
@@ -77,6 +77,9 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
   const [response, setResponse] = useState('');
   const recognitionRef = useRef<SpeechRecognition | null>(null);
 
+  // Check if Supabase environment variables are available
+  const hasSupabaseConfig = !!(import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_ANON_KEY);
+
   useEffect(() => {
     // Initialize speech recognition if available
     const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
@@ -136,18 +139,26 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
     setResponse('');
     
     try {
-      const { data, error } = await supabase.functions.invoke('groq-chat', {
-        body: { message: searchQuery }
-      });
+      if (!hasSupabaseConfig) {
+        // Demo response when Supabase is not configured
+        setResponse(`Hi! I'm HeyNia, your dental practice assistant. I'd love to help you with "${searchQuery}", but I need to be connected to our backend services first. This is just a demo of the search interface - once properly configured, I can help you with patient scheduling, billing, treatment planning, and much more!`);
+      } else {
+        // Import Supabase client only when environment variables are available
+        const { supabase } = await import("@/integrations/supabase/client");
+        
+        const { data, error } = await supabase.functions.invoke('groq-chat', {
+          body: { message: searchQuery }
+        });
 
-      if (error) {
-        throw error;
+        if (error) {
+          throw error;
+        }
+
+        setResponse(data.response || 'Sorry, I could not generate a response.');
       }
-
-      setResponse(data.response || 'Sorry, I could not generate a response.');
     } catch (error) {
-      console.error('Error calling Groq API:', error);
-      setResponse('Sorry, I encountered an error while processing your request. Please try again.');
+      console.error('Error calling AI service:', error);
+      setResponse('Sorry, I encountered an error while processing your request. Please try again later.');
     } finally {
       setIsLoading(false);
     }
@@ -173,6 +184,11 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
         <p className="text-gray-600 text-lg">
           Get instant answers about your dental practice management
         </p>
+        {!hasSupabaseConfig && (
+          <p className="text-sm text-amber-600 mt-2 bg-amber-50 px-4 py-2 rounded-lg inline-block">
+            Demo mode - Connect to Supabase for full AI functionality
+          </p>
+        )}
       </div>
 
       {/* Search Input Card */}
