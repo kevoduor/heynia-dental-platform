@@ -74,8 +74,8 @@ const Index = () => {
             For modern dental clinics
           </div>
           <h1 className="text-responsive-3xl font-bold mb-4 sm:mb-6 leading-tight">
-            From chaos to clarity in{" "}
-            <span className="text-gradient">30 days</span>
+            Organize your clinic, payments and team in{" "}
+            <span className="text-gradient">one place</span>
           </h1>
           <p className="text-responsive-lg text-muted-foreground mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed">
             Stop juggling disconnected tools. Transform your dental practice with one intelligent platform that grows your revenue and saves you 10+ hours per week.
