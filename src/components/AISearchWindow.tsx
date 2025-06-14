@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -42,6 +43,32 @@ interface SpeechRecognition extends EventTarget {
 interface SpeechRecognitionConstructor {
   new (): SpeechRecognition;
 }
+
+const VoiceWaveform = ({ isActive }: { isActive: boolean }) => {
+  const bars = Array.from({ length: 20 }, (_, i) => i);
+  
+  return (
+    <div className="flex items-center justify-center space-x-1 h-12">
+      {bars.map((bar) => (
+        <div
+          key={bar}
+          className={`w-1 bg-gradient-to-t from-orange-500 to-red-500 rounded-full transition-all duration-150 ${
+            isActive 
+              ? 'animate-pulse h-2 sm:h-4 md:h-6 lg:h-8' 
+              : 'h-1'
+          }`}
+          style={{
+            animationDelay: `${bar * 0.1}s`,
+            height: isActive 
+              ? `${Math.random() * 32 + 8}px` 
+              : '4px',
+            animationDuration: `${0.3 + Math.random() * 0.5}s`
+          }}
+        />
+      ))}
+    </div>
+  );
+};
 
 const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
   const [query, setQuery] = useState('');
@@ -204,16 +231,16 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
             </div>
           </div>
 
-          {/* Listening Indicator */}
+          {/* Voice Waveform Visualization */}
           {isListening && (
-            <div className="mt-6 text-center">
-              <div className="inline-flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-red-500/10 to-pink-500/10 rounded-full border border-red-200">
-                <div className="flex space-x-1">
-                  <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-                  <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse delay-75"></div>
-                  <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse delay-150"></div>
+            <div className="mt-6">
+              <div className="bg-gray-900/95 backdrop-blur-sm rounded-2xl p-6 border border-gray-800">
+                <div className="flex flex-col items-center space-y-4">
+                  <div className="flex items-center space-x-3">
+                    <span className="text-white font-medium text-lg">Hi HeyNia, I want to...</span>
+                  </div>
+                  <VoiceWaveform isActive={isListening} />
                 </div>
-                <span className="text-red-600 font-medium">Listening...</span>
               </div>
             </div>
           )}
