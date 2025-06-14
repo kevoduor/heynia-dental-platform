@@ -1,4 +1,5 @@
 
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -89,7 +90,7 @@ const Index = () => {
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
             <Button size="lg" className="gradient-primary text-white border-0 hover:opacity-90 btn-mobile-friendly">
-              Try Heynia for free
+              Sign Up Now
             </Button>
           </div>
           <p className="text-xs sm:text-sm text-muted-foreground">No credit card needed</p>
@@ -528,3 +529,4 @@ const Index = () => {
 console.log("Index component defined, about to export...");
 
 export default Index;
+
