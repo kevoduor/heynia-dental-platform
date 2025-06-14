@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Calendar, Users, FileText, MessageSquare, ArrowDown, Check } from "lucide-react";
@@ -18,7 +17,7 @@ const Index = () => {
           <div className="hidden md:flex items-center space-x-8">
             <a href="#features" className="text-muted-foreground hover:text-foreground transition-colors">Features</a>
             <a href="#impact" className="text-muted-foreground hover:text-foreground transition-colors">Impact</a>
-            <a href="#about" className="text-muted-foreground hover:text-foreground transition-colors">About</a>
+            <a href="#story" className="text-muted-foreground hover:text-foreground transition-colors">Our Story</a>
             <Button variant="outline">Sign In</Button>
             <Button className="gradient-primary text-white border-0 hover:opacity-90">Get Started</Button>
           </div>
@@ -279,6 +278,68 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Our Story Section */}
+      <section className="py-20 px-4 bg-gradient-to-br from-slate-50 to-blue-50" id="story">
+        <div className="container mx-auto max-w-4xl">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-8">Our Story</h2>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
+            <Card className="border-0 shadow-xl">
+              <CardContent className="p-8">
+                <div className="w-12 h-12 gradient-primary rounded-lg flex items-center justify-center mb-6">
+                  <span className="text-2xl">🎯</span>
+                </div>
+                <h3 className="text-xl font-semibold mb-4">Why we exist</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  At Heynia, we believe that technology should be a force for good—empowering businesses and helping shape a more just world.
+                </p>
+                <p className="text-muted-foreground leading-relaxed mt-4">
+                  Our purpose (Nia, in Swahili) is to build tools that not only support dental professionals but also contribute to ending gender-based violence (GBV), a global crisis that affects 1 in 3 women in their lifetime.
+                </p>
+              </CardContent>
+            </Card>
+            
+            <Card className="border-0 shadow-xl">
+              <CardContent className="p-8">
+                <div className="w-12 h-12 gradient-primary rounded-lg flex items-center justify-center mb-6">
+                  <span className="text-2xl">💝</span>
+                </div>
+                <h3 className="text-xl font-semibold mb-4">How we live our purpose</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  We design intelligent, user-friendly software that helps dental practices grow with less stress and more efficiency.
+                </p>
+                <p className="text-muted-foreground leading-relaxed mt-4">
+                  But just as importantly, we commit 10% of our annual revenue to organizations working on the frontlines to prevent GBV and support survivors. This mission is deeply personal and embedded in the way we operate.
+                </p>
+              </CardContent>
+            </Card>
+            
+            <Card className="border-0 shadow-xl">
+              <CardContent className="p-8">
+                <div className="w-12 h-12 gradient-primary rounded-lg flex items-center justify-center mb-6">
+                  <span className="text-2xl">🚀</span>
+                </div>
+                <h3 className="text-xl font-semibold mb-4">What we offer</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Heynia is a modern, AI-powered platform built for dental practices that want to simplify their workflows, improve patient engagement, and grow sustainably.
+                </p>
+                <p className="text-muted-foreground leading-relaxed mt-4">
+                  When you choose Heynia, you're not just getting powerful software—you're standing with a company that leads with purpose and gives back.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+          
+          <div className="text-center">
+            <Button size="lg" className="gradient-primary text-white border-0 hover:opacity-90 px-8">
+              Join Our Movement
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* Founder Section */}
       <section className="py-20 px-4 bg-gradient-to-br from-slate-50 to-blue-50" id="about">
         <div className="container mx-auto max-w-4xl">
@@ -418,7 +479,7 @@ const Index = () => {
             <div>
               <h4 className="font-semibold mb-4">Company</h4>
               <ul className="space-y-2 text-slate-400">
-                <li><a href="#" className="hover:text-white transition-colors">About</a></li>
+                <li><a href="#story" className="hover:text-white transition-colors">Our Story</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Impact</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
