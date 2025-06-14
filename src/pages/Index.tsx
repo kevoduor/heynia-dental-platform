@@ -4,9 +4,9 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Calendar, Users, FileText, MessageSquare, ArrowDown, Check, Menu, X, Star, Building2, TrendingUp, Shield, Smartphone, BarChart3, CreditCard, Clock, Zap, Heart, Award, Mail, Phone, Cloud, Brain, Workflow, Globe, Sparkles, Bot, Activity } from "lucide-react";
 import AISearchWindow from "@/components/AISearchWindow";
 import HeyniaLogo from "@/components/HeyniaLogo";
-import { ThemeToggle } from "@/components/ThemeToggle";
 import { useDocumentHead } from "@/hooks/useDocumentHead";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 console.log("Index page component loading...");
 
@@ -36,16 +36,14 @@ const Index = () => {
             <a href="#features" className="text-muted-foreground hover:text-foreground transition-colors text-sm xl:text-base">Features</a>
             <a href="#impact" className="text-muted-foreground hover:text-foreground transition-colors text-sm xl:text-base">Impact</a>
             <a href="#story" className="text-muted-foreground hover:text-foreground transition-colors text-sm xl:text-base">Our Story</a>
-            <a href="/pricing" className="text-muted-foreground hover:text-foreground transition-colors text-sm xl:text-base">Pricing</a>
-            <a href="/testimonials" className="text-muted-foreground hover:text-foreground transition-colors text-sm xl:text-base">Testimonials</a>
-            <ThemeToggle />
+            <Link to="/pricing" className="text-muted-foreground hover:text-foreground transition-colors text-sm xl:text-base">Pricing</Link>
+            <Link to="/testimonials" className="text-muted-foreground hover:text-foreground transition-colors text-sm xl:text-base">Testimonials</Link>
             <Button variant="outline" size="sm" className="btn-mobile-friendly">Sign In</Button>
             <Button className="btn-glow-primary btn-mobile-friendly" size="sm">Get Started</Button>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="lg:hidden flex items-center space-x-2">
-            <ThemeToggle />
             <button 
               className="btn-mobile-friendly p-2"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -63,8 +61,8 @@ const Index = () => {
               <a href="#features" className="block py-2 text-muted-foreground hover:text-foreground transition-colors">Features</a>
               <a href="#impact" className="block py-2 text-muted-foreground hover:text-foreground transition-colors">Impact</a>
               <a href="#story" className="block py-2 text-muted-foreground hover:text-foreground transition-colors">Our Story</a>
-              <a href="/pricing" className="block py-2 text-muted-foreground hover:text-foreground transition-colors">Pricing</a>
-              <a href="/testimonials" className="block py-2 text-muted-foreground hover:text-foreground transition-colors">Testimonials</a>
+              <Link to="/pricing" className="block py-2 text-muted-foreground hover:text-foreground transition-colors">Pricing</Link>
+              <Link to="/testimonials" className="block py-2 text-muted-foreground hover:text-foreground transition-colors">Testimonials</Link>
               <div className="flex flex-col space-y-3 pt-4">
                 <Button variant="outline" className="btn-mobile-friendly">Sign In</Button>
                 <Button className="btn-glow-primary btn-mobile-friendly">Get Started</Button>
@@ -531,7 +529,7 @@ const Index = () => {
               <h3 className="font-semibold mb-4">Product</h3>
               <div className="space-y-2 text-sm text-slate-400">
                 <a href="#features" className="block hover:text-white transition-colors">Features</a>
-                <a href="#" className="block hover:text-white transition-colors">Pricing</a>
+                <Link to="/pricing" className="block hover:text-white transition-colors">Pricing</Link>
                 <a href="#" className="block hover:text-white transition-colors">Demo</a>
                 <a href="#" className="block hover:text-white transition-colors">API</a>
                 <a href="#" className="block hover:text-white transition-colors">Integrations</a>
@@ -558,8 +556,8 @@ const Index = () => {
                 <a href="#" className="block hover:text-white transition-colors">Blog</a>
                 <a href="#" className="block hover:text-white transition-colors">Help Center</a>
                 <a href="#" className="block hover:text-white transition-colors">Contact</a>
-                <a href="/terms" className="block hover:text-white transition-colors">Terms of Service</a>
-                <a href="/privacy" className="block hover:text-white transition-colors">Privacy Policy</a>
+                <Link to="/terms" className="block hover:text-white transition-colors">Terms of Service</Link>
+                <Link to="/privacy" className="block hover:text-white transition-colors">Privacy Policy</Link>
                 <a href="#" className="block hover:text-white transition-colors">HIPAA Compliance</a>
               </div>
             </div>

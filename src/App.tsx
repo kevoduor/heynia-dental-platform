@@ -17,7 +17,7 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <ThemeProvider defaultTheme="system" storageKey="heynia-ui-theme">
+    <ThemeProvider defaultTheme="light" storageKey="heynia-ui-theme">
       <TooltipProvider>
         <Toaster />
         <Sonner />
