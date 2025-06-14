@@ -23,7 +23,7 @@ const Index = () => {
   console.log("About to render JSX...");
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background optimized-scroll">
       {/* Navigation */}
       <nav className="border-b bg-background/80 backdrop-blur-sm sticky top-0 z-50 safe-area-top">
         <div className="container-responsive py-3 sm:py-4 flex items-center justify-between">
@@ -40,7 +40,7 @@ const Index = () => {
             <a href="/testimonials" className="text-muted-foreground hover:text-foreground transition-colors text-sm xl:text-base">Testimonials</a>
             <ThemeToggle />
             <Button variant="outline" size="sm" className="btn-mobile-friendly">Sign In</Button>
-            <Button className="gradient-primary text-white border-0 hover:opacity-90 btn-mobile-friendly" size="sm">Get Started</Button>
+            <Button className="btn-glow-primary btn-mobile-friendly" size="sm">Get Started</Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -67,7 +67,7 @@ const Index = () => {
               <a href="/testimonials" className="block py-2 text-muted-foreground hover:text-foreground transition-colors">Testimonials</a>
               <div className="flex flex-col space-y-3 pt-4">
                 <Button variant="outline" className="btn-mobile-friendly">Sign In</Button>
-                <Button className="gradient-primary text-white border-0 hover:opacity-90 btn-mobile-friendly">Get Started</Button>
+                <Button className="btn-glow-primary btn-mobile-friendly">Get Started</Button>
               </div>
             </div>
           </div>
@@ -89,12 +89,12 @@ const Index = () => {
           </p>
           
           {/* AI Search Window */}
-          <div className="mb-4 max-w-2xl mx-auto">
+          <div className="mb-6 sm:mb-8">
             <AISearchWindow />
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-            <Button size="lg" className="gradient-primary text-white border-0 hover:opacity-90 btn-mobile-friendly">
+            <Button size="lg" className="btn-glow-primary btn-mobile-friendly">
               Sign Up Now
             </Button>
           </div>
@@ -117,35 +117,35 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            <Card className="text-center p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group">
-              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-red-100 to-red-200 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <Calendar className="w-8 h-8 text-red-600" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-12">
+            <Card className="text-center p-4 sm:p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group gpu-accelerated">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 bg-gradient-to-br from-red-100 to-red-200 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <Calendar className="w-6 h-6 sm:w-8 sm:h-8 text-red-600" />
               </div>
-              <h3 className="font-semibold mb-2">Missed appointments & cancellations</h3>
+              <h3 className="font-semibold mb-2 text-sm sm:text-base">Missed appointments & cancellations</h3>
             </Card>
-            <Card className="text-center p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group">
-              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-orange-100 to-orange-200 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <CreditCard className="w-8 h-8 text-orange-600" />
+            <Card className="text-center p-4 sm:p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group gpu-accelerated">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 bg-gradient-to-br from-orange-100 to-orange-200 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <CreditCard className="w-6 h-6 sm:w-8 sm:h-8 text-orange-600" />
               </div>
-              <h3 className="font-semibold mb-2">Complex billing and insurance delays</h3>
+              <h3 className="font-semibold mb-2 text-sm sm:text-base">Complex billing and insurance delays</h3>
             </Card>
-            <Card className="text-center p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group">
-              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <Workflow className="w-8 h-8 text-yellow-600" />
+            <Card className="text-center p-4 sm:p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group gpu-accelerated">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <Workflow className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-600" />
               </div>
-              <h3 className="font-semibold mb-2">Disconnected tools that don't talk to each other</h3>
+              <h3 className="font-semibold mb-2 text-sm sm:text-base">Disconnected tools that don't talk to each other</h3>
             </Card>
-            <Card className="text-center p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group">
-              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-red-100 to-red-200 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <Clock className="w-8 h-8 text-red-600" />
+            <Card className="text-center p-4 sm:p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group gpu-accelerated">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 bg-gradient-to-br from-red-100 to-red-200 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <Clock className="w-6 h-6 sm:w-8 sm:h-8 text-red-600" />
               </div>
-              <h3 className="font-semibold mb-2">Hours wasted on manual admin</h3>
+              <h3 className="font-semibold mb-2 text-sm sm:text-base">Hours wasted on manual admin</h3>
             </Card>
           </div>
 
           <div className="text-center">
-            <Button size="lg" variant="outline" className="btn-mobile-friendly">
+            <Button size="lg" className="btn-glow-secondary btn-mobile-friendly">
               See How Heynia Works
             </Button>
           </div>
@@ -164,59 +164,59 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            <Card className="p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-2 group">
-              <div className="w-16 h-16 mb-4 bg-gradient-to-br from-blue-100 to-blue-200 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <Calendar className="w-8 h-8 text-blue-600" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12">
+            <Card className="p-4 sm:p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-2 group gpu-accelerated">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 mb-4 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <Calendar className="w-6 h-6 sm:w-8 sm:h-8 text-blue-600" />
               </div>
-              <h3 className="text-xl font-semibold mb-3">Automated Scheduling</h3>
-              <p className="text-muted-foreground">Fill your calendar, reduce no-shows.</p>
+              <h3 className="text-lg sm:text-xl font-semibold mb-3">Automated Scheduling</h3>
+              <p className="text-muted-foreground text-sm sm:text-base">Fill your calendar, reduce no-shows.</p>
             </Card>
-            <Card className="p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-2 group">
-              <div className="w-16 h-16 mb-4 bg-gradient-to-br from-green-100 to-green-200 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <CreditCard className="w-8 h-8 text-green-600" />
+            <Card className="p-4 sm:p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-2 group gpu-accelerated">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 mb-4 bg-gradient-to-br from-green-100 to-green-200 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <CreditCard className="w-6 h-6 sm:w-8 sm:h-8 text-green-600" />
               </div>
-              <h3 className="text-xl font-semibold mb-3">Smart Billing</h3>
-              <p className="text-muted-foreground">Collect payments faster, with less follow-up.</p>
+              <h3 className="text-lg sm:text-xl font-semibold mb-3">Smart Billing</h3>
+              <p className="text-muted-foreground text-sm sm:text-base">Collect payments faster, with less follow-up.</p>
             </Card>
-            <Card className="p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-2 group">
-              <div className="w-16 h-16 mb-4 bg-gradient-to-br from-purple-100 to-purple-200 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <BarChart3 className="w-8 h-8 text-purple-600" />
+            <Card className="p-4 sm:p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-2 group gpu-accelerated">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 mb-4 bg-gradient-to-br from-purple-100 to-purple-200 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <BarChart3 className="w-6 h-6 sm:w-8 sm:h-8 text-purple-600" />
               </div>
-              <h3 className="text-xl font-semibold mb-3">Real-Time Analytics</h3>
-              <p className="text-muted-foreground">Understand what's working (and what's not).</p>
+              <h3 className="text-lg sm:text-xl font-semibold mb-3">Real-Time Analytics</h3>
+              <p className="text-muted-foreground text-sm sm:text-base">Understand what's working (and what's not).</p>
             </Card>
-            <Card className="p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-2 group">
-              <div className="w-16 h-16 mb-4 bg-gradient-to-br from-cyan-100 to-cyan-200 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <Cloud className="w-8 h-8 text-cyan-600" />
+            <Card className="p-4 sm:p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-2 group gpu-accelerated">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 mb-4 bg-gradient-to-br from-cyan-100 to-cyan-200 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <Cloud className="w-6 h-6 sm:w-8 sm:h-8 text-cyan-600" />
               </div>
-              <h3 className="text-xl font-semibold mb-3">Cloud-Based Access</h3>
-              <p className="text-muted-foreground">Access your practice data anywhere, anytime—no servers required.</p>
+              <h3 className="text-lg sm:text-xl font-semibold mb-3">Cloud-Based Access</h3>
+              <p className="text-muted-foreground text-sm sm:text-base">Access your practice data anywhere, anytime—no servers required.</p>
             </Card>
-            <Card className="p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-2 group">
-              <div className="w-16 h-16 mb-4 bg-gradient-to-br from-orange-100 to-orange-200 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <Smartphone className="w-8 h-8 text-orange-600" />
+            <Card className="p-4 sm:p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-2 group gpu-accelerated">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 mb-4 bg-gradient-to-br from-orange-100 to-orange-200 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <Smartphone className="w-6 h-6 sm:w-8 sm:h-8 text-orange-600" />
               </div>
-              <h3 className="text-xl font-semibold mb-3">Mobile-First Design</h3>
-              <p className="text-muted-foreground">Manage your practice on the go.</p>
+              <h3 className="text-lg sm:text-xl font-semibold mb-3">Mobile-First Design</h3>
+              <p className="text-muted-foreground text-sm sm:text-base">Manage your practice on the go.</p>
             </Card>
-            <Card className="p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-2 group">
-              <div className="w-16 h-16 mb-4 bg-gradient-to-br from-indigo-100 to-indigo-200 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <Shield className="w-8 h-8 text-indigo-600" />
+            <Card className="p-4 sm:p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-2 group gpu-accelerated">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 mb-4 bg-gradient-to-br from-indigo-100 to-indigo-200 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <Shield className="w-6 h-6 sm:w-8 sm:h-8 text-indigo-600" />
               </div>
-              <h3 className="text-xl font-semibold mb-3">HIPAA-Ready, OSHA-Aware</h3>
-              <p className="text-muted-foreground">Built for total peace of mind.</p>
+              <h3 className="text-lg sm:text-xl font-semibold mb-3">HIPAA-Ready, OSHA-Aware</h3>
+              <p className="text-muted-foreground text-sm sm:text-base">Built for total peace of mind.</p>
             </Card>
           </div>
 
-          <Card className="p-8 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-center mb-8">
-            <blockquote className="text-xl font-medium italic">
+          <Card className="p-6 sm:p-8 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-center mb-8">
+            <blockquote className="text-lg sm:text-xl font-medium italic">
               "It's like having a full-time office manager in your pocket."
             </blockquote>
           </Card>
 
           <div className="text-center">
-            <Button size="lg" className="gradient-primary text-white border-0 hover:opacity-90 btn-mobile-friendly">
+            <Button size="lg" className="btn-glow-primary btn-mobile-friendly">
               Join the Early Access List
             </Button>
           </div>
@@ -236,18 +236,18 @@ const Index = () => {
             When you choose Heynia, you're not just upgrading your business, you're standing for something bigger.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-8 justify-center items-center mb-12">
+          <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 justify-center items-center mb-12">
             <div className="flex items-center space-x-3">
-              <span className="text-2xl">🧩</span>
-              <span className="text-lg font-medium">10% of profits fund gender justice initiatives</span>
+              <span className="text-xl sm:text-2xl">🧩</span>
+              <span className="text-base sm:text-lg font-medium">10% of profits fund gender justice initiatives</span>
             </div>
             <div className="flex items-center space-x-3">
-              <Heart className="w-6 h-6 text-blue-500" />
-              <span className="text-lg font-medium">Powered by purpose. Built with heart.</span>
+              <Heart className="w-5 h-5 sm:w-6 sm:h-6 text-blue-500" />
+              <span className="text-base sm:text-lg font-medium">Powered by purpose. Built with heart.</span>
             </div>
           </div>
 
-          <Button size="lg" className="gradient-primary text-white border-0 hover:opacity-90 btn-mobile-friendly">
+          <Button size="lg" className="btn-glow-accent btn-mobile-friendly">
             Join the Movement
           </Button>
         </div>
@@ -325,13 +325,13 @@ const Index = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button size="lg" className="gradient-primary text-white border-0 hover:opacity-90 btn-mobile-friendly">
+            <Button size="lg" className="btn-glow-primary btn-mobile-friendly">
               Get Early Access
             </Button>
-            <Button size="lg" variant="outline" className="btn-mobile-friendly">
+            <Button size="lg" className="btn-glow-secondary btn-mobile-friendly">
               Watch the Demo
             </Button>
-            <Button size="lg" variant="outline" className="btn-mobile-friendly">
+            <Button size="lg" className="btn-glow-accent btn-mobile-friendly">
               Schedule a Call
             </Button>
           </div>
@@ -345,32 +345,32 @@ const Index = () => {
             We're not just building software. We're building a community.
           </h2>
           
-          <div className="grid md:grid-cols-3 gap-6 mb-12">
-            <Card className="p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-2 group">
-              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-blue-100 to-blue-200 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <Mail className="w-8 h-8 text-blue-600" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-12">
+            <Card className="p-4 sm:p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-2 group gpu-accelerated">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <Mail className="w-6 h-6 sm:w-8 sm:h-8 text-blue-600" />
               </div>
-              <h3 className="text-xl font-semibold mb-3">Get the Dentistry with Purpose newsletter</h3>
+              <h3 className="text-lg sm:text-xl font-semibold mb-3">Get the Dentistry with Purpose newsletter</h3>
             </Card>
-            <Card className="p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-2 group">
-              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <Star className="w-8 h-8 text-yellow-600" />
+            <Card className="p-4 sm:p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-2 group gpu-accelerated">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <Star className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-600" />
               </div>
-              <h3 className="text-xl font-semibold mb-3">Share your journey and get featured</h3>
+              <h3 className="text-lg sm:text-xl font-semibold mb-3">Share your journey and get featured</h3>
             </Card>
-            <Card className="p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-2 group">
-              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-green-100 to-green-200 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <Users className="w-8 h-8 text-green-600" />
+            <Card className="p-4 sm:p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-2 group gpu-accelerated">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 bg-gradient-to-br from-green-100 to-green-200 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <Users className="w-6 h-6 sm:w-8 sm:h-8 text-green-600" />
               </div>
-              <h3 className="text-xl font-semibold mb-3">Refer a friend → Both of you get 1 free month</h3>
+              <h3 className="text-lg sm:text-xl font-semibold mb-3">Refer a friend → Both of you get 1 free month</h3>
             </Card>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button size="lg" className="gradient-primary text-white border-0 hover:opacity-90 btn-mobile-friendly">
+            <Button size="lg" className="btn-glow-secondary btn-mobile-friendly">
               Subscribe to Newsletter
             </Button>
-            <Button size="lg" variant="outline" className="btn-mobile-friendly">
+            <Button size="lg" className="btn-glow-accent btn-mobile-friendly">
               Invite a Colleague
             </Button>
           </div>

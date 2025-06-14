@@ -1,10 +1,10 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Mic, MicOff, Send, Loader2, Sparkles, AlertCircle, Phone, PhoneOff } from "lucide-react";
+import { Mic, MicOff, Send, Loader2, Sparkles, AlertCircle } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { RealtimeVoiceChat } from '@/utils/RealtimeAudio';
 
 interface AISearchWindowProps {
   onSearch?: (query: string) => void;
@@ -41,27 +41,23 @@ interface SpeechRecognition extends EventTarget {
   onend: (() => void) | null;
 }
 
-interface SpeechRecognitionConstructor {
-  new (): SpeechRecognition;
-}
-
 const VoiceWaveform = ({ isActive }: { isActive: boolean }) => {
-  const bars = Array.from({ length: 20 }, (_, i) => i);
+  const bars = Array.from({ length: 12 }, (_, i) => i);
   
   return (
-    <div className="flex items-center justify-center space-x-1 h-12">
+    <div className="flex items-center justify-center space-x-1 h-8 sm:h-12">
       {bars.map((bar) => (
         <div
           key={bar}
-          className={`w-1 bg-gradient-to-t from-blue-400/70 to-purple-500/70 rounded-full transition-all duration-150 ${
+          className={`w-0.5 sm:w-1 bg-gradient-to-t from-blue-400/70 to-purple-500/70 rounded-full transition-all duration-150 ${
             isActive 
-              ? 'animate-pulse h-2 sm:h-4 md:h-6 lg:h-8' 
+              ? 'animate-pulse h-2 sm:h-4 md:h-6' 
               : 'h-1'
           }`}
           style={{
             animationDelay: `${bar * 0.1}s`,
             height: isActive 
-              ? `${Math.random() * 32 + 8}px` 
+              ? `${Math.random() * 24 + 8}px` 
               : '4px',
             animationDuration: `${0.3 + Math.random() * 0.5}s`
           }}
@@ -77,12 +73,8 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [response, setResponse] = useState('');
   const [error, setError] = useState('');
-  const [isRealtimeMode, setIsRealtimeMode] = useState(false);
-  const [isRealtimeConnected, setIsRealtimeConnected] = useState(false);
-  const [realtimeMessages, setRealtimeMessages] = useState<any[]>([]);
   
   const recognitionRef = useRef<SpeechRecognition | null>(null);
-  const realtimeChatRef = useRef<RealtimeVoiceChat | null>(null);
 
   useEffect(() => {
     // Initialize speech recognition if available
@@ -98,7 +90,6 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
 
         recognitionRef.current.onresult = (event: SpeechRecognitionEvent) => {
           const transcript = event.results[0]?.[0]?.transcript || '';
-          console.log('Speech recognition result:', transcript);
           setQuery(transcript);
           setIsListening(false);
           if (transcript.trim()) {
@@ -106,18 +97,14 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
           }
         };
 
-        recognitionRef.current.onerror = (event) => {
-          console.error('Speech recognition error:', event);
+        recognitionRef.current.onerror = () => {
           setIsListening(false);
         };
 
         recognitionRef.current.onend = () => {
-          console.log('Speech recognition ended');
           setIsListening(false);
         };
       }
-    } else {
-      console.warn('Speech recognition not supported in this browser');
     }
 
     return () => {
@@ -127,75 +114,12 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
     };
   }, []);
 
-  // Initialize realtime voice chat
-  useEffect(() => {
-    if (isRealtimeMode && !realtimeChatRef.current) {
-      const handleRealtimeMessage = (message: any) => {
-        console.log('Realtime message:', message);
-        setRealtimeMessages(prev => [...prev, message]);
-        
-        if (message.type === 'response.audio_transcript.delta') {
-          setResponse(prev => prev + message.delta);
-        } else if (message.type === 'response.audio_transcript.done') {
-          // Transcript is complete
-        }
-      };
-
-      const handleConnectionChange = (connected: boolean) => {
-        setIsRealtimeConnected(connected);
-        if (!connected) {
-          setError('Real-time connection lost');
-        }
-      };
-
-      realtimeChatRef.current = new RealtimeVoiceChat(
-        handleRealtimeMessage,
-        handleConnectionChange
-      );
-    }
-
-    return () => {
-      if (realtimeChatRef.current) {
-        realtimeChatRef.current.disconnect();
-        realtimeChatRef.current = null;
-      }
-    };
-  }, [isRealtimeMode]);
-
-  const toggleRealtimeMode = async () => {
-    if (isRealtimeMode) {
-      // Disconnect realtime
-      if (realtimeChatRef.current) {
-        realtimeChatRef.current.disconnect();
-        realtimeChatRef.current = null;
-      }
-      setIsRealtimeMode(false);
-      setIsRealtimeConnected(false);
-      setRealtimeMessages([]);
-    } else {
-      // Connect realtime
-      try {
-        setIsRealtimeMode(true);
-        setError('');
-        if (realtimeChatRef.current) {
-          await realtimeChatRef.current.connect();
-        }
-      } catch (error) {
-        console.error('Error connecting to realtime:', error);
-        setError('Failed to connect to real-time voice chat');
-        setIsRealtimeMode(false);
-      }
-    }
-  };
-
   const startListening = () => {
     if (recognitionRef.current && !isListening) {
-      console.log('Starting speech recognition...');
       setIsListening(true);
       try {
         recognitionRef.current.start();
       } catch (error) {
-        console.error('Error starting speech recognition:', error);
         setIsListening(false);
       }
     }
@@ -203,7 +127,6 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
 
   const stopListening = () => {
     if (recognitionRef.current && isListening) {
-      console.log('Stopping speech recognition...');
       recognitionRef.current.stop();
       setIsListening(false);
     }
@@ -212,52 +135,33 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
   const handleSearch = async (searchQuery: string = query) => {
     if (!searchQuery.trim()) return;
     
-    console.log('Starting search with query:', searchQuery);
     setIsLoading(true);
     setResponse('');
     setError('');
     
     try {
-      console.log('Importing Supabase client...');
       const { supabase } = await import("@/integrations/supabase/client");
-      
-      console.log('Supabase client imported successfully');
-      console.log('Calling kluster-chat function with payload:', { message: searchQuery });
       
       const { data, error: functionError } = await supabase.functions.invoke('kluster-chat', {
         body: { message: searchQuery }
       });
 
-      console.log('Supabase function response received');
-      console.log('Data:', data);
-      console.log('Function Error:', functionError);
-
       if (functionError) {
-        console.error('Supabase function error details:', functionError);
         throw new Error(`Function call failed: ${functionError.message}`);
       }
 
       if (!data) {
-        console.error('No data received from function');
         throw new Error('No response data received from AI service');
       }
 
-      // Check if the response contains an error
       if (data.error) {
-        console.error('AI service error:', data.error);
-        console.error('Technical details:', data.technical_details);
         setError(data.error);
         return;
       }
 
       const aiResponse = data?.response || 'Sorry, I could not generate a response.';
-      console.log('Final AI response:', aiResponse);
       setResponse(aiResponse);
-    } catch (error) {
-      console.error('Complete error details:', error);
-      console.error('Error type:', typeof error);
-      console.error('Error constructor:', error.constructor.name);
-      
+    } catch (error: any) {
       let errorMessage = 'An unexpected error occurred. Please try again.';
       if (error.message?.includes('Failed to fetch')) {
         errorMessage = 'Network connection error. Please check your internet connection and try again.';
@@ -277,172 +181,90 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
-      if (isRealtimeMode && realtimeChatRef.current) {
-        realtimeChatRef.current.sendTextMessage(query);
-        setQuery('');
-      } else {
-        handleSearch();
-      }
+      handleSearch();
     }
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto">
+    <div className="w-full max-w-4xl mx-auto px-4 sm:px-6">
       {/* Header Section */}
-      <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 bg-clip-text text-transparent mb-2">
+      <div className="text-center mb-6 sm:mb-8">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 bg-clip-text text-transparent mb-2 sm:mb-4">
           Ask HeyNia Anything
         </h2>
-        <p className="text-gray-600 text-lg">
+        <p className="text-gray-600 text-base sm:text-lg lg:text-xl px-4">
           Get instant answers about your dental practice management
         </p>
-        
-        {/* Real-time Mode Toggle */}
-        <div className="mt-4 flex items-center justify-center space-x-2">
-          <Button
-            onClick={toggleRealtimeMode}
-            variant={isRealtimeMode ? "default" : "outline"}
-            className={`${
-              isRealtimeMode 
-                ? 'bg-green-500 hover:bg-green-600' 
-                : 'hover:bg-green-50'
-            } transition-all`}
-          >
-            {isRealtimeMode ? (
-              <>
-                <PhoneOff className="w-4 h-4 mr-2" />
-                Exit Real-time Voice
-              </>
-            ) : (
-              <>
-                <Phone className="w-4 h-4 mr-2" />
-                Real-time Voice Chat
-              </>
-            )}
-          </Button>
-          {isRealtimeMode && (
-            <div className={`flex items-center space-x-1 ${
-              isRealtimeConnected ? 'text-green-600' : 'text-red-600'
-            }`}>
-              <div className={`w-2 h-2 rounded-full ${
-                isRealtimeConnected ? 'bg-green-500' : 'bg-red-500'
-              }`} />
-              <span className="text-sm">
-                {isRealtimeConnected ? 'Connected' : 'Connecting...'}
-              </span>
-            </div>
-          )}
-        </div>
       </div>
 
-      {/* Real-time Voice Interface */}
-      {isRealtimeMode ? (
-        <div className="mb-6">
-          <div className="bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-2xl p-6 border border-green-200 dark:border-green-800">
-            <div className="text-center mb-4">
-              <h3 className="text-lg font-semibold text-green-800 dark:text-green-200 mb-2">
-                Real-time Voice Chat Active
-              </h3>
-              <p className="text-green-600 dark:text-green-300 text-sm">
-                Speak naturally or type your questions. HeyNia will respond with voice and text.
-              </p>
-            </div>
-            
-            {/* Text input for realtime mode */}
-            <div className="flex items-center space-x-2">
-              <Input
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                onKeyPress={handleKeyPress}
-                placeholder="Type or speak your question..."
-                className="flex-1"
-                disabled={!isRealtimeConnected}
-              />
-              <Button
-                onClick={() => {
-                  if (realtimeChatRef.current && query.trim()) {
-                    realtimeChatRef.current.sendTextMessage(query);
-                    setQuery('');
-                  }
-                }}
-                disabled={!isRealtimeConnected || !query.trim()}
-                className="bg-green-500 hover:bg-green-600"
-              >
-                <Send className="w-4 h-4" />
-              </Button>
-            </div>
-          </div>
-        </div>
-      ) : (
-        // ... keep existing code (original search interface)
-        <div className="mb-6">
-          <div className="relative">
-            {/* Glass container */}
-            <div className="bg-white/20 backdrop-blur-xl border border-white/30 rounded-2xl p-1 shadow-xl">
-              <div className="flex items-center space-x-3 p-4">
-                <div className="flex-1">
-                  <Input
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                    onKeyPress={handleKeyPress}
-                    placeholder="Type your question or use voice..."
-                    className="border-0 text-lg h-12 bg-transparent focus:ring-0 placeholder:text-gray-500/80 text-gray-800"
-                    disabled={isLoading}
-                  />
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Button
-                    type="button"
-                    size="sm"
-                    variant={isListening ? "destructive" : "ghost"}
-                    onClick={isListening ? stopListening : startListening}
-                    disabled={isLoading}
-                    className="h-12 w-12 rounded-xl transition-all hover:scale-105 bg-white/30 hover:bg-white/40 border-0"
-                  >
-                    {isListening ? (
-                      <MicOff className="h-5 w-5" />
-                    ) : (
-                      <Mic className="h-5 w-5" />
-                    )}
-                  </Button>
-                  <Button
-                    type="button"
-                    onClick={() => handleSearch()}
-                    disabled={isLoading || !query.trim()}
-                    className="h-12 w-12 rounded-xl bg-gradient-to-r from-blue-500/80 to-purple-600/80 hover:from-blue-600/90 hover:to-purple-700/90 transition-all hover:scale-105 shadow-lg border-0 backdrop-blur-sm"
-                  >
-                    {isLoading ? (
-                      <Loader2 className="h-5 w-5 animate-spin" />
-                    ) : (
-                      <Send className="h-5 w-5" />
-                    )}
-                  </Button>
-                </div>
+      {/* Search Interface */}
+      <div className="mb-4 sm:mb-6">
+        <div className="relative">
+          {/* Glass container */}
+          <div className="bg-white/20 backdrop-blur-xl border border-white/30 rounded-xl sm:rounded-2xl p-1 shadow-xl">
+            <div className="flex items-center space-x-2 sm:space-x-3 p-3 sm:p-4">
+              <div className="flex-1">
+                <Input
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  onKeyPress={handleKeyPress}
+                  placeholder="Type your question or use voice..."
+                  className="border-0 text-base sm:text-lg h-10 sm:h-12 bg-transparent focus:ring-0 placeholder:text-gray-500/80 text-gray-800"
+                  disabled={isLoading}
+                />
+              </div>
+              <div className="flex items-center space-x-1 sm:space-x-2">
+                <Button
+                  type="button"
+                  size="sm"
+                  variant={isListening ? "destructive" : "ghost"}
+                  onClick={isListening ? stopListening : startListening}
+                  disabled={isLoading}
+                  className="h-10 w-10 sm:h-12 sm:w-12 rounded-lg sm:rounded-xl transition-all hover:scale-105 bg-white/30 hover:bg-white/40 border-0"
+                >
+                  {isListening ? (
+                    <MicOff className="h-4 w-4 sm:h-5 sm:w-5" />
+                  ) : (
+                    <Mic className="h-4 w-4 sm:h-5 sm:w-5" />
+                  )}
+                </Button>
+                <Button
+                  type="button"
+                  onClick={() => handleSearch()}
+                  disabled={isLoading || !query.trim()}
+                  className="h-10 w-10 sm:h-12 sm:w-12 rounded-lg sm:rounded-xl bg-gradient-to-r from-blue-500/80 to-purple-600/80 hover:from-blue-600/90 hover:to-purple-700/90 transition-all hover:scale-105 shadow-lg border-0 backdrop-blur-sm"
+                >
+                  {isLoading ? (
+                    <Loader2 className="h-4 w-4 sm:h-5 sm:w-5 animate-spin" />
+                  ) : (
+                    <Send className="h-4 w-4 sm:h-5 sm:w-5" />
+                  )}
+                </Button>
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Voice Waveform Visualization */}
-          {isListening && (
-            <div className="mt-6">
-              <div className="bg-gray-900/80 backdrop-blur-xl rounded-2xl p-6 border border-white/20">
-                <div className="flex flex-col items-center space-y-4">
-                  <div className="flex items-center space-x-3">
-                    <span className="text-white font-medium text-lg">Hi HeyNia, I want to...</span>
-                  </div>
-                  <VoiceWaveform isActive={isListening} />
+        {/* Voice Waveform Visualization */}
+        {isListening && (
+          <div className="mt-4 sm:mt-6">
+            <div className="bg-gray-900/80 backdrop-blur-xl rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/20">
+              <div className="flex flex-col items-center space-y-3 sm:space-y-4">
+                <div className="flex items-center space-x-3">
+                  <span className="text-white font-medium text-sm sm:text-lg">Hi HeyNia, I want to...</span>
                 </div>
+                <VoiceWaveform isActive={isListening} />
               </div>
             </div>
-          )}
-        </div>
-      )}
+          </div>
+        )}
+      </div>
 
       {/* Error Section */}
       {error && (
-        <Alert className="mb-6 border-red-200 bg-red-50">
+        <Alert className="mb-4 sm:mb-6 border-red-200 bg-red-50">
           <AlertCircle className="h-4 w-4 text-red-600" />
-          <AlertDescription className="text-red-800">
+          <AlertDescription className="text-red-800 text-sm sm:text-base">
             {error}
           </AlertDescription>
         </Alert>
@@ -450,21 +272,15 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
 
       {/* Response Section */}
       {response && (
-        <Card className="mb-6 border-0 shadow-xl bg-white/80 backdrop-blur-xl border border-white/30">
-          <CardContent className="p-8">
-            <div className="flex items-start space-x-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-500/80 to-purple-600/80 rounded-xl flex items-center justify-center shrink-0 shadow-lg backdrop-blur-sm">
-                <span className="text-white font-bold text-lg">H</span>
+        <Card className="mb-4 sm:mb-6 border-0 shadow-xl bg-white/80 backdrop-blur-xl border border-white/30">
+          <CardContent className="p-4 sm:p-6 lg:p-8">
+            <div className="flex items-start space-x-3 sm:space-x-4">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-500/80 to-purple-600/80 rounded-lg sm:rounded-xl flex items-center justify-center shrink-0 shadow-lg backdrop-blur-sm">
+                <span className="text-white font-bold text-sm sm:text-lg">H</span>
               </div>
               <div className="flex-1">
-                <div className="bg-white/60 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-white/40">
-                  <p className="text-gray-800 leading-relaxed text-lg">{response}</p>
-                  {isRealtimeMode && (
-                    <div className="mt-2 text-sm text-green-600 flex items-center">
-                      <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse" />
-                      Real-time voice response
-                    </div>
-                  )}
+                <div className="bg-white/60 backdrop-blur-sm rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm border border-white/40">
+                  <p className="text-gray-800 leading-relaxed text-sm sm:text-base lg:text-lg">{response}</p>
                 </div>
               </div>
             </div>
@@ -474,13 +290,10 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
 
       {/* Suggestion */}
       <div className="text-center">
-        <div className="inline-flex items-center space-x-2 px-6 py-3 bg-white/30 backdrop-blur-xl rounded-full border border-white/40 shadow-lg">
-          <Sparkles className="w-4 h-4 text-gray-600" />
-          <p className="text-sm text-gray-700">
-            {isRealtimeMode 
-              ? "Try saying: 'Show me today's patient schedule'"
-              : "Try Asking: 'HeyNia Could you Provide me with the list of patients I'm seeing today?'"
-            }
+        <div className="inline-flex items-center space-x-2 px-4 sm:px-6 py-2 sm:py-3 bg-white/30 backdrop-blur-xl rounded-full border border-white/40 shadow-lg">
+          <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 text-gray-600" />
+          <p className="text-xs sm:text-sm text-gray-700">
+            Try Asking: "HeyNia Could you Provide me with the list of patients I'm seeing today?"
           </p>
         </div>
       </div>
