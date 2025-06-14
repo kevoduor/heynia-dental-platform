@@ -9,6 +9,41 @@ interface AISearchWindowProps {
   onSearch?: (query: string) => void;
 }
 
+// Define SpeechRecognition types
+interface SpeechRecognitionEvent {
+  results: SpeechRecognitionResultList;
+}
+
+interface SpeechRecognitionResultList {
+  [index: number]: SpeechRecognitionResult;
+  length: number;
+}
+
+interface SpeechRecognitionResult {
+  [index: number]: SpeechRecognitionAlternative;
+  length: number;
+}
+
+interface SpeechRecognitionAlternative {
+  transcript: string;
+  confidence: number;
+}
+
+interface SpeechRecognition extends EventTarget {
+  continuous: boolean;
+  interimResults: boolean;
+  lang: string;
+  start(): void;
+  stop(): void;
+  onresult: ((event: SpeechRecognitionEvent) => void) | null;
+  onerror: ((event: Event) => void) | null;
+  onend: (() => void) | null;
+}
+
+interface SpeechRecognitionConstructor {
+  new (): SpeechRecognition;
+}
+
 const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
   const [query, setQuery] = useState('');
   const [isListening, setIsListening] = useState(false);
@@ -18,17 +53,18 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
 
   useEffect(() => {
     // Initialize speech recognition if available
-    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      recognitionRef.current = new SpeechRecognition();
+    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    
+    if (SpeechRecognition) {
+      recognitionRef.current = new SpeechRecognition() as SpeechRecognition;
       
       if (recognitionRef.current) {
         recognitionRef.current.continuous = false;
         recognitionRef.current.interimResults = false;
         recognitionRef.current.lang = 'en-US';
 
-        recognitionRef.current.onresult = (event) => {
-          const transcript = event.results[0]?.transcript || '';
+        recognitionRef.current.onresult = (event: SpeechRecognitionEvent) => {
+          const transcript = event.results[0]?.[0]?.transcript || '';
           setQuery(transcript);
           setIsListening(false);
           if (transcript.trim()) {
@@ -183,13 +219,5 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
     </Card>
   );
 };
-
-// Extend the Window interface for speech recognition
-declare global {
-  interface Window {
-    SpeechRecognition: typeof SpeechRecognition;
-    webkitSpeechRecognition: typeof SpeechRecognition;
-  }
-}
 
 export default AISearchWindow;
