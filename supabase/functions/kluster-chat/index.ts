@@ -41,10 +41,10 @@ serve(async (req) => {
       )
     }
 
-    console.log('Making request to Kluster API with message:', message)
+    console.log('Making request to Kluster API with Meta Llama 3.3 70B model:', message)
 
     const klusterRequestBody = {
-      model: 'gpt-3.5-turbo',
+      model: 'klusterai/Meta-Llama-3.3-70B-Instruct-Turbo',
       messages: [
         {
           role: 'system',
@@ -57,7 +57,7 @@ serve(async (req) => {
           - HIPAA compliance
           - Dental practice best practices
           
-          Always provide helpful, accurate, and professional responses. Keep answers concise but informative.`
+          Always provide helpful, accurate, and professional responses. Keep answers concise but informative. You are powered by Meta Llama 3.3 70B for enhanced performance and reliability.`
         },
         {
           role: 'user',
@@ -66,6 +66,7 @@ serve(async (req) => {
       ],
       temperature: 0.7,
       max_tokens: 1000,
+      stream: false
     }
 
     console.log('Kluster request body:', JSON.stringify(klusterRequestBody, null, 2))
@@ -106,7 +107,8 @@ serve(async (req) => {
           technical_details: {
             status: response.status,
             statusText: response.statusText,
-            body: errorText
+            body: errorText,
+            model: 'klusterai/Meta-Llama-3.3-70B-Instruct-Turbo'
           }
         }),
         {
@@ -141,7 +143,8 @@ serve(async (req) => {
         technical_details: {
           message: error.message,
           name: error.name,
-          stack: error.stack
+          stack: error.stack,
+          model: 'klusterai/Meta-Llama-3.3-70B-Instruct-Turbo'
         }
       }),
       {
