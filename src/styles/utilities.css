@@ -19,71 +19,175 @@
   .text-apple-green { color: hsl(var(--apple-green)); }
   .text-apple-blue { color: hsl(var(--apple-blue)); }
 
-  /* Responsive container utilities */
+  /* Enhanced responsive container utilities */
   .container-responsive {
-    @apply container mx-auto px-4 sm:px-6 lg:px-8;
+    @apply container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12;
+    max-width: 100%;
   }
 
-  /* Mobile-first button sizing */
+  /* Mobile-first button sizing with enhanced touch targets */
   .btn-mobile-friendly {
-    @apply min-h-[44px] min-w-[44px] text-sm sm:text-base transition-all duration-200;
+    @apply min-h-[48px] min-w-[48px] text-sm sm:text-base md:text-lg transition-all duration-200 active:scale-95;
+    /* Larger touch targets for better mobile usability */
   }
 
-  /* Responsive spacing */
+  /* Enhanced responsive spacing system */
   .section-padding {
-    @apply py-8 sm:py-12 md:py-16 lg:py-20;
+    @apply py-6 sm:py-8 md:py-12 lg:py-16 xl:py-20;
   }
 
   .card-padding {
-    @apply p-4 sm:p-6 md:p-8;
+    @apply p-3 sm:p-4 md:p-6 lg:p-8;
   }
 
-  /* Safe area for mobile devices */
+  /* Safe area for mobile devices with notches */
   .safe-area-top {
-    padding-top: env(safe-area-inset-top);
+    padding-top: max(env(safe-area-inset-top), 1rem);
   }
 
   .safe-area-bottom {
-    padding-bottom: env(safe-area-inset-bottom);
+    padding-bottom: max(env(safe-area-inset-bottom), 1rem);
   }
 
-  /* Responsive text sizes */
+  .safe-area-left {
+    padding-left: env(safe-area-inset-left);
+  }
+
+  .safe-area-right {
+    padding-right: env(safe-area-inset-right);
+  }
+
+  /* Enhanced responsive text sizes with better scaling */
   .text-responsive-xs {
-    @apply text-xs sm:text-sm;
+    @apply text-xs sm:text-sm md:text-base;
   }
 
   .text-responsive-sm {
-    @apply text-sm sm:text-base;
+    @apply text-sm sm:text-base md:text-lg;
   }
 
   .text-responsive-base {
-    @apply text-base sm:text-lg;
+    @apply text-base sm:text-lg md:text-xl;
   }
 
   .text-responsive-lg {
-    @apply text-lg sm:text-xl md:text-2xl;
+    @apply text-lg sm:text-xl md:text-2xl lg:text-3xl;
   }
 
   .text-responsive-xl {
-    @apply text-xl sm:text-2xl md:text-3xl;
+    @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl;
   }
 
   .text-responsive-2xl {
-    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl;
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl;
   }
 
   .text-responsive-3xl {
-    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl;
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl;
   }
 
   /* Performance optimizations */
   .gpu-accelerated {
     transform: translateZ(0);
     will-change: transform;
+    backface-visibility: hidden;
   }
 
   .optimized-scroll {
     -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
+    overscroll-behavior: contain;
+  }
+
+  /* Enhanced mobile utilities */
+  .mobile-only {
+    @apply block sm:hidden;
+  }
+
+  .tablet-only {
+    @apply hidden sm:block lg:hidden;
+  }
+
+  .desktop-only {
+    @apply hidden lg:block;
+  }
+
+  .mobile-tablet-only {
+    @apply block lg:hidden;
+  }
+
+  .tablet-desktop-only {
+    @apply hidden sm:block;
+  }
+
+  /* Flexible grid utilities */
+  .grid-responsive-1 {
+    @apply grid grid-cols-1;
+  }
+
+  .grid-responsive-2 {
+    @apply grid grid-cols-1 sm:grid-cols-2;
+  }
+
+  .grid-responsive-3 {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3;
+  }
+
+  .grid-responsive-4 {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+  }
+
+  /* Enhanced gap utilities */
+  .gap-responsive {
+    @apply gap-3 sm:gap-4 md:gap-6 lg:gap-8;
+  }
+
+  .gap-responsive-sm {
+    @apply gap-2 sm:gap-3 md:gap-4;
+  }
+
+  .gap-responsive-lg {
+    @apply gap-4 sm:gap-6 md:gap-8 lg:gap-10;
+  }
+
+  /* Image optimization utilities */
+  .img-responsive {
+    @apply w-full h-auto object-cover;
+  }
+
+  .img-contain {
+    @apply w-full h-auto object-contain;
+  }
+
+  /* Focus improvements for accessibility */
+  .focus-enhanced {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background;
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .text-muted-foreground {
+      @apply text-foreground;
+    }
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Dark mode optimizations */
+  @media (prefers-color-scheme: dark) {
+    .auto-dark-bg {
+      @apply bg-gray-900;
+    }
+    
+    .auto-dark-text {
+      @apply text-gray-100;
+    }
   }
 }

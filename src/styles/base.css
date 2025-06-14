@@ -4,45 +4,205 @@
 @layer base {
   * {
     @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    /* Improve text rendering */
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
     @apply bg-background text-foreground;
     font-family: 'Comfortaa', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
+    /* Prevent horizontal scroll on mobile */
+    overflow-x: hidden;
   }
 
-  /* Improve touch targets for mobile */
-  button, a, input, select, textarea {
+  /* Enhanced touch targets for mobile */
+  button, a, input, select, textarea, [role="button"] {
     touch-action: manipulation;
-    min-height: 44px;
+    min-height: 48px;
+    min-width: 48px;
   }
 
-  /* Prevent zoom on iOS input focus */
+  /* Prevent zoom on iOS input focus with larger base font */
   input[type="text"], 
   input[type="email"], 
   input[type="tel"], 
   input[type="password"], 
+  input[type="number"],
   select, 
   textarea {
     font-size: 16px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
   }
 
-  /* Responsive text scaling */
-  html {
-    font-size: 16px;
+  /* Enhanced focus states for accessibility */
+  input:focus,
+  select:focus,
+  textarea:focus,
+  button:focus {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 2px;
   }
 
-  @media (max-width: 768px) {
+  /* Responsive text scaling with better breakpoints */
+  @media (max-width: 480px) {
+    html {
+      font-size: 14px;
+    }
+  }
+
+  @media (min-width: 481px) and (max-width: 768px) {
     html {
       font-size: 15px;
     }
   }
 
-  @media (max-width: 480px) {
+  @media (min-width: 769px) and (max-width: 1024px) {
     html {
-      font-size: 14px;
+      font-size: 16px;
+    }
+  }
+
+  @media (min-width: 1025px) {
+    html {
+      font-size: 17px;
+    }
+  }
+
+  @media (min-width: 1400px) {
+    html {
+      font-size: 18px;
+    }
+  }
+
+  /* Enhanced image handling */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Better table responsiveness */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  /* Improved list styling */
+  ul, ol {
+    padding-left: 1.5em;
+  }
+
+  /* Enhanced heading hierarchy */
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+    font-weight: 600;
+    margin-bottom: 0.5em;
+  }
+
+  /* Better paragraph spacing */
+  p {
+    margin-bottom: 1em;
+    max-width: 65ch;
+  }
+
+  /* Improved link accessibility */
+  a {
+    color: hsl(var(--primary));
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Enhanced code styling */
+  code {
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.9em;
+    padding: 0.2em 0.4em;
+    background: hsl(var(--muted));
+    border-radius: 4px;
+  }
+
+  /* Better selection styling */
+  ::selection {
+    background: hsl(var(--primary) / 0.2);
+    color: hsl(var(--foreground));
+  }
+
+  /* Scrollbar styling for webkit browsers */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.3);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.5);
+  }
+
+  /* High contrast mode improvements */
+  @media (prefers-contrast: high) {
+    button, input, select, textarea {
+      border: 2px solid;
+    }
+  }
+
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Dark mode base improvements */
+  @media (prefers-color-scheme: dark) {
+    html {
+      color-scheme: dark;
+    }
+  }
+
+  /* Print styles */
+  @media print {
+    * {
+      background: transparent !important;
+      color: black !important;
+      box-shadow: none !important;
+      text-shadow: none !important;
+    }
+
+    a, a:visited {
+      text-decoration: underline;
+    }
+
+    img {
+      max-width: 100% !important;
+    }
+
+    @page {
+      margin: 0.5cm;
     }
   }
 }
