@@ -1,5 +1,3 @@
-
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -29,7 +27,7 @@ const Index = () => {
       <nav className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50 safe-area-top">
         <div className="container-responsive py-3 sm:py-4 flex items-center justify-between">
           <div className="flex items-center">
-            <HeyniaLogo className="h-6 sm:h-8" variant="dark" />
+            <HeyniaLogo className="h-6 sm:h-8" variant="colorful" />
           </div>
           
           {/* Desktop Navigation */}
@@ -529,4 +527,3 @@ const Index = () => {
 console.log("Index component defined, about to export...");
 
 export default Index;
-
