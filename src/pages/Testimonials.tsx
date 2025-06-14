@@ -2,6 +2,7 @@
 import { Star, MapPin } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { useDocumentHead } from "@/hooks/useDocumentHead";
 import HeyniaLogo from "@/components/HeyniaLogo";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -39,7 +40,7 @@ const Testimonials = () => {
       name: "Dr. Jennifer Thompson",
       practice: "Sunshine Pediatric Dentistry",
       location: "Miami, FL",
-      image: "https://images.unsplash.com/photo-1594824804732-5b3be6b0f37b?w=150&h=150&fit=crop&crop=face",
+      image: "",
       rating: 5,
       text: "The HIPAA compliance and security features give us complete peace of mind. Parents appreciate the automated reminders and easy rescheduling options. Heynia understands what dental practices actually need.",
       specialty: "Pediatric Dentistry"
@@ -141,11 +142,15 @@ const Testimonials = () => {
                   
                   {/* Doctor Info */}
                   <div className="flex items-center space-x-4">
-                    <img 
-                      src={testimonial.image} 
-                      alt={testimonial.name}
-                      className="w-16 h-16 rounded-full object-cover border-2 border-primary/20"
-                    />
+                    <Avatar className="w-16 h-16 border-2 border-primary/20">
+                      <AvatarImage 
+                        src={testimonial.image} 
+                        alt={testimonial.name}
+                      />
+                      <AvatarFallback className="bg-primary/10 text-primary font-semibold text-lg">
+                        {testimonial.name.split(' ').map(n => n[0]).join('')}
+                      </AvatarFallback>
+                    </Avatar>
                     <div>
                       <h4 className="font-semibold text-foreground text-lg">{testimonial.name}</h4>
                       <p className="text-primary font-medium">{testimonial.practice}</p>
