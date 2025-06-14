@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Mic, MicOff, Send, Loader2, Sparkles } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { supabase } from "@/integrations/supabase/client";
 
 interface AISearchWindowProps {
   onSearch?: (query: string) => void;
@@ -135,23 +136,19 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
     setResponse('');
     
     try {
-      // Simulate AI response - in a real implementation, you'd call your AI API here
-      setTimeout(() => {
-        const responses = [
-          "Great question! Heynia's automated scheduling system reduces no-shows by 40% through intelligent reminders and easy rescheduling options.",
-          "Heynia streamlines billing with automated insurance claims processing and payment reminders, saving you 3+ hours per week.",
-          "Our mobile app lets you manage appointments, view patient records, and handle payments from anywhere - perfect for busy dentists.",
-          "With Heynia's analytics dashboard, you can track revenue trends, patient satisfaction, and appointment efficiency in real-time.",
-          "Heynia is HIPAA-compliant and offers 24/7 support. Plus, 10% of profits support ending gender-based violence initiatives."
-        ];
-        
-        const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-        setResponse(randomResponse);
-        setIsLoading(false);
-      }, 1500);
+      const { data, error } = await supabase.functions.invoke('groq-chat', {
+        body: { message: searchQuery }
+      });
+
+      if (error) {
+        throw error;
+      }
+
+      setResponse(data.response || 'Sorry, I could not generate a response.');
     } catch (error) {
-      console.error('Error searching:', error);
-      setResponse('Sorry, I encountered an error. Please try again.');
+      console.error('Error calling Groq API:', error);
+      setResponse('Sorry, I encountered an error while processing your request. Please try again.');
+    } finally {
       setIsLoading(false);
     }
 
