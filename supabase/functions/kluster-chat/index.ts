@@ -27,9 +27,18 @@ serve(async (req) => {
     }
     
     const klusterApiKey = Deno.env.get('KLUSTER_API_KEY')
+    console.log('KLUSTER_API_KEY exists:', !!klusterApiKey)
+    console.log('KLUSTER_API_KEY length:', klusterApiKey ? klusterApiKey.length : 0)
+    
     if (!klusterApiKey) {
       console.error('KLUSTER_API_KEY not found in environment variables')
-      throw new Error('KLUSTER_API_KEY not found in environment variables')
+      return new Response(
+        JSON.stringify({ error: 'API key not configured' }),
+        {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          status: 500,
+        }
+      )
     }
 
     console.log('Making request to Kluster API with message:', message)
@@ -76,11 +85,25 @@ serve(async (req) => {
     if (!response.ok) {
       const errorText = await response.text()
       console.error('Kluster API error details:', errorText)
+      console.error('Response status:', response.status)
+      console.error('Response statusText:', response.statusText)
+      
+      // Return a more user-friendly error message
+      let userMessage = 'AI service temporarily unavailable. Please try again in a moment.'
+      
+      if (response.status === 401) {
+        userMessage = 'Authentication failed. Please check API configuration.'
+        console.error('Authentication error - check KLUSTER_API_KEY')
+      } else if (response.status === 429) {
+        userMessage = 'Too many requests. Please wait a moment and try again.'
+      } else if (response.status >= 500) {
+        userMessage = 'AI service is experiencing issues. Please try again later.'
+      }
       
       return new Response(
         JSON.stringify({ 
-          error: `Kluster API error: ${response.status} - ${errorText}`,
-          details: {
+          error: userMessage,
+          technical_details: {
             status: response.status,
             statusText: response.statusText,
             body: errorText
@@ -88,7 +111,7 @@ serve(async (req) => {
         }),
         {
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-          status: 500,
+          status: 200, // Return 200 so the frontend can handle the error gracefully
         }
       )
     }
@@ -109,15 +132,21 @@ serve(async (req) => {
   } catch (error) {
     console.error('Unexpected error in kluster-chat function:', error)
     console.error('Error stack:', error.stack)
+    console.error('Error name:', error.name)
+    console.error('Error message:', error.message)
     
     return new Response(
       JSON.stringify({ 
-        error: `Unexpected error: ${error.message}`,
-        stack: error.stack 
+        error: 'An unexpected error occurred. Please try again.',
+        technical_details: {
+          message: error.message,
+          name: error.name,
+          stack: error.stack
+        }
       }),
       {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        status: 500,
+        status: 200, // Return 200 so the frontend can handle the error gracefully
       }
     )
   }

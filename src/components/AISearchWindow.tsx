@@ -1,9 +1,9 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Mic, MicOff, Send, Loader2, Sparkles } from "lucide-react";
+import { Mic, MicOff, Send, Loader2, Sparkles, AlertCircle } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 interface AISearchWindowProps {
   onSearch?: (query: string) => void;
@@ -75,6 +75,7 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
   const [isListening, setIsListening] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [response, setResponse] = useState('');
+  const [error, setError] = useState('');
   const recognitionRef = useRef<SpeechRecognition | null>(null);
 
   useEffect(() => {
@@ -147,6 +148,7 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
     console.log('Starting search with query:', searchQuery);
     setIsLoading(true);
     setResponse('');
+    setError('');
     
     try {
       console.log('Importing Supabase client...');
@@ -155,22 +157,30 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
       console.log('Supabase client imported successfully');
       console.log('Calling kluster-chat function with payload:', { message: searchQuery });
       
-      const { data, error } = await supabase.functions.invoke('kluster-chat', {
+      const { data, error: functionError } = await supabase.functions.invoke('kluster-chat', {
         body: { message: searchQuery }
       });
 
       console.log('Supabase function response received');
       console.log('Data:', data);
-      console.log('Error:', error);
+      console.log('Function Error:', functionError);
 
-      if (error) {
-        console.error('Supabase function error details:', error);
-        throw new Error(`Function call failed: ${error.message}`);
+      if (functionError) {
+        console.error('Supabase function error details:', functionError);
+        throw new Error(`Function call failed: ${functionError.message}`);
       }
 
       if (!data) {
         console.error('No data received from function');
         throw new Error('No response data received from AI service');
+      }
+
+      // Check if the response contains an error
+      if (data.error) {
+        console.error('AI service error:', data.error);
+        console.error('Technical details:', data.technical_details);
+        setError(data.error);
+        return;
       }
 
       const aiResponse = data?.response || 'Sorry, I could not generate a response.';
@@ -180,7 +190,15 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
       console.error('Complete error details:', error);
       console.error('Error type:', typeof error);
       console.error('Error constructor:', error.constructor.name);
-      setResponse(`Error: ${error.message || 'Unknown error occurred'}. Please check the console for more details.`);
+      
+      let errorMessage = 'An unexpected error occurred. Please try again.';
+      if (error.message?.includes('Failed to fetch')) {
+        errorMessage = 'Network connection error. Please check your internet connection and try again.';
+      } else if (error.message?.includes('Function call failed')) {
+        errorMessage = 'AI service is temporarily unavailable. Please try again in a moment.';
+      }
+      
+      setError(errorMessage);
     } finally {
       setIsLoading(false);
     }
@@ -270,6 +288,16 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
           </div>
         )}
       </div>
+
+      {/* Error Section */}
+      {error && (
+        <Alert className="mb-6 border-red-200 bg-red-50">
+          <AlertCircle className="h-4 w-4 text-red-600" />
+          <AlertDescription className="text-red-800">
+            {error}
+          </AlertDescription>
+        </Alert>
+      )}
 
       {/* Response Section */}
       {response && (
