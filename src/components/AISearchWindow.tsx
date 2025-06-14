@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -52,7 +51,7 @@ const VoiceWaveform = ({ isActive }: { isActive: boolean }) => {
       {bars.map((bar) => (
         <div
           key={bar}
-          className={`w-1 bg-gradient-to-t from-orange-500 to-red-500 rounded-full transition-all duration-150 ${
+          className={`w-1 bg-gradient-to-t from-blue-400/70 to-purple-500/70 rounded-full transition-all duration-150 ${
             isActive 
               ? 'animate-pulse h-2 sm:h-4 md:h-6 lg:h-8' 
               : 'h-1'
@@ -197,81 +196,79 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
         </p>
       </div>
 
-      {/* Search Input Card */}
-      <Card className="mb-6 border-0 shadow-2xl bg-white/80 backdrop-blur-xl">
-        <CardContent className="p-8">
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 rounded-2xl blur-xl"></div>
-            <div className="relative bg-white rounded-2xl border-2 border-gray-100 p-1">
-              <div className="flex items-center space-x-3 p-4">
-                <div className="flex-1">
-                  <Input
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                    onKeyPress={handleKeyPress}
-                    placeholder="Type your question or use voice..."
-                    className="border-0 text-lg h-12 bg-transparent focus:ring-0 placeholder:text-gray-400"
-                    disabled={isLoading}
-                  />
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Button
-                    type="button"
-                    size="sm"
-                    variant={isListening ? "destructive" : "ghost"}
-                    onClick={isListening ? stopListening : startListening}
-                    disabled={isLoading}
-                    className="h-12 w-12 rounded-xl transition-all hover:scale-105"
-                  >
-                    {isListening ? (
-                      <MicOff className="h-5 w-5" />
-                    ) : (
-                      <Mic className="h-5 w-5" />
-                    )}
-                  </Button>
-                  <Button
-                    type="button"
-                    onClick={() => handleSearch()}
-                    disabled={isLoading || !query.trim()}
-                    className="h-12 w-12 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 transition-all hover:scale-105 shadow-lg"
-                  >
-                    {isLoading ? (
-                      <Loader2 className="h-5 w-5 animate-spin" />
-                    ) : (
-                      <Send className="h-5 w-5" />
-                    )}
-                  </Button>
-                </div>
+      {/* Glassmorphism Search Input */}
+      <div className="mb-6">
+        <div className="relative">
+          {/* Glass container */}
+          <div className="bg-white/20 backdrop-blur-xl border border-white/30 rounded-2xl p-1 shadow-xl">
+            <div className="flex items-center space-x-3 p-4">
+              <div className="flex-1">
+                <Input
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  onKeyPress={handleKeyPress}
+                  placeholder="Type your question or use voice..."
+                  className="border-0 text-lg h-12 bg-transparent focus:ring-0 placeholder:text-gray-500/80 text-gray-800"
+                  disabled={isLoading}
+                />
+              </div>
+              <div className="flex items-center space-x-2">
+                <Button
+                  type="button"
+                  size="sm"
+                  variant={isListening ? "destructive" : "ghost"}
+                  onClick={isListening ? stopListening : startListening}
+                  disabled={isLoading}
+                  className="h-12 w-12 rounded-xl transition-all hover:scale-105 bg-white/30 hover:bg-white/40 border-0"
+                >
+                  {isListening ? (
+                    <MicOff className="h-5 w-5" />
+                  ) : (
+                    <Mic className="h-5 w-5" />
+                  )}
+                </Button>
+                <Button
+                  type="button"
+                  onClick={() => handleSearch()}
+                  disabled={isLoading || !query.trim()}
+                  className="h-12 w-12 rounded-xl bg-gradient-to-r from-blue-500/80 to-purple-600/80 hover:from-blue-600/90 hover:to-purple-700/90 transition-all hover:scale-105 shadow-lg border-0 backdrop-blur-sm"
+                >
+                  {isLoading ? (
+                    <Loader2 className="h-5 w-5 animate-spin" />
+                  ) : (
+                    <Send className="h-5 w-5" />
+                  )}
+                </Button>
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Voice Waveform Visualization */}
-          {isListening && (
-            <div className="mt-6">
-              <div className="bg-gray-900/95 backdrop-blur-sm rounded-2xl p-6 border border-gray-800">
-                <div className="flex flex-col items-center space-y-4">
-                  <div className="flex items-center space-x-3">
-                    <span className="text-white font-medium text-lg">Hi HeyNia, I want to...</span>
-                  </div>
-                  <VoiceWaveform isActive={isListening} />
+        {/* Voice Waveform Visualization */}
+        {isListening && (
+          <div className="mt-6">
+            <div className="bg-gray-900/80 backdrop-blur-xl rounded-2xl p-6 border border-white/20">
+              <div className="flex flex-col items-center space-y-4">
+                <div className="flex items-center space-x-3">
+                  <span className="text-white font-medium text-lg">Hi HeyNia, I want to...</span>
                 </div>
+                <VoiceWaveform isActive={isListening} />
               </div>
             </div>
-          )}
-        </CardContent>
-      </Card>
+          </div>
+        )}
+      </div>
 
       {/* Response Section */}
       {response && (
-        <Card className="mb-6 border-0 shadow-xl bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
+        <Card className="mb-6 border-0 shadow-xl bg-white/80 backdrop-blur-xl border border-white/30">
           <CardContent className="p-8">
             <div className="flex items-start space-x-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shrink-0 shadow-lg">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-500/80 to-purple-600/80 rounded-xl flex items-center justify-center shrink-0 shadow-lg backdrop-blur-sm">
                 <span className="text-white font-bold text-lg">H</span>
               </div>
               <div className="flex-1">
-                <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                <div className="bg-white/60 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-white/40">
                   <p className="text-gray-800 leading-relaxed text-lg">{response}</p>
                 </div>
               </div>
@@ -282,9 +279,9 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
 
       {/* Suggestion */}
       <div className="text-center">
-        <div className="inline-flex items-center space-x-2 px-6 py-3 bg-gray-50 rounded-full border border-gray-200">
-          <Sparkles className="w-4 h-4 text-gray-400" />
-          <p className="text-sm text-gray-600">
+        <div className="inline-flex items-center space-x-2 px-6 py-3 bg-white/30 backdrop-blur-xl rounded-full border border-white/40 shadow-lg">
+          <Sparkles className="w-4 h-4 text-gray-600" />
+          <p className="text-sm text-gray-700">
             Try Asking: "HeyNia Could you Provide me with the list of patients I'm seeing today?"
           </p>
         </div>
