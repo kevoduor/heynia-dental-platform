@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -236,7 +237,7 @@ const Index = () => {
             
             <Card className="p-8 mb-8">
               <blockquote className="text-xl text-muted-foreground italic mb-4 leading-relaxed">
-                "I built Heynia to help dentists like you escape the burnout cycle—and to honor my sister, a victim of gender-based violence. This platform is my way of changing both."
+                "I built Heynia to help dentists like you escape the burnout cycle."
               </blockquote>
               <cite className="text-lg font-semibold">— Kevin Oduor, Founder</cite>
             </Card>
