@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -203,10 +204,10 @@ const Index = () => {
             A practice management app with a purpose.
           </h2>
           <p className="text-responsive-lg text-muted-foreground mb-8 leading-relaxed">
-            Every Heynia subscription helps fund education, support, and advocacy to end gender-based violence. Our founder lost his sister to GBV. That pain fuels our purpose.
+            Every Heynia subscription helps fund education, support, and advocacy to end gender-based violence.
           </p>
           <p className="text-responsive-lg text-muted-foreground mb-12 leading-relaxed">
-            When you grow with Heynia, you're not just upgrading your business—you're standing for something bigger.
+            When you grow with Heynia, you're not just upgrading your business, you're standing for something bigger.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-8 justify-center items-center mb-12">
