@@ -40,7 +40,7 @@ const Testimonials = () => {
       name: "Dr. Jennifer Thompson",
       practice: "Sunshine Pediatric Dentistry",
       location: "Miami, FL",
-      image: "",
+      image: "https://images.unsplash.com/photo-1594824804732-5b3be6b0f37b?w=150&h=150&fit=crop&crop=face",
       rating: 5,
       text: "The HIPAA compliance and security features give us complete peace of mind. Parents appreciate the automated reminders and easy rescheduling options. Heynia understands what dental practices actually need.",
       specialty: "Pediatric Dentistry"
@@ -81,7 +81,7 @@ const Testimonials = () => {
           <div className="lg:hidden flex items-center space-x-2">
             <ThemeToggle />
             <button 
-              className="btn-mobile-friendly p-2"
+              className="btn-mobile-friendly p-2 text-foreground"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
             >
@@ -111,7 +111,7 @@ const Testimonials = () => {
       {/* Hero Section */}
       <section className="section-padding bg-gradient-to-br from-background to-muted/20">
         <div className="container-responsive text-center max-w-4xl">
-          <h1 className="text-responsive-3xl font-bold mb-4 sm:mb-6 leading-tight">
+          <h1 className="text-responsive-3xl font-bold mb-4 sm:mb-6 leading-tight text-foreground">
             What dentists are saying about{" "}
             <span className="text-gradient">Heynia</span>
           </h1>
@@ -126,7 +126,7 @@ const Testimonials = () => {
         <div className="container-responsive max-w-7xl">
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="p-8 hover:shadow-lg transition-all duration-300 hover:-translate-y-2 bg-card">
+              <Card key={index} className="p-8 hover:shadow-lg transition-all duration-300 hover:-translate-y-2 bg-card border-border">
                 <CardContent className="p-0">
                   {/* Rating */}
                   <div className="flex items-center mb-4">
@@ -136,7 +136,7 @@ const Testimonials = () => {
                   </div>
                   
                   {/* Testimonial Text */}
-                  <blockquote className="text-lg text-foreground mb-6 leading-relaxed italic">
+                  <blockquote className="text-lg text-card-foreground mb-6 leading-relaxed italic">
                     "{testimonial.text}"
                   </blockquote>
                   
@@ -152,7 +152,7 @@ const Testimonials = () => {
                       </AvatarFallback>
                     </Avatar>
                     <div>
-                      <h4 className="font-semibold text-foreground text-lg">{testimonial.name}</h4>
+                      <h4 className="font-semibold text-card-foreground text-lg">{testimonial.name}</h4>
                       <p className="text-primary font-medium">{testimonial.practice}</p>
                       <div className="flex items-center text-muted-foreground text-sm mt-1">
                         <MapPin className="w-4 h-4 mr-1" />
@@ -167,8 +167,8 @@ const Testimonials = () => {
           </div>
 
           {/* CTA Section */}
-          <div className="text-center bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-8 sm:p-12">
-            <h2 className="text-responsive-2xl font-bold mb-4">
+          <div className="text-center bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-8 sm:p-12 border border-border">
+            <h2 className="text-responsive-2xl font-bold mb-4 text-foreground">
               Ready to join them?
             </h2>
             <p className="text-responsive-lg text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
