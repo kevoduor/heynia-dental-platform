@@ -1,0 +1,48 @@
+
+/* Base styles and global resets */
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Comfortaa', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Improve touch targets for mobile */
+  button, a, input, select, textarea {
+    touch-action: manipulation;
+    min-height: 44px;
+  }
+
+  /* Prevent zoom on iOS input focus */
+  input[type="text"], 
+  input[type="email"], 
+  input[type="tel"], 
+  input[type="password"], 
+  select, 
+  textarea {
+    font-size: 16px;
+  }
+
+  /* Responsive text scaling */
+  html {
+    font-size: 16px;
+  }
+
+  @media (max-width: 768px) {
+    html {
+      font-size: 15px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    html {
+      font-size: 14px;
+    }
+  }
+}

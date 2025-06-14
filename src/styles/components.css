@@ -1,0 +1,97 @@
+
+/* Component-specific styles */
+
+@layer utilities {
+  .gradient-primary {
+    background: linear-gradient(135deg, hsl(var(--apple-pink)) 0%, hsl(var(--apple-orange)) 100%);
+  }
+  
+  .gradient-secondary {
+    background: linear-gradient(135deg, hsl(var(--apple-purple)) 0%, hsl(var(--apple-blue)) 100%);
+  }
+  
+  .gradient-tertiary {
+    background: linear-gradient(135deg, hsl(var(--apple-green)) 0%, hsl(var(--apple-yellow)) 100%);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(var(--apple-pink)) 0%, hsl(var(--apple-orange)) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .font-comfortaa {
+    font-family: 'Comfortaa', sans-serif;
+  }
+
+  /* Glowy CTA Button Styles with Apple colors */
+  .btn-glow-primary {
+    @apply relative;
+    background: linear-gradient(135deg, hsl(var(--apple-pink)) 0%, hsl(var(--apple-orange)) 100%);
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 0 20px hsla(var(--apple-pink), 0.5), 0 0 40px hsla(var(--apple-orange), 0.3);
+    animation: glow-pulse-primary 2s ease-in-out infinite alternate;
+  }
+
+  .btn-glow-primary:hover {
+    box-shadow: 0 0 30px hsla(var(--apple-pink), 0.7), 0 0 60px hsla(var(--apple-orange), 0.5);
+    transform: translateY(-2px);
+  }
+
+  .btn-glow-secondary {
+    @apply relative;
+    background: linear-gradient(135deg, hsl(var(--apple-green)) 0%, hsl(var(--apple-blue)) 100%);
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 0 20px hsla(var(--apple-green), 0.5), 0 0 40px hsla(var(--apple-blue), 0.3);
+    animation: glow-pulse-secondary 2s ease-in-out infinite alternate;
+  }
+
+  .btn-glow-secondary:hover {
+    box-shadow: 0 0 30px hsla(var(--apple-green), 0.7), 0 0 60px hsla(var(--apple-blue), 0.5);
+    transform: translateY(-2px);
+  }
+
+  .btn-glow-accent {
+    @apply relative;
+    background: linear-gradient(135deg, hsl(var(--apple-purple)) 0%, hsl(var(--apple-yellow)) 100%);
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 0 20px hsla(var(--apple-purple), 0.5), 0 0 40px hsla(var(--apple-yellow), 0.3);
+    animation: glow-pulse-accent 2s ease-in-out infinite alternate;
+  }
+
+  .btn-glow-accent:hover {
+    box-shadow: 0 0 30px hsla(var(--apple-purple), 0.7), 0 0 60px hsla(var(--apple-yellow), 0.5);
+    transform: translateY(-2px);
+  }
+
+  @keyframes glow-pulse-primary {
+    0% {
+      box-shadow: 0 0 20px hsla(var(--apple-pink), 0.5), 0 0 40px hsla(var(--apple-orange), 0.3);
+    }
+    100% {
+      box-shadow: 0 0 25px hsla(var(--apple-pink), 0.7), 0 0 50px hsla(var(--apple-orange), 0.5);
+    }
+  }
+
+  @keyframes glow-pulse-secondary {
+    0% {
+      box-shadow: 0 0 20px hsla(var(--apple-green), 0.5), 0 0 40px hsla(var(--apple-blue), 0.3);
+    }
+    100% {
+      box-shadow: 0 0 25px hsla(var(--apple-green), 0.7), 0 0 50px hsla(var(--apple-blue), 0.5);
+    }
+  }
+
+  @keyframes glow-pulse-accent {
+    0% {
+      box-shadow: 0 0 20px hsla(var(--apple-purple), 0.5), 0 0 40px hsla(var(--apple-yellow), 0.3);
+    }
+    100% {
+      box-shadow: 0 0 25px hsla(var(--apple-purple), 0.7), 0 0 50px hsla(var(--apple-yellow), 0.5);
+    }
+  }
+}

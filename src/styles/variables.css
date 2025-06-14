@@ -1,0 +1,63 @@
+
+/* CSS Custom Properties - Design System Variables */
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 338 85% 58%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 338 85% 58%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 338 85% 58%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Apple-inspired color palette from image */
+    --apple-pink: 338 85% 58%;      /* Uncommon Sense */
+    --apple-orange: 16 100% 55%;    /* Imaginative Intelligence */
+    --apple-yellow: 45 100% 55%;    /* Cultural Tenacity */
+    --apple-black: 0 0% 15%;        /* Leadership Palette */
+    --apple-purple: 280 50% 55%;    /* Team Catalyst */
+    --apple-green: 85 80% 45%;      /* Accountability Without Control */
+    --apple-blue: 190 85% 55%;      /* Capacity to Connect */
+    
+    /* Update Heynia colors to match Apple palette */
+    --heynia-teal: 190 85% 55%;
+    --heynia-blue: 190 85% 55%;
+    --heynia-purple: 280 50% 55%;
+    --heynia-pink: 338 85% 58%;
+    --heynia-orange: 16 100% 55%;
+    --heynia-yellow: 45 100% 55%;
+    --heynia-green: 85 80% 45%;
+  }
+}

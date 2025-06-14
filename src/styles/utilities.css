@@ -1,0 +1,89 @@
+
+/* Utility classes for responsive design and common patterns */
+
+@layer utilities {
+  /* Apple color utilities */
+  .bg-apple-pink { background-color: hsl(var(--apple-pink)); }
+  .bg-apple-orange { background-color: hsl(var(--apple-orange)); }
+  .bg-apple-yellow { background-color: hsl(var(--apple-yellow)); }
+  .bg-apple-black { background-color: hsl(var(--apple-black)); }
+  .bg-apple-purple { background-color: hsl(var(--apple-purple)); }
+  .bg-apple-green { background-color: hsl(var(--apple-green)); }
+  .bg-apple-blue { background-color: hsl(var(--apple-blue)); }
+
+  .text-apple-pink { color: hsl(var(--apple-pink)); }
+  .text-apple-orange { color: hsl(var(--apple-orange)); }
+  .text-apple-yellow { color: hsl(var(--apple-yellow)); }
+  .text-apple-black { color: hsl(var(--apple-black)); }
+  .text-apple-purple { color: hsl(var(--apple-purple)); }
+  .text-apple-green { color: hsl(var(--apple-green)); }
+  .text-apple-blue { color: hsl(var(--apple-blue)); }
+
+  /* Responsive container utilities */
+  .container-responsive {
+    @apply container mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Mobile-first button sizing */
+  .btn-mobile-friendly {
+    @apply min-h-[44px] min-w-[44px] text-sm sm:text-base transition-all duration-200;
+  }
+
+  /* Responsive spacing */
+  .section-padding {
+    @apply py-8 sm:py-12 md:py-16 lg:py-20;
+  }
+
+  .card-padding {
+    @apply p-4 sm:p-6 md:p-8;
+  }
+
+  /* Safe area for mobile devices */
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* Responsive text sizes */
+  .text-responsive-xs {
+    @apply text-xs sm:text-sm;
+  }
+
+  .text-responsive-sm {
+    @apply text-sm sm:text-base;
+  }
+
+  .text-responsive-base {
+    @apply text-base sm:text-lg;
+  }
+
+  .text-responsive-lg {
+    @apply text-lg sm:text-xl md:text-2xl;
+  }
+
+  .text-responsive-xl {
+    @apply text-xl sm:text-2xl md:text-3xl;
+  }
+
+  .text-responsive-2xl {
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl;
+  }
+
+  .text-responsive-3xl {
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl;
+  }
+
+  /* Performance optimizations */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  .optimized-scroll {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+}
