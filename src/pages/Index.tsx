@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Calendar, Users, FileText, MessageSquare, ArrowDown, Check } from "lucide-react";
@@ -18,6 +19,7 @@ const Index = () => {
             <a href="#features" className="text-muted-foreground hover:text-foreground transition-colors">Features</a>
             <a href="#impact" className="text-muted-foreground hover:text-foreground transition-colors">Impact</a>
             <a href="#story" className="text-muted-foreground hover:text-foreground transition-colors">Our Story</a>
+            <a href="/pricing" className="text-muted-foreground hover:text-foreground transition-colors">Pricing</a>
             <Button variant="outline">Sign In</Button>
             <Button className="gradient-primary text-white border-0 hover:opacity-90">Get Started</Button>
           </div>
