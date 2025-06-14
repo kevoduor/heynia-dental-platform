@@ -19,7 +19,11 @@ const Index = () => {
       <nav className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50 safe-area-top">
         <div className="container-responsive py-3 sm:py-4 flex items-center justify-between">
           <div className="flex items-center">
-            <span className="text-lg sm:text-xl font-bold text-gradient font-comfortaa">heynia</span>
+            <img 
+              src="/lovable-uploads/14b77d53-83bf-488d-8ca7-a80bee137662.png" 
+              alt="heynia logo" 
+              className="h-6 sm:h-8 w-auto brightness-0 invert"
+            />
           </div>
           
           {/* Desktop Navigation */}
@@ -564,7 +568,11 @@ const Index = () => {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-8 sm:mb-12">
             <div>
               <div className="flex items-center mb-4 sm:mb-6">
-                <span className="text-lg sm:text-xl font-bold font-comfortaa">heynia</span>
+                <img 
+                  src="/lovable-uploads/14b77d53-83bf-488d-8ca7-a80bee137662.png" 
+                  alt="heynia logo" 
+                  className="h-6 sm:h-8 w-auto brightness-0 invert"
+                />
               </div>
               <p className="text-slate-400 mb-3 sm:mb-4 text-sm sm:text-base leading-relaxed">
                 Cloud-based dental practice management software with HIPAA-compliant security and integrated revenue cycle management.
