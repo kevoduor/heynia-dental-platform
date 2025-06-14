@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -143,32 +144,43 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
   const handleSearch = async (searchQuery: string = query) => {
     if (!searchQuery.trim()) return;
     
-    console.log('Handling search with query:', searchQuery);
+    console.log('Starting search with query:', searchQuery);
     setIsLoading(true);
     setResponse('');
     
     try {
-      // Import Supabase client and make the AI call using Kluster API
+      console.log('Importing Supabase client...');
       const { supabase } = await import("@/integrations/supabase/client");
       
-      console.log('Calling kluster-chat function...');
+      console.log('Supabase client imported successfully');
+      console.log('Calling kluster-chat function with payload:', { message: searchQuery });
+      
       const { data, error } = await supabase.functions.invoke('kluster-chat', {
         body: { message: searchQuery }
       });
 
-      console.log('Function response:', { data, error });
+      console.log('Supabase function response received');
+      console.log('Data:', data);
+      console.log('Error:', error);
 
       if (error) {
-        console.error('Supabase function error:', error);
-        throw error;
+        console.error('Supabase function error details:', error);
+        throw new Error(`Function call failed: ${error.message}`);
+      }
+
+      if (!data) {
+        console.error('No data received from function');
+        throw new Error('No response data received from AI service');
       }
 
       const aiResponse = data?.response || 'Sorry, I could not generate a response.';
-      console.log('AI response:', aiResponse);
+      console.log('Final AI response:', aiResponse);
       setResponse(aiResponse);
     } catch (error) {
-      console.error('Error calling AI service:', error);
-      setResponse('Sorry, I encountered an error while processing your request. Please try again later.');
+      console.error('Complete error details:', error);
+      console.error('Error type:', typeof error);
+      console.error('Error constructor:', error.constructor.name);
+      setResponse(`Error: ${error.message || 'Unknown error occurred'}. Please check the console for more details.`);
     } finally {
       setIsLoading(false);
     }
