@@ -250,11 +250,11 @@ const Index = () => {
               </div>
               <div className="flex items-center space-x-2">
                 <Award className="w-5 h-5 text-blue-600" />
-                <span className="font-medium">Startup Africa Fund Finalist</span>
+                <span className="font-medium">Affordable</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Users className="w-5 h-5 text-purple-600" />
-                <span className="font-medium">Designed by dentists, for dentists</span>
+                <span className="font-medium">Designed for dentists</span>
               </div>
             </div>
           </div>
