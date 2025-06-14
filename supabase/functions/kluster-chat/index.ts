@@ -15,14 +15,17 @@ serve(async (req) => {
       throw new Error('KLUSTER_API_KEY not found in environment variables')
     }
 
-    const response = await fetch('https://api.kluster.ai/v1/chat/completions', {
+    console.log('Making request to Kluster API with message:', message)
+
+    // Updated Kluster API endpoint and model
+    const response = await fetch('https://api.kluster.ai/chat/completions', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${klusterApiKey}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'kluster-gpt-4',
+        model: 'gpt-4o-mini', // Using a more standard model name
         messages: [
           {
             role: 'system',
@@ -47,12 +50,18 @@ serve(async (req) => {
       }),
     })
 
+    console.log('Kluster API response status:', response.status)
+
     if (!response.ok) {
-      throw new Error(`Kluster API error: ${response.status}`)
+      const errorText = await response.text()
+      console.error('Kluster API error details:', errorText)
+      throw new Error(`Kluster API error: ${response.status} - ${errorText}`)
     }
 
     const data = await response.json()
-    const aiResponse = data.choices[0]?.message?.content || 'Sorry, I could not generate a response.'
+    console.log('Kluster API response data:', data)
+    
+    const aiResponse = data.choices?.[0]?.message?.content || 'Sorry, I could not generate a response.'
 
     return new Response(
       JSON.stringify({ response: aiResponse }),

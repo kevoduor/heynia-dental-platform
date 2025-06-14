@@ -77,9 +77,6 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
   const [response, setResponse] = useState('');
   const recognitionRef = useRef<SpeechRecognition | null>(null);
 
-  // Check if we're properly connected to Supabase by checking the project configuration
-  const hasSupabaseConfig = true; // Since we have the Supabase client configured
-
   useEffect(() => {
     // Initialize speech recognition if available
     const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
@@ -94,6 +91,7 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
 
         recognitionRef.current.onresult = (event: SpeechRecognitionEvent) => {
           const transcript = event.results[0]?.[0]?.transcript || '';
+          console.log('Speech recognition result:', transcript);
           setQuery(transcript);
           setIsListening(false);
           if (transcript.trim()) {
@@ -101,14 +99,18 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
           }
         };
 
-        recognitionRef.current.onerror = () => {
+        recognitionRef.current.onerror = (event) => {
+          console.error('Speech recognition error:', event);
           setIsListening(false);
         };
 
         recognitionRef.current.onend = () => {
+          console.log('Speech recognition ended');
           setIsListening(false);
         };
       }
+    } else {
+      console.warn('Speech recognition not supported in this browser');
     }
 
     return () => {
@@ -120,13 +122,20 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
 
   const startListening = () => {
     if (recognitionRef.current && !isListening) {
+      console.log('Starting speech recognition...');
       setIsListening(true);
-      recognitionRef.current.start();
+      try {
+        recognitionRef.current.start();
+      } catch (error) {
+        console.error('Error starting speech recognition:', error);
+        setIsListening(false);
+      }
     }
   };
 
   const stopListening = () => {
     if (recognitionRef.current && isListening) {
+      console.log('Stopping speech recognition...');
       recognitionRef.current.stop();
       setIsListening(false);
     }
@@ -135,6 +144,7 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
   const handleSearch = async (searchQuery: string = query) => {
     if (!searchQuery.trim()) return;
     
+    console.log('Handling search with query:', searchQuery);
     setIsLoading(true);
     setResponse('');
     
@@ -142,15 +152,21 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
       // Import Supabase client and make the AI call using Kluster API
       const { supabase } = await import("@/integrations/supabase/client");
       
+      console.log('Calling kluster-chat function...');
       const { data, error } = await supabase.functions.invoke('kluster-chat', {
         body: { message: searchQuery }
       });
 
+      console.log('Function response:', { data, error });
+
       if (error) {
+        console.error('Supabase function error:', error);
         throw error;
       }
 
-      setResponse(data.response || 'Sorry, I could not generate a response.');
+      const aiResponse = data?.response || 'Sorry, I could not generate a response.';
+      console.log('AI response:', aiResponse);
+      setResponse(aiResponse);
     } catch (error) {
       console.error('Error calling AI service:', error);
       setResponse('Sorry, I encountered an error while processing your request. Please try again later.');
