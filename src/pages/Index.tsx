@@ -2,8 +2,14 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Calendar, Users, FileText, MessageSquare, ArrowDown, Check } from "lucide-react";
 import AISearchWindow from "@/components/AISearchWindow";
+import { useDocumentHead } from "@/hooks/useDocumentHead";
 
 const Index = () => {
+  useDocumentHead({
+    title: "Cloud-Based Dental Practice Management Software | HIPAA-Compliant | Heynia",
+    description: "Heynia is a HIPAA-compliant, cloud-based dental software with patient scheduling, billing, teledentistry, and AI-powered insights—built for small clinics and multi-location practices."
+  });
+
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation */}

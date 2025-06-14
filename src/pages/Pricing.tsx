@@ -1,9 +1,14 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check, Star, Zap, Crown } from "lucide-react";
+import { useDocumentHead } from "@/hooks/useDocumentHead";
 
 const Pricing = () => {
+  useDocumentHead({
+    title: "Affordable Dental Practice Management Software USA | Pricing | Heynia",
+    description: "Choose from flexible plans starting at $99/month. Heynia offers affordable dental software with insurance claim management, AI insights, and real-time analytics."
+  });
+
   const plans = [
     {
       name: "Basic",
