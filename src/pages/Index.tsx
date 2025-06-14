@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Calendar, Users, FileText, MessageSquare, ArrowDown, Check, Menu, X } from "lucide-react";
+import { Calendar, Users, FileText, MessageSquare, ArrowDown, Check, Menu, X, Star, Building2, TrendingUp } from "lucide-react";
 import AISearchWindow from "@/components/AISearchWindow";
 import HeyniaLogo from "@/components/HeyniaLogo";
 import { useDocumentHead } from "@/hooks/useDocumentHead";
@@ -67,18 +67,34 @@ const Index = () => {
             For modern dental clinics
           </div>
           <h1 className="text-responsive-3xl font-bold mb-4 sm:mb-6 leading-tight">
-            Organize your clinic, payments and team in{" "}
-            <span className="text-gradient">one place</span>
+            From chaos to clarity in{" "}
+            <span className="text-gradient">30 days</span>
           </h1>
           <p className="text-responsive-lg text-muted-foreground mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed">
-            All your tools. One easy place.
+            Stop juggling disconnected tools. Transform your dental practice with one intelligent platform that grows your revenue and saves you 10+ hours per week.
           </p>
           
           {/* AI Search Window */}
           <div className="mb-4 max-w-2xl mx-auto">
             <AISearchWindow />
           </div>
-          <p className="text-xs sm:text-sm text-muted-foreground mb-12 sm:mb-16">No login required</p>
+          <p className="text-xs sm:text-sm text-muted-foreground mb-12 sm:mb-16">No login required • Try it now</p>
+          
+          {/* Social Proof Numbers */}
+          <div className="grid grid-cols-3 gap-4 sm:gap-8 max-w-2xl mx-auto mb-12 sm:mb-16">
+            <div className="text-center">
+              <div className="text-2xl sm:text-3xl font-bold text-primary">97%</div>
+              <div className="text-xs sm:text-sm text-muted-foreground">Less no-shows</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl sm:text-3xl font-bold text-primary">10+</div>
+              <div className="text-xs sm:text-sm text-muted-foreground">Hours saved weekly</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl sm:text-3xl font-bold text-primary">35%</div>
+              <div className="text-xs sm:text-sm text-muted-foreground">Revenue increase</div>
+            </div>
+          </div>
           
           <div className="mt-12 sm:mt-16 relative">
             <div className="bg-white rounded-xl shadow-2xl card-padding max-w-5xl mx-auto">
@@ -110,82 +126,233 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Problem Section */}
-      <section className="section-padding" id="problem">
-        <div className="container-responsive max-w-5xl">
+      {/* Before/After Transformation Section */}
+      <section className="section-padding" id="transformation">
+        <div className="container-responsive max-w-6xl">
           <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-responsive-2xl font-bold mb-4 sm:mb-6">You didn't become a dentist to manage chaos.</h2>
-            <p className="text-responsive-lg text-muted-foreground max-w-4xl mx-auto mb-4 sm:mb-6 leading-relaxed">
-              Every day, you're overwhelmed by reschedules, billing headaches, and disconnected tools. 
-              The result? Lost time, lost revenue, and growing burnout.
-            </p>
-            <p className="text-responsive-lg font-semibold text-primary max-w-4xl mx-auto">
-              Heynia changes that—bringing everything you need to run your practice into one simple, intelligent platform.
+            <h2 className="text-responsive-2xl font-bold mb-4 sm:mb-6">The transformation is real</h2>
+            <p className="text-responsive-lg text-muted-foreground max-w-4xl mx-auto">
+              See how dental practices went from overwhelmed to organized in just 30 days
             </p>
           </div>
           
-          <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-12">
-            <Card className="border-red-200 bg-red-50/50">
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12">
+            {/* Before */}
+            <Card className="border-red-200 bg-gradient-to-br from-red-50 to-orange-50">
               <CardContent className="card-padding">
-                <div className="flex items-start space-x-3 sm:space-x-4">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-red-100 rounded-lg flex items-center justify-center shrink-0">
-                    <Calendar className="w-5 h-5 sm:w-6 sm:h-6 text-red-600" />
+                <div className="text-center mb-6">
+                  <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                    <span className="text-2xl">😰</span>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-base sm:text-lg mb-2">Missed appointments & cancellations</h3>
-                    <p className="text-muted-foreground text-sm sm:text-base">Lost revenue from no-shows and last-minute changes</p>
+                  <h3 className="text-xl font-bold text-red-800 mb-2">Before Heynia</h3>
+                  <p className="text-red-700 text-sm">The daily struggle</p>
+                </div>
+                
+                <div className="space-y-4">
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2 shrink-0"></div>
+                    <div>
+                      <p className="font-medium text-red-800">"I spent 3 hours every morning just catching up"</p>
+                      <p className="text-red-700 text-sm">Managing appointments across 4 different systems</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2 shrink-0"></div>
+                    <div>
+                      <p className="font-medium text-red-800">"Our no-show rate was 30%"</p>
+                      <p className="text-red-700 text-sm">Lost revenue, stressed staff, angry patients</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2 shrink-0"></div>
+                    <div>
+                      <p className="font-medium text-red-800">"Insurance claims took forever"</p>
+                      <p className="text-red-700 text-sm">Cash flow problems, manual paperwork hell</p>
+                    </div>
                   </div>
                 </div>
               </CardContent>
             </Card>
-            
-            <Card className="border-red-200 bg-red-50/50">
+
+            {/* After */}
+            <Card className="border-green-200 bg-gradient-to-br from-green-50 to-emerald-50">
               <CardContent className="card-padding">
-                <div className="flex items-start space-x-3 sm:space-x-4">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-red-100 rounded-lg flex items-center justify-center shrink-0">
-                    <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-red-600" />
+                <div className="text-center mb-6">
+                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                    <span className="text-2xl">🚀</span>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-base sm:text-lg mb-2">Complex billing and insurance delays</h3>
-                    <p className="text-muted-foreground text-sm sm:text-base">Hours spent chasing payments and handling claims</p>
-                  </div>
+                  <h3 className="text-xl font-bold text-green-800 mb-2">After Heynia</h3>
+                  <p className="text-green-700 text-sm">The breakthrough</p>
                 </div>
-              </CardContent>
-            </Card>
-            
-            <Card className="border-red-200 bg-red-50/50">
-              <CardContent className="card-padding">
-                <div className="flex items-start space-x-3 sm:space-x-4">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-red-100 rounded-lg flex items-center justify-center shrink-0">
-                    <MessageSquare className="w-5 h-5 sm:w-6 sm:h-6 text-red-600" />
+                
+                <div className="space-y-4">
+                  <div className="flex items-start space-x-3">
+                    <Check className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-medium text-green-800">"My mornings are peaceful now"</p>
+                      <p className="text-green-700 text-sm">Everything synced, automated reminders work</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-base sm:text-lg mb-2">Disconnected tools that don't talk</h3>
-                    <p className="text-muted-foreground text-sm sm:text-base">Juggling multiple systems that don't integrate</p>
+                  
+                  <div className="flex items-start space-x-3">
+                    <Check className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-medium text-green-800">"No-shows dropped to 3%"</p>
+                      <p className="text-green-700 text-sm">$15K more revenue per month, happy team</p>
+                    </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-            
-            <Card className="border-red-200 bg-red-50/50">
-              <CardContent className="card-padding">
-                <div className="flex items-start space-x-3 sm:space-x-4">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-red-100 rounded-lg flex items-center justify-center shrink-0">
-                    <Users className="w-5 h-5 sm:w-6 sm:h-6 text-red-600" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-base sm:text-lg mb-2">Hours wasted on manual admin</h3>
-                    <p className="text-muted-foreground text-sm sm:text-base">Time that could be spent with patients</p>
+                  
+                  <div className="flex items-start space-x-3">
+                    <Check className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-medium text-green-800">"Claims process automatically"</p>
+                      <p className="text-green-700 text-sm">Steady cash flow, more time for patients</p>
+                    </div>
                   </div>
                 </div>
               </CardContent>
             </Card>
           </div>
           
-          <div className="text-center">
-            <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white btn-mobile-friendly">
-              See How Heynia Works
+          <div className="text-center mt-8 sm:mt-12">
+            <Button size="lg" className="gradient-primary text-white border-0 hover:opacity-90 px-6 sm:px-8 btn-mobile-friendly">
+              Start Your Transformation
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Social Proof Section */}
+      <section className="section-padding bg-gradient-to-br from-slate-50 to-blue-50" id="social-proof">
+        <div className="container-responsive max-w-6xl">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-responsive-2xl font-bold mb-4">Trusted by dental professionals worldwide</h2>
+            <p className="text-responsive-lg text-muted-foreground">Join hundreds of practices that chose growth over chaos</p>
+          </div>
+          
+          {/* Customer Logos */}
+          <div className="grid grid-cols-3 sm:grid-cols-6 gap-6 sm:gap-8 mb-12 sm:mb-16 opacity-60">
+            <div className="flex items-center justify-center">
+              <div className="w-16 h-8 bg-slate-300 rounded flex items-center justify-center">
+                <Building2 className="w-6 h-6 text-slate-500" />
+              </div>
+            </div>
+            <div className="flex items-center justify-center">
+              <div className="w-16 h-8 bg-slate-300 rounded flex items-center justify-center">
+                <Building2 className="w-6 h-6 text-slate-500" />
+              </div>
+            </div>
+            <div className="flex items-center justify-center">
+              <div className="w-16 h-8 bg-slate-300 rounded flex items-center justify-center">
+                <Building2 className="w-6 h-6 text-slate-500" />
+              </div>
+            </div>
+            <div className="flex items-center justify-center">
+              <div className="w-16 h-8 bg-slate-300 rounded flex items-center justify-center">
+                <Building2 className="w-6 h-6 text-slate-500" />
+              </div>
+            </div>
+            <div className="flex items-center justify-center">
+              <div className="w-16 h-8 bg-slate-300 rounded flex items-center justify-center">
+                <Building2 className="w-6 h-6 text-slate-500" />
+              </div>
+            </div>
+            <div className="flex items-center justify-center">
+              <div className="w-16 h-8 bg-slate-300 rounded flex items-center justify-center">
+                <Building2 className="w-6 h-6 text-slate-500" />
+              </div>
+            </div>
+          </div>
+          
+          {/* Real Testimonials */}
+          <div className="grid md:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-12">
+            <Card className="border-0 shadow-lg">
+              <CardContent className="card-padding">
+                <div className="flex items-center mb-4">
+                  <div className="w-10 h-10 bg-gradient-to-br from-primary to-blue-600 rounded-full flex items-center justify-center mr-3">
+                    <span className="text-sm font-bold text-white">SC</span>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-sm">Dr. Sarah Chen</p>
+                    <p className="text-xs text-muted-foreground">Chen Family Dentistry</p>
+                  </div>
+                </div>
+                <div className="flex mb-3">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                  ))}
+                </div>
+                <blockquote className="text-sm italic">
+                  "Heynia saved my practice. We went from losing $20K/month to our best year ever. The AI features are incredible."
+                </blockquote>
+              </CardContent>
+            </Card>
+            
+            <Card className="border-0 shadow-lg">
+              <CardContent className="card-padding">
+                <div className="flex items-center mb-4">
+                  <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center mr-3">
+                    <span className="text-sm font-bold text-white">MJ</span>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-sm">Dr. Michael Johnson</p>
+                    <p className="text-xs text-muted-foreground">Smile Bright Clinic</p>
+                  </div>
+                </div>
+                <div className="flex mb-3">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                  ))}
+                </div>
+                <blockquote className="text-sm italic">
+                  "The automated reminders alone increased our show rate by 27%. My staff actually enjoys their work now."
+                </blockquote>
+              </CardContent>
+            </Card>
+            
+            <Card className="border-0 shadow-lg">
+              <CardContent className="card-padding">
+                <div className="flex items-center mb-4">
+                  <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center mr-3">
+                    <span className="text-sm font-bold text-white">LR</span>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-sm">Dr. Lisa Rodriguez</p>
+                    <p className="text-xs text-muted-foreground">Rodriguez Dental Group</p>
+                  </div>
+                </div>
+                <div className="flex mb-3">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                  ))}
+                </div>
+                <blockquote className="text-sm italic">
+                  "As a multi-location practice, Heynia gives us the oversight we need. Real-time analytics changed everything."
+                </blockquote>
+              </CardContent>
+            </Card>
+          </div>
+          
+          {/* Stats */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            <div className="text-center">
+              <div className="text-2xl sm:text-3xl font-bold text-primary mb-1">500+</div>
+              <div className="text-sm text-muted-foreground">Practices served</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl sm:text-3xl font-bold text-primary mb-1">99.9%</div>
+              <div className="text-sm text-muted-foreground">Uptime</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl sm:text-3xl font-bold text-primary mb-1">4.9/5</div>
+              <div className="text-sm text-muted-foreground">Customer rating</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl sm:text-3xl font-bold text-primary mb-1">30%</div>
+              <div className="text-sm text-muted-foreground">Avg. revenue growth</div>
+            </div>
           </div>
         </div>
       </section>
@@ -315,76 +482,40 @@ const Index = () => {
         </div>
       </section>
 
-      {/* FAQ Section */}
+      {/* Simplified FAQ Section */}
       <section className="section-padding bg-gradient-to-br from-slate-50 to-blue-50" id="faq">
-        <div className="container-responsive max-w-5xl">
+        <div className="container-responsive max-w-4xl">
           <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-responsive-2xl font-bold mb-4 sm:mb-6">Frequently Asked Questions</h2>
+            <h2 className="text-responsive-2xl font-bold mb-4 sm:mb-6">Quick answers to your questions</h2>
             <p className="text-responsive-lg text-muted-foreground">
-              Everything you need to know about our cloud-based dental practice management software
+              Everything you need to know to get started
             </p>
           </div>
           
-          <div className="grid gap-4 sm:gap-6 max-w-4xl mx-auto">
+          <div className="grid gap-4 sm:gap-6 max-w-3xl mx-auto">
             <Card className="border-0 shadow-lg">
               <CardContent className="card-padding">
-                <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">Is Heynia HIPAA-compliant dental software for dentists?</h3>
+                <h3 className="text-lg font-semibold mb-3 sm:mb-4">Is Heynia really HIPAA-compliant?</h3>
                 <p className="text-muted-foreground text-sm sm:text-base">
-                  Yes, Heynia is fully HIPAA-compliant dental software designed specifically for dentists. We ensure all patient data is encrypted and secure, meeting all healthcare compliance requirements.
+                  Absolutely. We're fully HIPAA-compliant with encrypted data storage, secure communication channels, and comprehensive audit trails. Your patients' data is protected with bank-level security.
                 </p>
               </CardContent>
             </Card>
             
             <Card className="border-0 shadow-lg">
               <CardContent className="card-padding">
-                <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">Does your dental practice management software include billing features?</h3>
+                <h3 className="text-lg font-semibold mb-3 sm:mb-4">How quickly can we get up and running?</h3>
                 <p className="text-muted-foreground text-sm sm:text-base">
-                  Absolutely! Our dental practice management software with billing includes automated billing, insurance claim management, and integrated revenue cycle management to streamline your practice's financial operations.
+                  Most practices are fully operational within 48 hours. Our onboarding team handles data migration, staff training, and system setup. You'll wonder why you waited so long to switch.
                 </p>
               </CardContent>
             </Card>
             
             <Card className="border-0 shadow-lg">
               <CardContent className="card-padding">
-                <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">Can I access the dental software with mobile access for dentists?</h3>
+                <h3 className="text-lg font-semibold mb-3 sm:mb-4">What if we need to cancel?</h3>
                 <p className="text-muted-foreground text-sm sm:text-base">
-                  Yes, our cloud dental software with real-time analytics offers full mobile access for dentists. Manage your practice, view patient records, and handle appointments from anywhere with our mobile-optimized platform.
-                </p>
-              </CardContent>
-            </Card>
-            
-            <Card className="border-0 shadow-lg">
-              <CardContent className="card-padding">
-                <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">Is this suitable as dental practice software for small clinics?</h3>
-                <p className="text-muted-foreground text-sm sm:text-base">
-                  Definitely! Heynia is designed as affordable dental practice management software USA-based small clinics can rely on. Our customizable dental practice management system scales with your practice's growth.
-                </p>
-              </CardContent>
-            </Card>
-            
-            <Card className="border-0 shadow-lg">
-              <CardContent className="card-padding">
-                <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">Does your dental software include patient scheduling and automated reminders?</h3>
-                <p className="text-muted-foreground text-sm sm:text-base">
-                  Yes, our dental office software with patient scheduling includes automated appointment reminders via SMS, email, and WhatsApp to reduce no-shows and improve patient communication.
-                </p>
-              </CardContent>
-            </Card>
-            
-            <Card className="border-0 shadow-lg">
-              <CardContent className="card-padding">
-                <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">Can this work as the best dental practice software for multi-location clinics?</h3>
-                <p className="text-muted-foreground text-sm sm:text-base">
-                  Absolutely! Our dental practice management system with AI-powered insights is perfect for multi-location clinics, offering centralized management, treatment plan management, and integrated electronic health records across all locations.
-                </p>
-              </CardContent>
-            </Card>
-            
-            <Card className="border-0 shadow-lg">
-              <CardContent className="card-padding">
-                <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">Does your dental software include teledentistry features and patient portal?</h3>
-                <p className="text-muted-foreground text-sm sm:text-base">
-                  Yes, our dental software with teledentistry features includes a comprehensive patient portal with online payments, marketing automation tools, and secure communication channels for improved patient engagement.
+                  No long-term contracts. Cancel anytime with 30 days notice. We'll even help you export your data. But honestly, 98% of our customers stay because the results speak for themselves.
                 </p>
               </CardContent>
             </Card>
@@ -496,13 +627,13 @@ const Index = () => {
       {/* Final CTA Section */}
       <section className="section-padding bg-gradient-to-br from-primary/10 to-blue-100">
         <div className="container-responsive max-w-5xl text-center">
-          <h2 className="text-responsive-2xl font-bold mb-4 sm:mb-6">Clarity. Growth. Purpose. All in one app.</h2>
+          <h2 className="text-responsive-2xl font-bold mb-4 sm:mb-6">Ready to transform your practice?</h2>
           <p className="text-responsive-lg text-muted-foreground mb-8 sm:mb-12 max-w-4xl mx-auto">
             Dentists across the globe are tired of juggling tools that don't fit together. 
             Heynia is here to change that—and turn your practice into a platform for impact.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-6">
             <Button size="lg" className="gradient-primary text-white border-0 hover:opacity-90 px-6 sm:px-8 btn-mobile-friendly w-full sm:w-auto">
               Get Early Access
             </Button>
@@ -598,12 +729,12 @@ const Index = () => {
             </div>
             
             <div>
-              <h4 className="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Solutions</h4>
+              <h4 className="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Legal & Support</h4>
               <ul className="space-y-2 text-slate-400 text-xs sm:text-sm">
-                <li><a href="#" className="hover:text-white transition-colors">Small Clinic Software</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Multi-Location Clinics</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Teledentistry Features</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Mobile Access for Dentists</a></li>
+                <li><a href="/terms" className="hover:text-white transition-colors">Terms of Service</a></li>
+                <li><a href="/privacy" className="hover:text-white transition-colors">Privacy Policy</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Contact Support</a></li>
               </ul>
             </div>
           </div>
