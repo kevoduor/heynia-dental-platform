@@ -1,6 +1,6 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Calendar, Users, FileText, MessageSquare, ArrowDown, Check, Menu, X, Star, Building2, TrendingUp, Shield, Smartphone, BarChart3, CreditCard, Clock, Zap, Heart, Award, Mail, Phone } from "lucide-react";
 import AISearchWindow from "@/components/AISearchWindow";
 import HeyniaLogo from "@/components/HeyniaLogo";
@@ -311,16 +311,141 @@ const Index = () => {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <section className="section-padding bg-slate-50">
+        <div className="container-responsive max-w-4xl">
+          <div className="text-center mb-12">
+            <h2 className="text-responsive-2xl font-bold mb-4">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-responsive-lg text-muted-foreground">
+              Everything you need to know about Heynia dental practice management software
+            </p>
+          </div>
+
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            <AccordionItem value="item-1">
+              <AccordionTrigger className="text-left">
+                What makes Heynia the best cloud-based dental practice management software?
+              </AccordionTrigger>
+              <AccordionContent>
+                Heynia is a modern, cloud-based dental practice management software that combines all essential practice tools in one platform. Unlike traditional dental software, Heynia offers real-time access from anywhere, automatic updates, and seamless integration across all devices.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-2">
+              <AccordionTrigger className="text-left">
+                Is Heynia HIPAA-compliant dental software for dentists?
+              </AccordionTrigger>
+              <AccordionContent>
+                Yes, Heynia is fully HIPAA-compliant dental software designed specifically for dentists. We implement industry-leading security measures, encrypted data transmission, and comprehensive audit trails to ensure patient data protection and regulatory compliance.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-3">
+              <AccordionTrigger className="text-left">
+                Does Heynia include dental practice management software with billing features?
+              </AccordionTrigger>
+              <AccordionContent>
+                Absolutely! Heynia includes comprehensive dental practice management software with billing capabilities, featuring automated invoicing, payment processing, insurance claim management, and detailed financial reporting to streamline your revenue cycle.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-4">
+              <AccordionTrigger className="text-left">
+                How does Heynia's integrated revenue cycle management work?
+              </AccordionTrigger>
+              <AccordionContent>
+                Our dental software with integrated revenue cycle management automates billing workflows, tracks claims in real-time, manages patient payments, and provides detailed analytics to optimize your practice's financial performance from appointment to payment collection.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-5">
+              <AccordionTrigger className="text-left">
+                What patient scheduling features does Heynia dental office software offer?
+              </AccordionTrigger>
+              <AccordionContent>
+                Heynia's dental office software with patient scheduling includes online booking, automated appointment reminders, calendar synchronization, waitlist management, and intelligent scheduling optimization to reduce no-shows and maximize your appointment book.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-6">
+              <AccordionTrigger className="text-left">
+                Does Heynia support teledentistry features?
+              </AccordionTrigger>
+              <AccordionContent>
+                Yes, Heynia includes dental software with teledentistry features, enabling secure video consultations, remote patient monitoring, digital treatment planning, and virtual follow-ups to expand your practice's reach and improve patient care.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-7">
+              <AccordionTrigger className="text-left">
+                Is Heynia suitable for multi-location dental clinics?
+              </AccordionTrigger>
+              <AccordionContent>
+                Heynia is the best dental practice software for multi-location clinics, offering centralized management, cross-location scheduling, unified reporting, and role-based access controls to efficiently manage multiple practice locations from one dashboard.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-8">
+              <AccordionTrigger className="text-left">
+                How do automated appointment reminders work in Heynia?
+              </AccordionTrigger>
+              <AccordionContent>
+                Our dental software with automated appointment reminders sends customizable SMS, email, and voice reminders to patients, reducing no-shows by up to 40% and allowing patients to confirm, reschedule, or cancel appointments directly.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-9">
+              <AccordionTrigger className="text-left">
+                What insurance claim management features are included?
+              </AccordionTrigger>
+              <AccordionContent>
+                Heynia's dental software with insurance claim management includes electronic claim submission, real-time claim tracking, automated follow-ups, denial management, and integration with major insurance networks to maximize reimbursements.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-10">
+              <AccordionTrigger className="text-left">
+                How customizable is Heynia's dental practice management system?
+              </AccordionTrigger>
+              <AccordionContent>
+                Heynia offers a highly customizable dental practice management system with configurable workflows, custom forms, personalized dashboards, flexible reporting, and adaptable user interfaces to match your unique practice needs and preferences.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-11">
+              <AccordionTrigger className="text-left">
+                How does Heynia improve patient communication?
+              </AccordionTrigger>
+              <AccordionContent>
+                Our dental software for improving patient communication includes automated messaging, patient portals, treatment plan sharing, educational content delivery, and two-way communication tools to enhance patient engagement and satisfaction.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-12">
+              <AccordionTrigger className="text-left">
+                Can I access Heynia on mobile devices?
+              </AccordionTrigger>
+              <AccordionContent>
+                Yes, Heynia provides dental software with mobile access for dentists, featuring responsive design and dedicated mobile apps that allow you to manage your practice, view schedules, access patient records, and communicate with your team from anywhere.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="bg-slate-900 text-white py-12 sm:py-16 px-4 safe-area-bottom">
         <div className="container-responsive max-w-7xl">
-          <div className="grid md:grid-cols-3 gap-8 mb-8">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
+            {/* Company Info */}
             <div>
               <div className="flex items-center mb-4">
                 <HeyniaLogo className="h-6 sm:h-8" variant="light" />
               </div>
               <p className="text-slate-400 text-sm mb-4">
-                Cloud-based dental practice management software
+                Cloud-based dental practice management software with HIPAA compliance, AI-powered insights, and integrated billing for modern dental clinics.
               </p>
               <div className="space-y-2 text-sm text-slate-400">
                 <div className="flex items-center space-x-2">
@@ -335,29 +460,58 @@ const Index = () => {
               </div>
             </div>
             
+            {/* Product */}
             <div>
-              <h3 className="font-semibold mb-4">Quick Links</h3>
+              <h3 className="font-semibold mb-4">Product</h3>
               <div className="space-y-2 text-sm text-slate-400">
-                <a href="#" className="block hover:text-white transition-colors">About</a>
                 <a href="#features" className="block hover:text-white transition-colors">Features</a>
-                <a href="#impact" className="block hover:text-white transition-colors">Impact</a>
-                <a href="#" className="block hover:text-white transition-colors">Blog</a>
+                <a href="#" className="block hover:text-white transition-colors">Pricing</a>
+                <a href="#" className="block hover:text-white transition-colors">Demo</a>
+                <a href="#" className="block hover:text-white transition-colors">API</a>
+                <a href="#" className="block hover:text-white transition-colors">Integrations</a>
               </div>
             </div>
 
+            {/* Solutions */}
             <div>
-              <h3 className="font-semibold mb-4">Legal</h3>
+              <h3 className="font-semibold mb-4">Solutions</h3>
               <div className="space-y-2 text-sm text-slate-400">
-                <a href="/terms" className="block hover:text-white transition-colors">Legal</a>
-                <a href="/privacy" className="block hover:text-white transition-colors">Privacy</a>
+                <a href="#" className="block hover:text-white transition-colors">Small Clinics</a>
+                <a href="#" className="block hover:text-white transition-colors">Multi-Location Practices</a>
+                <a href="#" className="block hover:text-white transition-colors">Teledentistry</a>
+                <a href="#" className="block hover:text-white transition-colors">Patient Portal</a>
+                <a href="#" className="block hover:text-white transition-colors">Mobile Access</a>
+              </div>
+            </div>
+
+            {/* Support & Legal */}
+            <div>
+              <h3 className="font-semibold mb-4">Support & Legal</h3>
+              <div className="space-y-2 text-sm text-slate-400">
+                <a href="#impact" className="block hover:text-white transition-colors">About</a>
+                <a href="#" className="block hover:text-white transition-colors">Blog</a>
+                <a href="#" className="block hover:text-white transition-colors">Help Center</a>
+                <a href="#" className="block hover:text-white transition-colors">Contact</a>
+                <a href="/terms" className="block hover:text-white transition-colors">Terms of Service</a>
+                <a href="/privacy" className="block hover:text-white transition-colors">Privacy Policy</a>
+                <a href="#" className="block hover:text-white transition-colors">HIPAA Compliance</a>
               </div>
             </div>
           </div>
           
-          <div className="border-t border-slate-800 pt-8 text-center">
-            <p className="text-slate-400 text-sm">
-              © 2024 Heynia. All rights reserved.
-            </p>
+          {/* Bottom Section */}
+          <div className="border-t border-slate-800 pt-8">
+            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+              <p className="text-slate-400 text-sm">
+                © 2024 Heynia. All rights reserved. | HIPAA-Compliant Dental Practice Management Software
+              </p>
+              <div className="flex space-x-6 text-sm text-slate-400">
+                <span>🔒 HIPAA-Ready</span>
+                <span>☁️ Cloud-Based</span>
+                <span>📱 Mobile-First</span>
+                <span>🤖 AI-Powered</span>
+              </div>
+            </div>
           </div>
         </div>
       </footer>
