@@ -44,7 +44,7 @@ serve(async (req) => {
     console.log('Making request to Kluster API with message:', message)
 
     const klusterRequestBody = {
-      model: 'gpt-4o',
+      model: 'gpt-3.5-turbo',
       messages: [
         {
           role: 'system',
