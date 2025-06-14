@@ -81,11 +81,8 @@ const Pricing = () => {
       {/* Navigation */}
       <nav className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 gradient-primary rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">H</span>
-            </div>
-            <span className="text-xl font-bold text-gradient">Heynia</span>
+          <div className="flex items-center">
+            <span className="text-xl font-bold text-gradient font-comfortaa">heynia</span>
           </div>
           <div className="hidden md:flex items-center space-x-8">
             <a href="/" className="text-muted-foreground hover:text-foreground transition-colors">Home</a>
@@ -255,11 +252,8 @@ const Pricing = () => {
         <div className="container mx-auto max-w-6xl">
           <div className="grid md:grid-cols-4 gap-8 mb-12">
             <div>
-              <div className="flex items-center space-x-2 mb-6">
-                <div className="w-8 h-8 gradient-primary rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">H</span>
-                </div>
-                <span className="text-xl font-bold">Heynia</span>
+              <div className="flex items-center mb-6">
+                <span className="text-xl font-bold font-comfortaa">heynia</span>
               </div>
               <p className="text-slate-400 mb-4">
                 Empowering dental practices with purpose-driven technology.
@@ -299,7 +293,7 @@ const Pricing = () => {
           </div>
           
           <div className="border-t border-slate-800 pt-8 text-center text-slate-400">
-            <p>&copy; 2024 Heynia. Built with purpose. Powered by community.</p>
+            <p>&copy; 2024 heynia. Built with purpose. Powered by community.</p>
           </div>
         </div>
       </footer>

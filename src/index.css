@@ -91,6 +91,7 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Comfortaa', sans-serif;
   }
 }
 
@@ -108,5 +109,9 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+
+  .font-comfortaa {
+    font-family: 'Comfortaa', sans-serif;
   }
 }
