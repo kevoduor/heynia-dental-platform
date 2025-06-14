@@ -330,7 +330,7 @@ const Pricing = () => {
           </div>
           
           <div className="border-t border-slate-800 pt-6 sm:pt-8 text-center text-slate-400">
-            <p className="text-xs sm:text-sm">&copy; 2024 heynia. Built with purpose. Powered by community.</p>
+            <p className="text-xs sm:text-sm">made in nairobi with ❤️</p>
           </div>
         </div>
       </footer>

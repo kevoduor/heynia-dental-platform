@@ -624,7 +624,7 @@ const Index = () => {
               </p>
             </div>
             <div className="text-center text-slate-400">
-              <p className="text-xs sm:text-sm">&copy; 2024 heynia. Cloud dental software built with purpose. Powered by community.</p>
+              <p className="text-xs sm:text-sm">made in nairobi with ❤️</p>
             </div>
           </div>
         </div>
