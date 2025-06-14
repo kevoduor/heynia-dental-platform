@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Mic, MicOff, Send, Loader2, Sparkles, AlertCircle } from "lucide-react";
+import { Mic, MicOff, Send, Loader2, Sparkles, AlertCircle, Phone, PhoneOff } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { RealtimeVoiceChat } from '@/utils/RealtimeAudio';
 
 interface AISearchWindowProps {
   onSearch?: (query: string) => void;
@@ -76,7 +77,12 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [response, setResponse] = useState('');
   const [error, setError] = useState('');
+  const [isRealtimeMode, setIsRealtimeMode] = useState(false);
+  const [isRealtimeConnected, setIsRealtimeConnected] = useState(false);
+  const [realtimeMessages, setRealtimeMessages] = useState<any[]>([]);
+  
   const recognitionRef = useRef<SpeechRecognition | null>(null);
+  const realtimeChatRef = useRef<RealtimeVoiceChat | null>(null);
 
   useEffect(() => {
     // Initialize speech recognition if available
@@ -120,6 +126,67 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
       }
     };
   }, []);
+
+  // Initialize realtime voice chat
+  useEffect(() => {
+    if (isRealtimeMode && !realtimeChatRef.current) {
+      const handleRealtimeMessage = (message: any) => {
+        console.log('Realtime message:', message);
+        setRealtimeMessages(prev => [...prev, message]);
+        
+        if (message.type === 'response.audio_transcript.delta') {
+          setResponse(prev => prev + message.delta);
+        } else if (message.type === 'response.audio_transcript.done') {
+          // Transcript is complete
+        }
+      };
+
+      const handleConnectionChange = (connected: boolean) => {
+        setIsRealtimeConnected(connected);
+        if (!connected) {
+          setError('Real-time connection lost');
+        }
+      };
+
+      realtimeChatRef.current = new RealtimeVoiceChat(
+        handleRealtimeMessage,
+        handleConnectionChange
+      );
+    }
+
+    return () => {
+      if (realtimeChatRef.current) {
+        realtimeChatRef.current.disconnect();
+        realtimeChatRef.current = null;
+      }
+    };
+  }, [isRealtimeMode]);
+
+  const toggleRealtimeMode = async () => {
+    if (isRealtimeMode) {
+      // Disconnect realtime
+      if (realtimeChatRef.current) {
+        realtimeChatRef.current.disconnect();
+        realtimeChatRef.current = null;
+      }
+      setIsRealtimeMode(false);
+      setIsRealtimeConnected(false);
+      setRealtimeMessages([]);
+    } else {
+      // Connect realtime
+      try {
+        setIsRealtimeMode(true);
+        setError('');
+        if (realtimeChatRef.current) {
+          await realtimeChatRef.current.connect();
+        }
+      } catch (error) {
+        console.error('Error connecting to realtime:', error);
+        setError('Failed to connect to real-time voice chat');
+        setIsRealtimeMode(false);
+      }
+    }
+  };
 
   const startListening = () => {
     if (recognitionRef.current && !isListening) {
@@ -210,7 +277,12 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
-      handleSearch();
+      if (isRealtimeMode && realtimeChatRef.current) {
+        realtimeChatRef.current.sendTextMessage(query);
+        setQuery('');
+      } else {
+        handleSearch();
+      }
     }
   };
 
@@ -224,70 +296,147 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
         <p className="text-gray-600 text-lg">
           Get instant answers about your dental practice management
         </p>
+        
+        {/* Real-time Mode Toggle */}
+        <div className="mt-4 flex items-center justify-center space-x-2">
+          <Button
+            onClick={toggleRealtimeMode}
+            variant={isRealtimeMode ? "default" : "outline"}
+            className={`${
+              isRealtimeMode 
+                ? 'bg-green-500 hover:bg-green-600' 
+                : 'hover:bg-green-50'
+            } transition-all`}
+          >
+            {isRealtimeMode ? (
+              <>
+                <PhoneOff className="w-4 h-4 mr-2" />
+                Exit Real-time Voice
+              </>
+            ) : (
+              <>
+                <Phone className="w-4 h-4 mr-2" />
+                Real-time Voice Chat
+              </>
+            )}
+          </Button>
+          {isRealtimeMode && (
+            <div className={`flex items-center space-x-1 ${
+              isRealtimeConnected ? 'text-green-600' : 'text-red-600'
+            }`}>
+              <div className={`w-2 h-2 rounded-full ${
+                isRealtimeConnected ? 'bg-green-500' : 'bg-red-500'
+              }`} />
+              <span className="text-sm">
+                {isRealtimeConnected ? 'Connected' : 'Connecting...'}
+              </span>
+            </div>
+          )}
+        </div>
       </div>
 
-      {/* Glassmorphism Search Input */}
-      <div className="mb-6">
-        <div className="relative">
-          {/* Glass container */}
-          <div className="bg-white/20 backdrop-blur-xl border border-white/30 rounded-2xl p-1 shadow-xl">
-            <div className="flex items-center space-x-3 p-4">
-              <div className="flex-1">
-                <Input
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                  onKeyPress={handleKeyPress}
-                  placeholder="Type your question or use voice..."
-                  className="border-0 text-lg h-12 bg-transparent focus:ring-0 placeholder:text-gray-500/80 text-gray-800"
-                  disabled={isLoading}
-                />
-              </div>
-              <div className="flex items-center space-x-2">
-                <Button
-                  type="button"
-                  size="sm"
-                  variant={isListening ? "destructive" : "ghost"}
-                  onClick={isListening ? stopListening : startListening}
-                  disabled={isLoading}
-                  className="h-12 w-12 rounded-xl transition-all hover:scale-105 bg-white/30 hover:bg-white/40 border-0"
-                >
-                  {isListening ? (
-                    <MicOff className="h-5 w-5" />
-                  ) : (
-                    <Mic className="h-5 w-5" />
-                  )}
-                </Button>
-                <Button
-                  type="button"
-                  onClick={() => handleSearch()}
-                  disabled={isLoading || !query.trim()}
-                  className="h-12 w-12 rounded-xl bg-gradient-to-r from-blue-500/80 to-purple-600/80 hover:from-blue-600/90 hover:to-purple-700/90 transition-all hover:scale-105 shadow-lg border-0 backdrop-blur-sm"
-                >
-                  {isLoading ? (
-                    <Loader2 className="h-5 w-5 animate-spin" />
-                  ) : (
-                    <Send className="h-5 w-5" />
-                  )}
-                </Button>
-              </div>
+      {/* Real-time Voice Interface */}
+      {isRealtimeMode ? (
+        <div className="mb-6">
+          <div className="bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-2xl p-6 border border-green-200 dark:border-green-800">
+            <div className="text-center mb-4">
+              <h3 className="text-lg font-semibold text-green-800 dark:text-green-200 mb-2">
+                Real-time Voice Chat Active
+              </h3>
+              <p className="text-green-600 dark:text-green-300 text-sm">
+                Speak naturally or type your questions. HeyNia will respond with voice and text.
+              </p>
+            </div>
+            
+            {/* Text input for realtime mode */}
+            <div className="flex items-center space-x-2">
+              <Input
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                onKeyPress={handleKeyPress}
+                placeholder="Type or speak your question..."
+                className="flex-1"
+                disabled={!isRealtimeConnected}
+              />
+              <Button
+                onClick={() => {
+                  if (realtimeChatRef.current && query.trim()) {
+                    realtimeChatRef.current.sendTextMessage(query);
+                    setQuery('');
+                  }
+                }}
+                disabled={!isRealtimeConnected || !query.trim()}
+                className="bg-green-500 hover:bg-green-600"
+              >
+                <Send className="w-4 h-4" />
+              </Button>
             </div>
           </div>
         </div>
-
-        {/* Voice Waveform Visualization */}
-        {isListening && (
-          <div className="mt-6">
-            <div className="bg-gray-900/80 backdrop-blur-xl rounded-2xl p-6 border border-white/20">
-              <div className="flex flex-col items-center space-y-4">
-                <div className="flex items-center space-x-3">
-                  <span className="text-white font-medium text-lg">Hi HeyNia, I want to...</span>
+      ) : (
+        // ... keep existing code (original search interface)
+        <div className="mb-6">
+          <div className="relative">
+            {/* Glass container */}
+            <div className="bg-white/20 backdrop-blur-xl border border-white/30 rounded-2xl p-1 shadow-xl">
+              <div className="flex items-center space-x-3 p-4">
+                <div className="flex-1">
+                  <Input
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    onKeyPress={handleKeyPress}
+                    placeholder="Type your question or use voice..."
+                    className="border-0 text-lg h-12 bg-transparent focus:ring-0 placeholder:text-gray-500/80 text-gray-800"
+                    disabled={isLoading}
+                  />
                 </div>
-                <VoiceWaveform isActive={isListening} />
+                <div className="flex items-center space-x-2">
+                  <Button
+                    type="button"
+                    size="sm"
+                    variant={isListening ? "destructive" : "ghost"}
+                    onClick={isListening ? stopListening : startListening}
+                    disabled={isLoading}
+                    className="h-12 w-12 rounded-xl transition-all hover:scale-105 bg-white/30 hover:bg-white/40 border-0"
+                  >
+                    {isListening ? (
+                      <MicOff className="h-5 w-5" />
+                    ) : (
+                      <Mic className="h-5 w-5" />
+                    )}
+                  </Button>
+                  <Button
+                    type="button"
+                    onClick={() => handleSearch()}
+                    disabled={isLoading || !query.trim()}
+                    className="h-12 w-12 rounded-xl bg-gradient-to-r from-blue-500/80 to-purple-600/80 hover:from-blue-600/90 hover:to-purple-700/90 transition-all hover:scale-105 shadow-lg border-0 backdrop-blur-sm"
+                  >
+                    {isLoading ? (
+                      <Loader2 className="h-5 w-5 animate-spin" />
+                    ) : (
+                      <Send className="h-5 w-5" />
+                    )}
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
-        )}
-      </div>
+
+          {/* Voice Waveform Visualization */}
+          {isListening && (
+            <div className="mt-6">
+              <div className="bg-gray-900/80 backdrop-blur-xl rounded-2xl p-6 border border-white/20">
+                <div className="flex flex-col items-center space-y-4">
+                  <div className="flex items-center space-x-3">
+                    <span className="text-white font-medium text-lg">Hi HeyNia, I want to...</span>
+                  </div>
+                  <VoiceWaveform isActive={isListening} />
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Error Section */}
       {error && (
@@ -310,6 +459,12 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
               <div className="flex-1">
                 <div className="bg-white/60 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-white/40">
                   <p className="text-gray-800 leading-relaxed text-lg">{response}</p>
+                  {isRealtimeMode && (
+                    <div className="mt-2 text-sm text-green-600 flex items-center">
+                      <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse" />
+                      Real-time voice response
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -322,7 +477,10 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
         <div className="inline-flex items-center space-x-2 px-6 py-3 bg-white/30 backdrop-blur-xl rounded-full border border-white/40 shadow-lg">
           <Sparkles className="w-4 h-4 text-gray-600" />
           <p className="text-sm text-gray-700">
-            Try Asking: "HeyNia Could you Provide me with the list of patients I'm seeing today?"
+            {isRealtimeMode 
+              ? "Try saying: 'Show me today's patient schedule'"
+              : "Try Asking: 'HeyNia Could you Provide me with the list of patients I'm seeing today?'"
+            }
           </p>
         </div>
       </div>
