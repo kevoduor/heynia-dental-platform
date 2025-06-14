@@ -71,7 +71,7 @@ const Index = () => {
             <span className="text-gradient">one place</span>
           </h1>
           <p className="text-responsive-lg text-muted-foreground mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed">
-            Streamline your dental practice with intelligent scheduling, automated billing, and powerful analytics—all while supporting a meaningful cause.
+            Streamline your dental practice with intelligent scheduling, automated billing, and powerful analytics.
           </p>
           
           {/* AI Search Window */}
