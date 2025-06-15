@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -32,31 +31,50 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background optimized-scroll">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 optimized-scroll">
       {/* Navigation */}
-      <nav className="border-b bg-background/80 backdrop-blur-sm sticky top-0 z-50 safe-area-top">
-        <div className="container-responsive py-3 sm:py-4 flex items-center justify-between">
+      <nav className="border-b border-white/20 bg-white/90 backdrop-blur-xl sticky top-0 z-50 safe-area-top shadow-sm">
+        <div className="container-responsive py-4 flex items-center justify-between">
           <div className="flex items-center">
-            <Link to="/">
-              <HeyniaLogo className="h-6 sm:h-8" variant="colorful" />
+            <Link to="/" className="transition-transform hover:scale-105">
+              <HeyniaLogo className="h-7 sm:h-9" variant="colorful" />
             </Link>
           </div>
           
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
-            <button onClick={() => scrollToSection('features')} className="text-muted-foreground hover:text-foreground transition-colors text-sm xl:text-base">Features</button>
-            <button onClick={() => scrollToSection('impact')} className="text-muted-foreground hover:text-foreground transition-colors text-sm xl:text-base">Impact</button>
-            <button onClick={() => scrollToSection('story')} className="text-muted-foreground hover:text-foreground transition-colors text-sm xl:text-base">Our Story</button>
-            <Link to="/pricing" className="text-muted-foreground hover:text-foreground transition-colors text-sm xl:text-base">Pricing</Link>
-            <Link to="/testimonials" className="text-muted-foreground hover:text-foreground transition-colors text-sm xl:text-base">Testimonials</Link>
-            <Button variant="outline" size="sm" className="btn-mobile-friendly">Sign In</Button>
-            <Button className="btn-glow-primary btn-mobile-friendly" size="sm">Get Started</Button>
+          <div className="hidden lg:flex items-center space-x-8">
+            <button onClick={() => scrollToSection('features')} className="text-slate-600 hover:text-slate-900 transition-all duration-300 text-sm font-medium relative group">
+              Features
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-pink-500 to-violet-500 transition-all duration-300 group-hover:w-full"></span>
+            </button>
+            <button onClick={() => scrollToSection('impact')} className="text-slate-600 hover:text-slate-900 transition-all duration-300 text-sm font-medium relative group">
+              Impact
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-pink-500 to-violet-500 transition-all duration-300 group-hover:w-full"></span>
+            </button>
+            <button onClick={() => scrollToSection('story')} className="text-slate-600 hover:text-slate-900 transition-all duration-300 text-sm font-medium relative group">
+              Our Story
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-pink-500 to-violet-500 transition-all duration-300 group-hover:w-full"></span>
+            </button>
+            <Link to="/pricing" className="text-slate-600 hover:text-slate-900 transition-all duration-300 text-sm font-medium relative group">
+              Pricing
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-pink-500 to-violet-500 transition-all duration-300 group-hover:w-full"></span>
+            </Link>
+            <Link to="/testimonials" className="text-slate-600 hover:text-slate-900 transition-all duration-300 text-sm font-medium relative group">
+              Testimonials
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-pink-500 to-violet-500 transition-all duration-300 group-hover:w-full"></span>
+            </Link>
+            <Button variant="outline" size="sm" className="border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all duration-300">
+              Sign In
+            </Button>
+            <Button className="bg-gradient-to-r from-pink-500 to-violet-500 hover:from-pink-600 hover:to-violet-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5" size="sm">
+              Get Started
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="lg:hidden flex items-center space-x-2">
             <button 
-              className="btn-mobile-friendly p-2"
+              className="btn-mobile-friendly p-2 rounded-lg hover:bg-slate-100 transition-colors"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
             >
@@ -67,16 +85,16 @@ const Index = () => {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="lg:hidden border-t bg-background/95 backdrop-blur-sm">
-            <div className="container-responsive py-4 space-y-4">
-              <button onClick={() => scrollToSection('features')} className="block py-2 text-muted-foreground hover:text-foreground transition-colors w-full text-left">Features</button>
-              <button onClick={() => scrollToSection('impact')} className="block py-2 text-muted-foreground hover:text-foreground transition-colors w-full text-left">Impact</button>
-              <button onClick={() => scrollToSection('story')} className="block py-2 text-muted-foreground hover:text-foreground transition-colors w-full text-left">Our Story</button>
-              <Link to="/pricing" className="block py-2 text-muted-foreground hover:text-foreground transition-colors" onClick={() => setMobileMenuOpen(false)}>Pricing</Link>
-              <Link to="/testimonials" className="block py-2 text-muted-foreground hover:text-foreground transition-colors" onClick={() => setMobileMenuOpen(false)}>Testimonials</Link>
-              <div className="flex flex-col space-y-3 pt-4">
-                <Button variant="outline" className="btn-mobile-friendly">Sign In</Button>
-                <Button className="btn-glow-primary btn-mobile-friendly">Get Started</Button>
+          <div className="lg:hidden border-t border-slate-200 bg-white/95 backdrop-blur-sm">
+            <div className="container-responsive py-6 space-y-6">
+              <button onClick={() => scrollToSection('features')} className="block py-3 text-slate-600 hover:text-slate-900 transition-colors w-full text-left font-medium">Features</button>
+              <button onClick={() => scrollToSection('impact')} className="block py-3 text-slate-600 hover:text-slate-900 transition-colors w-full text-left font-medium">Impact</button>
+              <button onClick={() => scrollToSection('story')} className="block py-3 text-slate-600 hover:text-slate-900 transition-colors w-full text-left font-medium">Our Story</button>
+              <Link to="/pricing" className="block py-3 text-slate-600 hover:text-slate-900 transition-colors font-medium" onClick={() => setMobileMenuOpen(false)}>Pricing</Link>
+              <Link to="/testimonials" className="block py-3 text-slate-600 hover:text-slate-900 transition-colors font-medium" onClick={() => setMobileMenuOpen(false)}>Testimonials</Link>
+              <div className="flex flex-col space-y-4 pt-6">
+                <Button variant="outline" className="border-slate-200 hover:border-slate-300">Sign In</Button>
+                <Button className="bg-gradient-to-r from-pink-500 to-violet-500 hover:from-pink-600 hover:to-violet-600 text-white">Get Started</Button>
               </div>
             </div>
           </div>
@@ -84,149 +102,226 @@ const Index = () => {
       </nav>
 
       {/* Hero Section */}
-      <section className="section-padding bg-gradient-to-br from-background to-muted/20">
-        <div className="container-responsive text-center max-w-5xl">
-          <div className="inline-flex items-center px-3 sm:px-4 py-2 rounded-full bg-primary/10 text-primary text-xs sm:text-sm font-medium mb-6 sm:mb-8">
+      <section className="relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 bg-gradient-to-br from-violet-50 via-white to-pink-50"></div>
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23e0e7ff" fill-opacity="0.3"%3E%3Ccircle cx="30" cy="30" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-40"></div>
+        
+        <div className="relative container-responsive section-padding text-center max-w-6xl">
+          <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-pink-100 to-violet-100 border border-pink-200/50 text-pink-600 text-sm font-medium mb-8 shadow-sm">
+            <Sparkles className="w-4 h-4 mr-2" />
             For modern dental clinics
           </div>
-          <h1 className="text-responsive-3xl font-bold mb-4 sm:mb-6 leading-tight">
-            Organize your dental clinic, payments and team in{" "}
-            <span className="text-gradient">one place</span>
+          
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
+            Organize your dental clinic,{" "}
+            <span className="bg-gradient-to-r from-pink-500 via-violet-500 to-indigo-500 bg-clip-text text-transparent">
+              payments and team
+            </span>{" "}
+            in one place
           </h1>
-          <p className="text-responsive-lg text-muted-foreground mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed">
-            All your tools. One Easy Place
+          
+          <p className="text-lg sm:text-xl md:text-2xl text-slate-600 mb-12 max-w-4xl mx-auto leading-relaxed font-light">
+            All your tools. One Easy Place. Experience the future of dental practice management.
           </p>
           
           {/* AI Search Window */}
-          <div className="mb-6 sm:mb-8">
+          <div className="mb-12 max-w-2xl mx-auto">
             <AISearchWindow />
           </div>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-            <Button size="lg" className="btn-glow-primary btn-mobile-friendly">
-              Sign Up Now
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
+            <Button size="lg" className="bg-gradient-to-r from-pink-500 to-violet-500 hover:from-pink-600 hover:to-violet-600 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 px-8 py-4 text-lg">
+              Start Free Trial
+              <ArrowDown className="w-5 h-5 ml-2 rotate-[-45deg]" />
+            </Button>
+            <Button variant="outline" size="lg" className="border-2 border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all duration-300 px-8 py-4 text-lg bg-white/80 backdrop-blur-sm">
+              Watch Demo
             </Button>
           </div>
-          <p className="text-xs sm:text-sm text-muted-foreground">No credit card needed</p>
+          
+          <p className="text-sm text-slate-500 flex items-center justify-center gap-2">
+            <Shield className="w-4 h-4" />
+            No credit card needed • HIPAA-compliant • 14-day free trial
+          </p>
         </div>
       </section>
 
-      {/* Section 1: The Problem */}
-      <section id="problem" className="section-padding">
-        <div className="container-responsive max-w-6xl">
-          <div className="text-center mb-12">
-            <h2 className="text-responsive-2xl font-bold mb-6">
+      {/* Trust Indicators */}
+      <section className="py-16 bg-white border-y border-slate-100">
+        <div className="container-responsive">
+          <p className="text-center text-slate-500 text-sm font-medium mb-8">Trusted by dental practices worldwide</p>
+          <div className="flex justify-center items-center space-x-8 opacity-60">
+            <div className="flex items-center space-x-2">
+              <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+              <span className="text-sm font-medium">4.9/5 Rating</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Shield className="w-5 h-5 text-green-500" />
+              <span className="text-sm font-medium">HIPAA Ready</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Users className="w-5 h-5 text-blue-500" />
+              <span className="text-sm font-medium">500+ Practices</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Problem Section */}
+      <section id="problem" className="section-padding bg-gradient-to-br from-slate-50 to-white">
+        <div className="container-responsive max-w-7xl">
+          <div className="text-center mb-20">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
               You didn't become a dentist to manage chaos.
             </h2>
-            <p className="text-responsive-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-8">
+            <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed mb-8 font-light">
               Every day, you're overwhelmed by reschedules, billing headaches, and disconnected tools. The result? Lost time, lost revenue, and growing burnout.
             </p>
-            <p className="text-responsive-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-light">
               Heynia changes that—bringing everything you need to run your practice into one simple, intelligent platform.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-12">
-            <Card className="text-center p-4 sm:p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group gpu-accelerated">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 bg-gradient-to-br from-red-100 to-red-200 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <Calendar className="w-6 h-6 sm:w-8 sm:h-8 text-red-600" />
-              </div>
-              <h3 className="font-semibold mb-2 text-sm sm:text-base">Missed appointments & cancellations</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+            <Card className="group relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 bg-gradient-to-br from-red-50 to-orange-50">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-red-100 to-red-200 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <Calendar className="w-8 h-8 text-red-600" />
+                </div>
+                <h3 className="font-semibold mb-3 text-lg text-slate-800">Missed appointments & cancellations</h3>
+                <p className="text-slate-600 text-sm leading-relaxed">Lost revenue from no-shows and last-minute changes</p>
+              </CardContent>
             </Card>
-            <Card className="text-center p-4 sm:p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group gpu-accelerated">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 bg-gradient-to-br from-orange-100 to-orange-200 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <CreditCard className="w-6 h-6 sm:w-8 sm:h-8 text-orange-600" />
-              </div>
-              <h3 className="font-semibold mb-2 text-sm sm:text-base">Complex billing and insurance delays</h3>
+
+            <Card className="group relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 bg-gradient-to-br from-orange-50 to-yellow-50">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-orange-100 to-orange-200 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <CreditCard className="w-8 h-8 text-orange-600" />
+                </div>
+                <h3 className="font-semibold mb-3 text-lg text-slate-800">Complex billing & insurance delays</h3>
+                <p className="text-slate-600 text-sm leading-relaxed">Hours spent on paperwork instead of patient care</p>
+              </CardContent>
             </Card>
-            <Card className="text-center p-4 sm:p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group gpu-accelerated">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <Workflow className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-600" />
-              </div>
-              <h3 className="font-semibold mb-2 text-sm sm:text-base">Disconnected tools that don't talk to each other</h3>
+
+            <Card className="group relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 bg-gradient-to-br from-yellow-50 to-green-50">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <Workflow className="w-8 h-8 text-yellow-600" />
+                </div>
+                <h3 className="font-semibold mb-3 text-lg text-slate-800">Disconnected tools that don't talk</h3>
+                <p className="text-slate-600 text-sm leading-relaxed">Data scattered across multiple platforms</p>
+              </CardContent>
             </Card>
-            <Card className="text-center p-4 sm:p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group gpu-accelerated">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 bg-gradient-to-br from-red-100 to-red-200 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <Clock className="w-6 h-6 sm:w-8 sm:h-8 text-red-600" />
-              </div>
-              <h3 className="font-semibold mb-2 text-sm sm:text-base">Hours wasted on manual admin</h3>
+
+            <Card className="group relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 bg-gradient-to-br from-green-50 to-blue-50">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-blue-100 to-blue-200 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <Clock className="w-8 h-8 text-blue-600" />
+                </div>
+                <h3 className="font-semibold mb-3 text-lg text-slate-800">Hours wasted on manual admin</h3>
+                <p className="text-slate-600 text-sm leading-relaxed">Time that could be spent with patients</p>
+              </CardContent>
             </Card>
           </div>
 
           <div className="text-center">
-            <Button size="lg" className="btn-glow-secondary btn-mobile-friendly">
+            <Button size="lg" className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 px-8 py-4">
               See How Heynia Works
+              <Sparkles className="w-5 h-5 ml-2" />
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Section 2: The Solution */}
-      <section id="features" className="section-padding bg-gradient-to-br from-primary/5 to-accent/10">
-        <div className="container-responsive max-w-6xl">
-          <div className="text-center mb-12">
-            <h2 className="text-responsive-2xl font-bold mb-4">
+      {/* Solution Section */}
+      <section id="features" className="section-padding bg-gradient-to-br from-white via-blue-50 to-violet-50 relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute top-0 left-0 w-72 h-72 bg-gradient-to-br from-pink-200 to-violet-200 rounded-full blur-3xl opacity-20 -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-200 to-cyan-200 rounded-full blur-3xl opacity-20 translate-x-1/2 translate-y-1/2"></div>
+        
+        <div className="relative container-responsive max-w-7xl">
+          <div className="text-center mb-20">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
               All-in-one, and built for dentists like you.
             </h2>
-            <p className="text-responsive-lg text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-xl text-slate-600 max-w-4xl mx-auto font-light leading-relaxed">
               Heynia simplifies your entire practice—no steep learning curves, no tech headaches.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12">
-            <Card className="p-4 sm:p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-2 group gpu-accelerated">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 mb-4 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <Calendar className="w-6 h-6 sm:w-8 sm:h-8 text-blue-600" />
-              </div>
-              <h3 className="text-lg sm:text-xl font-semibold mb-3">Automated Scheduling</h3>
-              <p className="text-muted-foreground text-sm sm:text-base">Fill your calendar, reduce no-shows.</p>
-            </Card>
-            <Card className="p-4 sm:p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-2 group gpu-accelerated">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 mb-4 bg-gradient-to-br from-green-100 to-green-200 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <CreditCard className="w-6 h-6 sm:w-8 sm:h-8 text-green-600" />
-              </div>
-              <h3 className="text-lg sm:text-xl font-semibold mb-3">Smart Billing</h3>
-              <p className="text-muted-foreground text-sm sm:text-base">Collect payments faster, with less follow-up.</p>
-            </Card>
-            <Card className="p-4 sm:p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-2 group gpu-accelerated">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 mb-4 bg-gradient-to-br from-purple-100 to-purple-200 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <BarChart3 className="w-6 h-6 sm:w-8 sm:h-8 text-purple-600" />
-              </div>
-              <h3 className="text-lg sm:text-xl font-semibold mb-3">Real-Time Analytics</h3>
-              <p className="text-muted-foreground text-sm sm:text-base">Understand what's working (and what's not).</p>
-            </Card>
-            <Card className="p-4 sm:p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-2 group gpu-accelerated">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 mb-4 bg-gradient-to-br from-cyan-100 to-cyan-200 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <Cloud className="w-6 h-6 sm:w-8 sm:h-8 text-cyan-600" />
-              </div>
-              <h3 className="text-lg sm:text-xl font-semibold mb-3">Cloud-Based Access</h3>
-              <p className="text-muted-foreground text-sm sm:text-base">Access your practice data anywhere, anytime—no servers required.</p>
-            </Card>
-            <Card className="p-4 sm:p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-2 group gpu-accelerated">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 mb-4 bg-gradient-to-br from-orange-100 to-orange-200 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <Smartphone className="w-6 h-6 sm:w-8 sm:h-8 text-orange-600" />
-              </div>
-              <h3 className="text-lg sm:text-xl font-semibold mb-3">Mobile-First Design</h3>
-              <p className="text-muted-foreground text-sm sm:text-base">Manage your practice on the go.</p>
-            </Card>
-            <Card className="p-4 sm:p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-2 group gpu-accelerated">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 mb-4 bg-gradient-to-br from-indigo-100 to-indigo-200 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <Shield className="w-6 h-6 sm:w-8 sm:h-8 text-indigo-600" />
-              </div>
-              <h3 className="text-lg sm:text-xl font-semibold mb-3">HIPAA-Ready, OSHA-Aware</h3>
-              <p className="text-muted-foreground text-sm sm:text-base">Built for total peace of mind.</p>
-            </Card>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+            {[
+              {
+                icon: Calendar,
+                title: "Automated Scheduling",
+                description: "Fill your calendar, reduce no-shows with intelligent booking.",
+                gradient: "from-blue-500 to-cyan-500",
+                bg: "from-blue-50 to-cyan-50"
+              },
+              {
+                icon: CreditCard,
+                title: "Smart Billing",
+                description: "Collect payments faster, with less follow-up required.",
+                gradient: "from-emerald-500 to-teal-500",
+                bg: "from-emerald-50 to-teal-50"
+              },
+              {
+                icon: BarChart3,
+                title: "Real-Time Analytics",
+                description: "Understand what's working (and what's not) instantly.",
+                gradient: "from-purple-500 to-violet-500",
+                bg: "from-purple-50 to-violet-50"
+              },
+              {
+                icon: Cloud,
+                title: "Cloud-Based Access",
+                description: "Access your practice data anywhere, anytime—no servers required.",
+                gradient: "from-cyan-500 to-blue-500",
+                bg: "from-cyan-50 to-blue-50"
+              },
+              {
+                icon: Smartphone,
+                title: "Mobile-First Design",
+                description: "Manage your practice on the go with our intuitive mobile app.",
+                gradient: "from-orange-500 to-red-500",
+                bg: "from-orange-50 to-red-50"
+              },
+              {
+                icon: Shield,
+                title: "HIPAA-Ready, OSHA-Aware",
+                description: "Built for total peace of mind with enterprise-grade security.",
+                gradient: "from-indigo-500 to-purple-500",
+                bg: "from-indigo-50 to-purple-50"
+              }
+            ].map((feature, index) => (
+              <Card key={index} className={`group relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 bg-gradient-to-br ${feature.bg}`}>
+                <CardContent className="p-8">
+                  <div className={`w-16 h-16 mb-6 bg-gradient-to-br ${feature.gradient} rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                    <feature.icon className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-4 text-slate-800">{feature.title}</h3>
+                  <p className="text-slate-600 leading-relaxed">{feature.description}</p>
+                </CardContent>
+                <div className="absolute inset-0 bg-gradient-to-br from-white/0 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </Card>
+            ))}
           </div>
 
-          <Card className="p-6 sm:p-8 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-center mb-8">
-            <blockquote className="text-lg sm:text-xl font-medium italic">
-              "It's like having a full-time office manager in your pocket."
-            </blockquote>
+          <Card className="relative overflow-hidden border-0 shadow-2xl mb-16 bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600">
+            <CardContent className="p-12 text-center text-white relative z-10">
+              <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Ccircle cx="30" cy="30" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-40"></div>
+              <blockquote className="text-2xl font-light italic mb-4 relative z-10">
+                "It's like having a full-time office manager in your pocket."
+              </blockquote>
+              <p className="text-violet-200 font-medium relative z-10">Dr. Sarah Chen, DDS</p>
+            </CardContent>
           </Card>
 
           <div className="text-center">
-            <Button size="lg" className="btn-glow-primary btn-mobile-friendly">
+            <Button size="lg" className="bg-gradient-to-r from-pink-500 to-violet-500 hover:from-pink-600 hover:to-violet-600 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 px-8 py-4">
               Join the Early Access List
+              <ArrowDown className="w-5 h-5 ml-2 rotate-[-45deg]" />
             </Button>
           </div>
         </div>
