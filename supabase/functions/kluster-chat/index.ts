@@ -13,12 +13,12 @@ serve(async (req) => {
     const requestBody = await req.json()
     console.log('Request body received:', requestBody)
     
-    const { message } = requestBody
+    const { message, image, hasImage } = requestBody
     
-    if (!message) {
-      console.error('No message provided in request')
+    if (!message && !hasImage) {
+      console.error('No message or image provided in request')
       return new Response(
-        JSON.stringify({ error: 'Message is required' }),
+        JSON.stringify({ error: 'Message or image is required' }),
         {
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
           status: 400,
@@ -41,29 +41,57 @@ serve(async (req) => {
       )
     }
 
-    console.log('Making request to Kluster API with Meta Llama 3.3 70B model:', message)
+    // Choose model based on whether we have an image
+    const modelToUse = hasImage ? 'meta-llama/llama-3.2-90b-vision-instruct' : 'klusterai/Meta-Llama-3.3-70B-Instruct-Turbo'
+    
+    console.log('Making request to Kluster API with model:', modelToUse)
+
+    // Build messages array
+    const messages = [
+      {
+        role: 'system',
+        content: `You are HeyNia AI, an expert assistant for dental practice management. You help dentists and dental staff with questions about:
+        - Patient management and scheduling
+        - Billing and insurance processing
+        - Practice efficiency and workflow
+        - Appointment management
+        - Revenue tracking and analytics
+        - HIPAA compliance
+        - Dental practice best practices
+        - Image analysis for dental conditions, X-rays, and clinical documentation
+        
+        When analyzing images, provide detailed, professional insights about what you observe, especially related to dental conditions, practice management documents, or clinical imagery. Always provide helpful, accurate, and professional responses. Keep answers concise but informative.`
+      }
+    ]
+
+    if (hasImage && image) {
+      // For vision models, include the image in the message
+      messages.push({
+        role: 'user',
+        content: [
+          {
+            type: 'text',
+            text: message || 'Please analyze this image and provide insights relevant to dental practice management.'
+          },
+          {
+            type: 'image_url',
+            image_url: {
+              url: image
+            }
+          }
+        ]
+      })
+    } else {
+      // For text-only models
+      messages.push({
+        role: 'user',
+        content: message
+      })
+    }
 
     const klusterRequestBody = {
-      model: 'klusterai/Meta-Llama-3.3-70B-Instruct-Turbo',
-      messages: [
-        {
-          role: 'system',
-          content: `You are HeyNia AI, an expert assistant for dental practice management. You help dentists and dental staff with questions about:
-          - Patient management and scheduling
-          - Billing and insurance processing
-          - Practice efficiency and workflow
-          - Appointment management
-          - Revenue tracking and analytics
-          - HIPAA compliance
-          - Dental practice best practices
-          
-          Always provide helpful, accurate, and professional responses. Keep answers concise but informative. You are powered by Meta Llama 3.3 70B for enhanced performance and reliability.`
-        },
-        {
-          role: 'user',
-          content: message
-        }
-      ],
+      model: modelToUse,
+      messages: messages,
       temperature: 0.7,
       max_tokens: 1000,
       stream: false
@@ -108,7 +136,7 @@ serve(async (req) => {
             status: response.status,
             statusText: response.statusText,
             body: errorText,
-            model: 'klusterai/Meta-Llama-3.3-70B-Instruct-Turbo'
+            model: modelToUse
           }
         }),
         {
@@ -143,8 +171,7 @@ serve(async (req) => {
         technical_details: {
           message: error.message,
           name: error.name,
-          stack: error.stack,
-          model: 'klusterai/Meta-Llama-3.3-70B-Instruct-Turbo'
+          stack: error.stack
         }
       }),
       {

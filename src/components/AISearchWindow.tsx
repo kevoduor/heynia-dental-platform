@@ -1,8 +1,7 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Mic, MicOff, Send, Loader2, Sparkles, AlertCircle } from "lucide-react";
+import { Mic, MicOff, Send, Loader2, Sparkles, AlertCircle, Camera, Upload, X } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 
@@ -69,12 +68,16 @@ const VoiceWaveform = ({ isActive }: { isActive: boolean }) => {
 
 const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
   const [query, setQuery] = useState('');
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string>('');
   const [isListening, setIsListening] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [response, setResponse] = useState('');
   const [error, setError] = useState('');
   
   const recognitionRef = useRef<SpeechRecognition | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const cameraInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     // Initialize speech recognition if available
@@ -114,6 +117,46 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
     };
   }, []);
 
+  const handleImageSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      setSelectedImage(file);
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setImagePreview(e.target?.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleCameraCapture = () => {
+    if (cameraInputRef.current) {
+      cameraInputRef.current.click();
+    }
+  };
+
+  const handleFileUpload = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
+  const removeImage = () => {
+    setSelectedImage(null);
+    setImagePreview('');
+    if (fileInputRef.current) fileInputRef.current.value = '';
+    if (cameraInputRef.current) cameraInputRef.current.value = '';
+  };
+
+  const convertImageToBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  };
+
   const startListening = () => {
     if (recognitionRef.current && !isListening) {
       setIsListening(true);
@@ -133,7 +176,7 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
   };
 
   const handleSearch = async (searchQuery: string = query) => {
-    if (!searchQuery.trim()) return;
+    if (!searchQuery.trim() && !selectedImage) return;
     
     setIsLoading(true);
     setResponse('');
@@ -142,8 +185,16 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
     try {
       const { supabase } = await import("@/integrations/supabase/client");
       
+      let requestBody: any = { message: searchQuery };
+      
+      if (selectedImage) {
+        const base64Image = await convertImageToBase64(selectedImage);
+        requestBody.image = base64Image;
+        requestBody.hasImage = true;
+      }
+      
       const { data, error: functionError } = await supabase.functions.invoke('kluster-chat', {
-        body: { message: searchQuery }
+        body: requestBody
       });
 
       if (functionError) {
@@ -193,7 +244,7 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
           Ask HeyNia Anything
         </h2>
         <p className="text-gray-600 text-base sm:text-lg lg:text-xl px-4">
-          Get instant answers about your dental practice management
+          Get instant answers about your dental practice management - with text or images
         </p>
       </div>
 
@@ -208,12 +259,34 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   onKeyPress={handleKeyPress}
-                  placeholder="Type your question or use voice..."
+                  placeholder="Type your question or upload an image..."
                   className="border-0 text-base sm:text-lg h-10 sm:h-12 bg-transparent focus:ring-0 placeholder:text-gray-500/80 text-gray-800"
                   disabled={isLoading}
                 />
               </div>
               <div className="flex items-center space-x-1 sm:space-x-2">
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="ghost"
+                  onClick={handleCameraCapture}
+                  disabled={isLoading}
+                  className="h-10 w-10 sm:h-12 sm:w-12 rounded-lg sm:rounded-xl transition-all hover:scale-105 bg-white/30 hover:bg-white/40 border-0"
+                  title="Take photo"
+                >
+                  <Camera className="h-4 w-4 sm:h-5 sm:w-5" />
+                </Button>
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="ghost"
+                  onClick={handleFileUpload}
+                  disabled={isLoading}
+                  className="h-10 w-10 sm:h-12 sm:w-12 rounded-lg sm:rounded-xl transition-all hover:scale-105 bg-white/30 hover:bg-white/40 border-0"
+                  title="Upload image"
+                >
+                  <Upload className="h-4 w-4 sm:h-5 sm:w-5" />
+                </Button>
                 <Button
                   type="button"
                   size="sm"
@@ -231,7 +304,7 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
                 <Button
                   type="button"
                   onClick={() => handleSearch()}
-                  disabled={isLoading || !query.trim()}
+                  disabled={isLoading || (!query.trim() && !selectedImage)}
                   className="h-10 w-10 sm:h-12 sm:w-12 rounded-lg sm:rounded-xl bg-gradient-to-r from-blue-500/80 to-purple-600/80 hover:from-blue-600/90 hover:to-purple-700/90 transition-all hover:scale-105 shadow-lg border-0 backdrop-blur-sm"
                 >
                   {isLoading ? (
@@ -244,6 +317,54 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
             </div>
           </div>
         </div>
+
+        {/* Hidden file inputs */}
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept="image/*"
+          onChange={handleImageSelect}
+          className="hidden"
+        />
+        <input
+          ref={cameraInputRef}
+          type="file"
+          accept="image/*"
+          capture="environment"
+          onChange={handleImageSelect}
+          className="hidden"
+        />
+
+        {/* Image Preview */}
+        {imagePreview && (
+          <div className="mt-4 sm:mt-6">
+            <div className="bg-white/60 backdrop-blur-xl rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/30 shadow-lg">
+              <div className="flex items-start space-x-4">
+                <div className="relative">
+                  <img
+                    src={imagePreview}
+                    alt="Selected image"
+                    className="w-32 h-32 sm:w-40 sm:h-40 object-cover rounded-lg shadow-lg"
+                  />
+                  <Button
+                    onClick={removeImage}
+                    size="sm"
+                    variant="destructive"
+                    className="absolute -top-2 -right-2 w-6 h-6 p-0 rounded-full"
+                  >
+                    <X className="w-3 h-3" />
+                  </Button>
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm text-gray-600 mb-2">Image selected for analysis</p>
+                  <p className="text-xs text-gray-500">
+                    The AI can analyze dental images, X-rays, or any visual content related to your practice.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Voice Waveform Visualization */}
         {isListening && (
@@ -280,7 +401,7 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
               </div>
               <div className="flex-1">
                 <div className="bg-white/60 backdrop-blur-sm rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm border border-white/40">
-                  <p className="text-gray-800 leading-relaxed text-sm sm:text-base lg:text-lg">{response}</p>
+                  <p className="text-gray-800 leading-relaxed text-sm sm:text-base lg:text-lg whitespace-pre-wrap">{response}</p>
                 </div>
               </div>
             </div>
@@ -293,7 +414,7 @@ const AISearchWindow = ({ onSearch }: AISearchWindowProps) => {
         <div className="inline-flex items-center space-x-2 px-4 sm:px-6 py-2 sm:py-3 bg-white/30 backdrop-blur-xl rounded-full border border-white/40 shadow-lg">
           <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 text-gray-600" />
           <p className="text-xs sm:text-sm text-gray-700">
-            Try Asking: "HeyNia Could you Provide me with the list of patients I'm seeing today?"
+            Try asking with text or upload dental X-rays, images, or documents for analysis
           </p>
         </div>
       </div>
