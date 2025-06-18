@@ -84,7 +84,7 @@ const Testimonials = () => {
     <div className="min-h-screen bg-background">
       {/* Navigation */}
       <nav className="border-b bg-background/80 backdrop-blur-sm sticky top-0 z-50">
-        <div className="container-responsive py-4 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <Link to="/" className="flex items-center">
             <HeyniaLogo className="h-8" variant="colorful" />
           </Link>
@@ -102,12 +102,12 @@ const Testimonials = () => {
       </nav>
 
       {/* Hero Section */}
-      <section className="section-padding bg-gradient-to-br from-background to-muted/20">
-        <div className="container-responsive max-w-4xl text-center">
-          <h1 className="text-responsive-3xl font-bold mb-6">
+      <section className="py-16 lg:py-24 bg-gradient-to-br from-background to-muted/20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
             Trusted by dental professionals worldwide
           </h1>
-          <p className="text-responsive-lg text-muted-foreground mb-8 leading-relaxed">
+          <p className="text-xl lg:text-2xl text-muted-foreground mb-8 leading-relaxed">
             See how Heynia is helping dental practices streamline operations, improve patient care, and grow their business.
           </p>
           <div className="flex justify-center items-center space-x-2 mb-8">
@@ -123,8 +123,8 @@ const Testimonials = () => {
       </section>
 
       {/* Featured Testimonial */}
-      <section className="section-padding">
-        <div className="container-responsive max-w-4xl">
+      <section className="py-16 lg:py-24">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <Card className="p-8 shadow-lg border-2 border-primary/20">
             <div className="flex items-center justify-between mb-6">
               <Quote className="w-12 h-12 text-primary opacity-50" />
@@ -151,7 +151,7 @@ const Testimonials = () => {
               </div>
             </div>
             
-            <blockquote className="text-xl leading-relaxed mb-6 text-foreground">
+            <blockquote className="text-xl leading-relaxed mb-6 text-foreground text-center">
               "{testimonials[currentTestimonial].text}"
             </blockquote>
             
@@ -182,13 +182,13 @@ const Testimonials = () => {
       </section>
 
       {/* All Testimonials Grid */}
-      <section className="section-padding bg-gradient-to-br from-muted/20 to-background">
-        <div className="container-responsive max-w-6xl">
+      <section className="py-16 lg:py-24 bg-gradient-to-br from-muted/20 to-background">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-responsive-2xl font-bold mb-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
               What dental professionals are saying
             </h2>
-            <p className="text-responsive-lg text-muted-foreground">
+            <p className="text-xl lg:text-2xl text-muted-foreground">
               Real feedback from real practices using Heynia every day
             </p>
           </div>
@@ -232,10 +232,10 @@ const Testimonials = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="section-padding">
-        <div className="container-responsive max-w-4xl">
+      <section className="py-16 lg:py-24">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-responsive-2xl font-bold mb-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
               Proven results across the industry
             </h2>
           </div>
@@ -262,12 +262,12 @@ const Testimonials = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="section-padding bg-gradient-to-br from-primary/5 to-accent/10">
-        <div className="container-responsive max-w-4xl text-center">
-          <h2 className="text-responsive-2xl font-bold mb-6">
+      <section className="py-16 lg:py-24 bg-gradient-to-br from-primary/5 to-accent/10">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
             Join hundreds of satisfied dental practices
           </h2>
-          <p className="text-responsive-lg text-muted-foreground mb-8 leading-relaxed">
+          <p className="text-xl lg:text-2xl text-muted-foreground mb-8 leading-relaxed">
             Start your journey to a more efficient, profitable, and purpose-driven practice today.
           </p>
           
@@ -287,18 +287,35 @@ const Testimonials = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-card border-t py-12 px-4">
-        <div className="container-responsive max-w-4xl text-center">
-          <div className="flex items-center justify-center mb-6">
-            <HeyniaLogo className="h-8" variant="light" />
+      <footer className="bg-slate-900 text-white py-12 sm:py-16 px-4">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-8">
+            <div className="flex items-center justify-center mb-6">
+              <Link to="/">
+                <HeyniaLogo className="h-8" variant="light" />
+              </Link>
+            </div>
+            <p className="text-slate-400 text-sm mb-4">
+              Cloud-based dental practice management software with HIPAA compliance and integrated billing.
+            </p>
+            <div className="flex justify-center space-x-6 text-sm text-slate-400 mb-6">
+              <Link to="/terms" className="hover:text-white transition-colors">Terms</Link>
+              <Link to="/privacy" className="hover:text-white transition-colors">Privacy</Link>
+              <Link to="/" className="hover:text-white transition-colors">Home</Link>
+            </div>
           </div>
-          <p className="text-slate-400 text-sm mb-4">
-            Cloud-based dental practice management software with HIPAA compliance and integrated billing.
-          </p>
-          <div className="flex justify-center space-x-6 text-sm text-slate-400">
-            <Link to="/terms" className="hover:text-white transition-colors">Terms</Link>
-            <Link to="/privacy" className="hover:text-white transition-colors">Privacy</Link>
-            <Link to="/" className="hover:text-white transition-colors">Home</Link>
+          
+          <div className="border-t border-slate-800 pt-6">
+            <div className="flex flex-col items-center space-y-4">
+              <p className="text-slate-400 text-sm text-center">
+                💜 made in nairobi with ❤️
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-400">
+                <span>🔒 HIPAA-Ready</span>
+                <span>☁️ Cloud-Based</span>
+                <span>📱 Mobile-First</span>
+              </div>
+            </div>
           </div>
         </div>
       </footer>

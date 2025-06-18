@@ -1,12 +1,15 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check, Star, Zap, Crown, Menu, X, TrendingUp } from "lucide-react";
 import HeyniaLogo from "@/components/HeyniaLogo";
 import { useDocumentHead } from "@/hooks/useDocumentHead";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Pricing = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isAnnual, setIsAnnual] = useState(true);
 
   useDocumentHead({
     title: "Affordable Dental Practice Management Software USA | Pricing | Heynia",
@@ -86,16 +89,18 @@ const Pricing = () => {
     <div className="min-h-screen bg-background">
       {/* Navigation */}
       <nav className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50 safe-area-top">
-        <div className="container-responsive py-3 sm:py-4 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex items-center justify-between">
           <div className="flex items-center">
-            <HeyniaLogo className="h-6 sm:h-8" variant="dark" />
+            <Link to="/">
+              <HeyniaLogo className="h-6 sm:h-8" variant="dark" />
+            </Link>
           </div>
           
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
-            <a href="/" className="text-muted-foreground hover:text-foreground transition-colors text-sm xl:text-base">Home</a>
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors text-sm xl:text-base">Features</a>
-            <a href="/pricing" className="text-foreground font-medium text-sm xl:text-base">Pricing</a>
+            <Link to="/" className="text-muted-foreground hover:text-foreground transition-colors text-sm xl:text-base">Home</Link>
+            <a href="/#features" className="text-muted-foreground hover:text-foreground transition-colors text-sm xl:text-base">Features</a>
+            <Link to="/pricing" className="text-foreground font-medium text-sm xl:text-base">Pricing</Link>
             <Button variant="outline" size="sm" className="btn-mobile-friendly">Sign In</Button>
             <Button className="gradient-primary text-white border-0 hover:opacity-90 btn-mobile-friendly" size="sm">Get Started</Button>
           </div>
@@ -113,10 +118,10 @@ const Pricing = () => {
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
           <div className="lg:hidden border-t bg-white/95 backdrop-blur-sm">
-            <div className="container-responsive py-4 space-y-4">
-              <a href="/" className="block py-2 text-muted-foreground hover:text-foreground transition-colors">Home</a>
-              <a href="#" className="block py-2 text-muted-foreground hover:text-foreground transition-colors">Features</a>
-              <a href="/pricing" className="block py-2 text-foreground font-medium">Pricing</a>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 space-y-4">
+              <Link to="/" className="block py-2 text-muted-foreground hover:text-foreground transition-colors">Home</Link>
+              <a href="/#features" className="block py-2 text-muted-foreground hover:text-foreground transition-colors">Features</a>
+              <Link to="/pricing" className="block py-2 text-foreground font-medium">Pricing</Link>
               <div className="flex flex-col space-y-3 pt-4">
                 <Button variant="outline" className="btn-mobile-friendly">Sign In</Button>
                 <Button className="gradient-primary text-white border-0 hover:opacity-90 btn-mobile-friendly">Get Started</Button>
@@ -127,35 +132,44 @@ const Pricing = () => {
       </nav>
 
       {/* Hero Section */}
-      <section className="section-padding bg-gradient-to-br from-slate-50 to-blue-50">
-        <div className="container-responsive text-center max-w-5xl">
+      <section className="py-16 lg:py-24 bg-gradient-to-br from-slate-50 to-blue-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center px-3 sm:px-4 py-2 rounded-full bg-primary/10 text-primary text-xs sm:text-sm font-medium mb-6 sm:mb-8">
             <TrendingUp className="w-4 h-4 mr-2" />
             Practices see 35% revenue growth on average
           </div>
-          <h1 className="text-responsive-3xl font-bold mb-4 sm:mb-6 leading-tight">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
             Choose your practice's{" "}
             <span className="text-gradient">growth plan</span>
           </h1>
-          <p className="text-responsive-lg text-muted-foreground mb-6 sm:mb-8 max-w-3xl mx-auto">
+          <p className="text-xl lg:text-2xl text-muted-foreground mb-6 sm:mb-8 max-w-3xl mx-auto">
             Start with a 30-day free trial. No credit card required. See results in weeks, not months.
           </p>
           <div className="flex items-center justify-center space-x-3 sm:space-x-4 mb-8 sm:mb-12">
-            <span className="text-xs sm:text-sm text-muted-foreground">Monthly</span>
+            <span className={`text-xs sm:text-sm ${!isAnnual ? 'font-medium text-foreground' : 'text-muted-foreground'}`}>Monthly</span>
             <div className="relative">
-              <input type="checkbox" className="sr-only" />
-              <div className="w-12 h-6 sm:w-14 sm:h-7 bg-gray-200 rounded-full shadow-inner"></div>
-              <div className="absolute left-1 top-1 bg-white w-4 h-4 sm:w-5 sm:h-5 rounded-full shadow transition-transform duration-300"></div>
+              <input 
+                type="checkbox" 
+                className="sr-only" 
+                checked={isAnnual}
+                onChange={(e) => setIsAnnual(e.target.checked)}
+              />
+              <div 
+                className={`w-12 h-6 sm:w-14 sm:h-7 rounded-full shadow-inner cursor-pointer transition-colors ${isAnnual ? 'bg-primary' : 'bg-gray-200'}`}
+                onClick={() => setIsAnnual(!isAnnual)}
+              >
+                <div className={`absolute top-1 w-4 h-4 sm:w-5 sm:h-5 bg-white rounded-full shadow transition-transform duration-300 ${isAnnual ? 'left-7 sm:left-8' : 'left-1'}`}></div>
+              </div>
             </div>
-            <span className="text-xs sm:text-sm font-medium">Annual (Save 17%)</span>
+            <span className={`text-xs sm:text-sm ${isAnnual ? 'font-medium text-foreground' : 'text-muted-foreground'}`}>Annual (Save 17%)</span>
             <span className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Best Value</span>
           </div>
         </div>
       </section>
 
-      {/* Pricing Cards with Decoy Effect */}
-      <section className="section-padding">
-        <div className="container-responsive max-w-7xl">
+      {/* Pricing Cards */}
+      <section className="py-16 lg:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-3 gap-6 sm:gap-8">
             {plans.map((plan, index) => (
               <Card key={plan.name} className={`relative border-2 hover:shadow-xl transition-all duration-300 ${
@@ -185,16 +199,27 @@ const Pricing = () => {
                   <div className="mt-6 sm:mt-8">
                     <div className="flex items-baseline justify-center space-x-2">
                       <span className={`text-4xl sm:text-5xl font-bold ${plan.popular ? 'text-primary' : ''}`}>
-                        ${plan.annualPrice}
+                        ${isAnnual ? plan.annualPrice : plan.monthlyPrice}
                       </span>
-                      <span className="text-muted-foreground text-sm sm:text-base">/year</span>
+                      <span className="text-muted-foreground text-sm sm:text-base">
+                        /{isAnnual ? 'year' : 'month'}
+                      </span>
                     </div>
-                    <p className="text-xs sm:text-sm text-muted-foreground mt-2">
-                      or ${plan.monthlyPrice}/month billed monthly
-                    </p>
-                    <p className="text-xs sm:text-sm font-medium text-green-600 mt-1">
-                      {plan.savings}
-                    </p>
+                    {isAnnual && (
+                      <>
+                        <p className="text-xs sm:text-sm text-muted-foreground mt-2">
+                          or ${plan.monthlyPrice}/month billed monthly
+                        </p>
+                        <p className="text-xs sm:text-sm font-medium text-green-600 mt-1">
+                          {plan.savings}
+                        </p>
+                      </>
+                    )}
+                    {!isAnnual && (
+                      <p className="text-xs sm:text-sm text-muted-foreground mt-2">
+                        billed monthly
+                      </p>
+                    )}
                   </div>
                 </CardHeader>
 
@@ -300,11 +325,13 @@ const Pricing = () => {
 
       {/* Footer */}
       <footer className="bg-slate-900 text-white py-12 sm:py-16 px-4 safe-area-bottom">
-        <div className="container-responsive max-w-7xl">
+        <div className="max-w-7xl mx-auto">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-8 sm:mb-12">
             <div>
               <div className="flex items-center mb-4 sm:mb-6">
-                <HeyniaLogo className="h-6 sm:h-8" variant="light" />
+                <Link to="/">
+                  <HeyniaLogo className="h-6 sm:h-8" variant="light" />
+                </Link>
               </div>
               <p className="text-slate-400 mb-3 sm:mb-4 text-sm sm:text-base">
                 Empowering dental practices with purpose-driven technology.
@@ -318,8 +345,8 @@ const Pricing = () => {
             <div>
               <h4 className="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Product</h4>
               <ul className="space-y-2 text-slate-400 text-xs sm:text-sm">
-                <li><a href="#" className="hover:text-white transition-colors">Features</a></li>
-                <li><a href="/pricing" className="hover:text-white transition-colors">Pricing</a></li>
+                <li><a href="/#features" className="hover:text-white transition-colors">Features</a></li>
+                <li><Link to="/pricing" className="hover:text-white transition-colors">Pricing</Link></li>
                 <li><a href="#" className="hover:text-white transition-colors">Demo</a></li>
               </ul>
             </div>
@@ -328,8 +355,8 @@ const Pricing = () => {
               <h4 className="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Company</h4>
               <ul className="space-y-2 text-slate-400 text-xs sm:text-sm">
                 <li><a href="/#story" className="hover:text-white transition-colors">Our Story</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Impact</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
+                <li><a href="/#impact" className="hover:text-white transition-colors">Impact</a></li>
+                <li><Link to="/testimonials" className="hover:text-white transition-colors">Testimonials</Link></li>
               </ul>
             </div>
             
@@ -338,14 +365,23 @@ const Pricing = () => {
               <ul className="space-y-2 text-slate-400 text-xs sm:text-sm">
                 <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
-                <li><a href="/privacy" className="hover:text-white transition-colors">Privacy</a></li>
-                <li><a href="/terms" className="hover:text-white transition-colors">Terms</a></li>
+                <li><Link to="/privacy" className="hover:text-white transition-colors">Privacy</Link></li>
+                <li><Link to="/terms" className="hover:text-white transition-colors">Terms</Link></li>
               </ul>
             </div>
           </div>
           
-          <div className="border-t border-slate-800 pt-6 sm:pt-8 text-center text-slate-400">
-            <p className="text-xs sm:text-sm">made in nairobi with ❤️</p>
+          <div className="border-t border-slate-800 pt-6 sm:pt-8">
+            <div className="flex flex-col items-center space-y-4">
+              <p className="text-slate-400 text-xs sm:text-sm text-center">
+                💜 made in nairobi with ❤️
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-6 text-xs sm:text-sm text-slate-400">
+                <span>🔒 HIPAA-Ready</span>
+                <span>☁️ Cloud-Based</span>
+                <span>📱 Mobile-First</span>
+              </div>
+            </div>
           </div>
         </div>
       </footer>
