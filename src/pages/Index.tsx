@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -28,7 +27,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50">
+    <div className="min-h-screen bg-white">
       {/* Navigation */}
       <nav className="border-b border-white/30 bg-white/95 backdrop-blur-xl sticky top-0 z-50 shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -109,7 +108,7 @@ const Index = () => {
 
       {/* Hero Section */}
       <section className="relative overflow-hidden py-20 lg:py-32">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-100 via-pink-100 to-blue-100"></div>
+        <div className="absolute inset-0 bg-white"></div>
         <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2280%22%20height%3D%2280%22%20viewBox%3D%220%200%2080%2080%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23a855f7%22%20fill-opacity%3D%220.15%22%3E%3Ccircle%20cx%3D%2240%22%20cy%3D%2240%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-60"></div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -194,7 +193,7 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="mb-20">
             <h2 className="text-3xl lg:text-5xl font-bold mb-8 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-              🌈 All-in-one, and built for dentists like you.
+              All-in-one, and built for dentists like you.
             </h2>
             <p className="text-xl lg:text-2xl text-slate-700 max-w-4xl mx-auto leading-relaxed">
               ✨ Heynia simplifies your entire practice—no steep learning curves, no tech headaches.
@@ -404,7 +403,7 @@ const Index = () => {
                 </Link>
               </div>
               <p className="text-purple-200 text-sm mb-4 leading-relaxed">
-                🌈 Cloud-based dental practice management software with HIPAA compliance, AI-powered insights, and integrated billing for modern dental clinics.
+                Cloud-based dental practice management software with HIPAA compliance, AI-powered insights, and integrated billing for modern dental clinics.
               </p>
               <div className="space-y-2 text-sm text-purple-300">
                 <div className="flex items-center space-x-2">
@@ -454,11 +453,6 @@ const Index = () => {
               <p className="text-purple-300 text-sm text-center">
                 💜 made in nairobi with ❤️
               </p>
-              <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-purple-300">
-                <span className="flex items-center gap-1">🔒 HIPAA-Ready</span>
-                <span className="flex items-center gap-1">☁️ Cloud-Based</span>
-                <span className="flex items-center gap-1">📱 Mobile-First</span>
-              </div>
             </div>
           </div>
         </div>
