@@ -16,6 +16,14 @@ const Pricing = () => {
     description: "Choose from flexible plans starting at $99/month. Heynia offers affordable dental software with insurance claim management, AI insights, and real-time analytics."
   });
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    setMobileMenuOpen(false);
+  };
+
   const plans = [
     {
       name: "Basic",
@@ -86,9 +94,9 @@ const Pricing = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white">
       {/* Navigation */}
-      <nav className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50 safe-area-top">
+      <nav className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex items-center justify-between">
           <div className="flex items-center">
             <Link to="/">
@@ -99,8 +107,9 @@ const Pricing = () => {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
             <Link to="/" className="text-muted-foreground hover:text-foreground transition-colors text-sm xl:text-base">Home</Link>
-            <a href="/#features" className="text-muted-foreground hover:text-foreground transition-colors text-sm xl:text-base">Features</a>
+            <Link to="/#features" className="text-muted-foreground hover:text-foreground transition-colors text-sm xl:text-base">Features</Link>
             <Link to="/pricing" className="text-foreground font-medium text-sm xl:text-base">Pricing</Link>
+            <Link to="/testimonials" className="text-muted-foreground hover:text-foreground transition-colors text-sm xl:text-base">Testimonials</Link>
             <Button variant="outline" size="sm" className="btn-mobile-friendly">Sign In</Button>
             <Button className="gradient-primary text-white border-0 hover:opacity-90 btn-mobile-friendly" size="sm">Get Started</Button>
           </div>
@@ -119,9 +128,10 @@ const Pricing = () => {
         {mobileMenuOpen && (
           <div className="lg:hidden border-t bg-white/95 backdrop-blur-sm">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 space-y-4">
-              <Link to="/" className="block py-2 text-muted-foreground hover:text-foreground transition-colors">Home</Link>
-              <a href="/#features" className="block py-2 text-muted-foreground hover:text-foreground transition-colors">Features</a>
-              <Link to="/pricing" className="block py-2 text-foreground font-medium">Pricing</Link>
+              <Link to="/" className="block py-2 text-muted-foreground hover:text-foreground transition-colors" onClick={() => setMobileMenuOpen(false)}>Home</Link>
+              <Link to="/#features" className="block py-2 text-muted-foreground hover:text-foreground transition-colors" onClick={() => setMobileMenuOpen(false)}>Features</Link>
+              <Link to="/pricing" className="block py-2 text-foreground font-medium" onClick={() => setMobileMenuOpen(false)}>Pricing</Link>
+              <Link to="/testimonials" className="block py-2 text-muted-foreground hover:text-foreground transition-colors" onClick={() => setMobileMenuOpen(false)}>Testimonials</Link>
               <div className="flex flex-col space-y-3 pt-4">
                 <Button variant="outline" className="btn-mobile-friendly">Sign In</Button>
                 <Button className="gradient-primary text-white border-0 hover:opacity-90 btn-mobile-friendly">Get Started</Button>
@@ -138,11 +148,11 @@ const Pricing = () => {
             <TrendingUp className="w-4 h-4 mr-2" />
             Practices see 35% revenue growth on average
           </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
             Choose your practice's{" "}
             <span className="text-gradient">growth plan</span>
           </h1>
-          <p className="text-xl lg:text-2xl text-muted-foreground mb-6 sm:mb-8 max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground mb-6 sm:mb-8 max-w-3xl mx-auto">
             Start with a 30-day free trial. No credit card required. See results in weeks, not months.
           </p>
           <div className="flex items-center justify-center space-x-3 sm:space-x-4 mb-8 sm:mb-12">
@@ -172,15 +182,15 @@ const Pricing = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-3 gap-6 sm:gap-8">
             {plans.map((plan, index) => (
-              <Card key={plan.name} className={`relative border-2 hover:shadow-xl transition-all duration-300 ${
+              <Card key={plan.name} className={`relative border hover:shadow-xl transition-all duration-300 ${
                 plan.popular 
-                  ? 'border-primary shadow-2xl lg:scale-110 lg:-mt-8 lg:mb-8' 
+                  ? 'border-primary shadow-2xl lg:scale-105 lg:-mt-4 lg:mb-4' 
                   : 'border-border hover:border-primary/50'
               }`}>
                 {plan.popular && (
                   <div className="absolute -top-3 sm:-top-4 left-1/2 transform -translate-x-1/2">
                     <span className="bg-primary text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full text-sm sm:text-base font-bold shadow-lg">
-                      🔥 Most Popular
+                      Most Popular
                     </span>
                   </div>
                 )}
@@ -198,7 +208,7 @@ const Pricing = () => {
                   
                   <div className="mt-6 sm:mt-8">
                     <div className="flex items-baseline justify-center space-x-2">
-                      <span className={`text-4xl sm:text-5xl font-bold ${plan.popular ? 'text-primary' : ''}`}>
+                      <span className={`text-3xl sm:text-4xl lg:text-5xl font-bold ${plan.popular ? 'text-primary' : ''}`}>
                         ${isAnnual ? plan.annualPrice : plan.monthlyPrice}
                       </span>
                       <span className="text-muted-foreground text-sm sm:text-base">
@@ -227,7 +237,7 @@ const Pricing = () => {
                   <Button 
                     className={`w-full mb-6 sm:mb-8 btn-mobile-friendly ${
                       plan.popular 
-                        ? 'gradient-primary text-white border-0 hover:opacity-90 text-lg py-3' 
+                        ? 'gradient-primary text-white border-0 hover:opacity-90 text-base sm:text-lg py-3 sm:py-4' 
                         : ''
                     }`}
                     variant={plan.buttonVariant}
@@ -251,49 +261,49 @@ const Pricing = () => {
           
           {/* Social Proof */}
           <div className="text-center mt-12 sm:mt-16">
-            <p className="text-muted-foreground mb-4">Trusted by 500+ dental practices worldwide</p>
+            <p className="text-muted-foreground mb-4 text-sm sm:text-base">Trusted by 500+ dental practices worldwide</p>
             <div className="flex justify-center items-center space-x-4 text-yellow-400">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-5 h-5 fill-current" />
+                <Star key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
               ))}
-              <span className="text-foreground font-semibold ml-2">4.9/5 rating</span>
+              <span className="text-foreground font-semibold ml-2 text-sm sm:text-base">4.9/5 rating</span>
             </div>
           </div>
         </div>
       </section>
 
       {/* Simplified FAQ Section */}
-      <section className="section-padding bg-gradient-to-br from-slate-50 to-blue-50">
-        <div className="container-responsive max-w-4xl">
+      <section className="py-16 lg:py-24 bg-gradient-to-br from-slate-50 to-blue-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-responsive-2xl font-bold mb-4">Pricing questions? We've got answers</h2>
-            <p className="text-responsive-lg text-muted-foreground">Clear, honest answers to help you choose</p>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">Pricing questions? We've got answers</h2>
+            <p className="text-lg sm:text-xl text-muted-foreground">Clear, honest answers to help you choose</p>
           </div>
           
           <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
             <Card className="border-0 shadow-lg">
-              <CardContent className="card-padding">
+              <CardContent className="p-4 sm:p-6">
                 <h3 className="text-base sm:text-lg font-semibold mb-3">Can I switch plans anytime?</h3>
                 <p className="text-muted-foreground text-sm sm:text-base">Yes! Upgrade or downgrade with one click. Changes take effect immediately, and we'll prorate your billing fairly.</p>
               </CardContent>
             </Card>
             
             <Card className="border-0 shadow-lg">
-              <CardContent className="card-padding">
+              <CardContent className="p-4 sm:p-6">
                 <h3 className="text-base sm:text-lg font-semibold mb-3">Any hidden fees or setup costs?</h3>
                 <p className="text-muted-foreground text-sm sm:text-base">Zero. What you see is what you pay. No setup fees, no surprise charges. Professional and Premium plans include free onboarding.</p>
               </CardContent>
             </Card>
             
             <Card className="border-0 shadow-lg">
-              <CardContent className="card-padding">
+              <CardContent className="p-4 sm:p-6">
                 <h3 className="text-base sm:text-lg font-semibold mb-3">What about data security?</h3>
                 <p className="text-muted-foreground text-sm sm:text-base">Bank-level security on all plans. HIPAA-compliant, encrypted storage, regular backups, and 99.9% uptime guarantee.</p>
               </CardContent>
             </Card>
             
             <Card className="border-0 shadow-lg">
-              <CardContent className="card-padding">
+              <CardContent className="p-4 sm:p-6">
                 <h3 className="text-base sm:text-lg font-semibold mb-3">Is the 30-day trial really free?</h3>
                 <p className="text-muted-foreground text-sm sm:text-base">Completely free. No credit card required. Full access to all features. If you love it (you will), choose your plan. If not, walk away—no questions asked.</p>
               </CardContent>
@@ -303,10 +313,10 @@ const Pricing = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="section-padding bg-gradient-to-br from-primary/10 to-blue-100">
-        <div className="container-responsive max-w-5xl text-center">
-          <h2 className="text-responsive-2xl font-bold mb-4 sm:mb-6">Ready to transform your dental practice?</h2>
-          <p className="text-responsive-lg text-muted-foreground mb-6 sm:mb-8">
+      <section className="py-16 lg:py-24 bg-gradient-to-br from-primary/10 to-blue-100">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6">Ready to transform your dental practice?</h2>
+          <p className="text-lg sm:text-xl text-muted-foreground mb-6 sm:mb-8">
             Join hundreds of dental professionals who chose growth over chaos.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
@@ -324,7 +334,7 @@ const Pricing = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-900 text-white py-12 sm:py-16 px-4 safe-area-bottom">
+      <footer className="bg-slate-900 text-white py-12 sm:py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-8 sm:mb-12">
             <div>
@@ -345,7 +355,7 @@ const Pricing = () => {
             <div>
               <h4 className="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Product</h4>
               <ul className="space-y-2 text-slate-400 text-xs sm:text-sm">
-                <li><a href="/#features" className="hover:text-white transition-colors">Features</a></li>
+                <li><Link to="/#features" className="hover:text-white transition-colors">Features</Link></li>
                 <li><Link to="/pricing" className="hover:text-white transition-colors">Pricing</Link></li>
                 <li><a href="#" className="hover:text-white transition-colors">Demo</a></li>
               </ul>
@@ -354,8 +364,8 @@ const Pricing = () => {
             <div>
               <h4 className="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Company</h4>
               <ul className="space-y-2 text-slate-400 text-xs sm:text-sm">
-                <li><a href="/#story" className="hover:text-white transition-colors">Our Story</a></li>
-                <li><a href="/#impact" className="hover:text-white transition-colors">Impact</a></li>
+                <li><Link to="/#story" className="hover:text-white transition-colors">Our Story</Link></li>
+                <li><Link to="/#impact" className="hover:text-white transition-colors">Impact</Link></li>
                 <li><Link to="/testimonials" className="hover:text-white transition-colors">Testimonials</Link></li>
               </ul>
             </div>
@@ -374,13 +384,8 @@ const Pricing = () => {
           <div className="border-t border-slate-800 pt-6 sm:pt-8">
             <div className="flex flex-col items-center space-y-4">
               <p className="text-slate-400 text-xs sm:text-sm text-center">
-                💜 made in nairobi with ❤️
+                made in nairobi with love
               </p>
-              <div className="flex flex-wrap items-center justify-center gap-6 text-xs sm:text-sm text-slate-400">
-                <span>🔒 HIPAA-Ready</span>
-                <span>☁️ Cloud-Based</span>
-                <span>📱 Mobile-First</span>
-              </div>
             </div>
           </div>
         </div>
