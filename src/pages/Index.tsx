@@ -126,7 +126,7 @@ const Index = () => {
           </h1>
           
           <p className="text-xl lg:text-2xl text-slate-700 mb-12 max-w-4xl mx-auto leading-relaxed">
-            🎨 All your tools. One Easy Place. Experience the future of dental practice management with beautiful, colorful design.
+            Get instant answers about your dental practice management - with text or images
           </p>
           
           <div className="mb-12 max-w-2xl mx-auto">
